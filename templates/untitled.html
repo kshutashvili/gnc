@@ -1,0 +1,63 @@
+{% load pinax_referrals_tags %}
+{% load ref_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Referral Profile</title>
+</head>
+<body>
+
+{% if user.referral_codes.all %}
+    <p>{{ user.referral_codes.all.0.url }}</p>
+{% else %}
+<form class="referral" action="{% url "pinax_referrals:create_referral" %}" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="redirect_to" id="redirect_to" value="/" />
+    <input type="hidden" name="obj_ct_pk" id="obj_ct_pk" value="{{ obj_ct.pk }}" />
+    <input type="hidden" name="obj_pk" id="obj_pk" value="{{ obj.pk }}" />
+
+    <button type="submit">Create Referral Link</button>
+</form>
+{% endif %}
+
+{% referral_responses user as responses %}
+
+<p>{{ user.referral_codes.all.0.signup_count }}</p>
+<div>
+    <p>Visits: </p>
+    <p>{{ responses|action_filter:"RESPONDED"|length }}</p>
+</div>
+
+<div>
+    <p>Sign UPs: </p>
+    <p>{{ responses|action_filter:"USER_SIGNUP"|length }}</p>
+</div>
+
+<div>
+    <p>Purchases: </p>
+    <p>{{ responses|action_filter:"PURCHASED"|length }}</p>
+</div>
+
+<div>
+    <p>Summary purchases amount: </p>
+    <p>{% purchased_amount_by_refs responses %}</p>
+</div>
+
+<div>
+    <p>Your current bonus value</p>
+    {% if user.referral_bonus.partner_value %}
+        <p>{{ user.referral_bonus.partner_value }} %</p>
+    {% else %}
+        <p>{{ user.referral_bonus.value }} %</p>
+    {% endif %}
+</div>
+
+<div>
+    <p>Your bonus tokens</p>
+    <p>{{ user.referral_bonus.bonus_tokens }} ZNAQ</p>
+</div>
+
+<p></p>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ZNAQ</title>
+    <style>
+        @font-face {
+            font-family: 'Geometria';
+            src:url('https://znaq.org/static/fonts/Geometria.woff2') format('woff2'),
+                url('https://znaq.org/static/fonts/Geometria.woff') format('woff'),
+                url('https://znaq.org/static/fonts/Geometria.eot') format('eot');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @font-face {
+            font-family: 'GeometriaBold';
+            src:url('https://znaq.org/static/fonts/Geometria-Bold.woff2') format('woff2'),
+                url('https://znaq.org/static/fonts/Geometria-Bold.woff') format('woff'),
+                url('https://znaq.org/static/fonts/Geometria-Bold.eot') format('eot');
+            font-weight: normal;
+            font-style: normal;
+        }
+        body{
+            color: #757575;
+        }
+        img{
+            margin: 0 auto;
+            display: block;
+        }
+        .logo{
+            margin: 50px 0;
+        }
+        .message{
+            text-align: center;
+            color: #757575 !important;
+        }
+        .btn-wrap{
+            text-align: center;
+            margin: 50px 0;
+        }
+        .btn-wrap a{
+            background-color: #009ad6;
+            padding: 15px 20px;
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: bold;
+            color: #fff;
+            border-radius: 3px;
+        }
+        .thin h3{
+            font-weight: normal;
+        }
+    </style>
+</head>
+<body>
+    <div class="logo">
+        <img src="https://znaq.org/static/img/imgpsh_fullsize.png">
+    </div>
+    <div class="message">
+        {{ message|safe }}
+    </div>
+    <div class="btn-wrap">
+        <a href="https://znaq.org/">Website</a>
+    </div>
+</body>
+</html>

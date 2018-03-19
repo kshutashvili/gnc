@@ -1,0 +1,621 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+{% load i18n %}
+{% load solo_tags %}
+{% load translate_urls %}
+
+{% block title %}
+{% get_solo 'config.LandingConfiguration3' as conf3 %}
+{{ conf3.title_bounty }}
+{% endblock %}
+
+{% block content %}
+    {% get_current_language as LANGUAGE_CODE %}
+
+    <div class="mobile-menu-wrap" id="mob-menu">
+        <div class="mobile-top-line">
+            <div class="lang-select-wrap">
+                <ul class="lang-list">
+                    <li>
+                        <a href="#!" class="curr-lang">{{ LANGUAGE_CODE }}
+                            <span class="icon">
+                                <img src="{% static 'img/lang-arrow.png' %}" alt="arrow-down">
+                            </span>
+                        </a>
+                        <ul class="lang-dropdown">
+                            {% if LANGUAGE_CODE != "en" %}
+                                <li>
+                                    <a href="{% translate_url en %}">
+                                        en
+                                    </a>
+                                </li>
+                            {% endif %}
+                            {% if LANGUAGE_CODE != "ru" %}
+                                <li>
+                                    <a href="{% translate_url ru %}">
+                                        ru
+                                    </a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            {% if request.user.is_authenticated %}
+                <div class="mobile-menu-wrap__auth">
+                    <a href="{% url 'profile' %}" class="profile-link">
+                        <p class="user-name">{% trans 'Profile' %}</p>
+                    </a>
+                    <a href="{% url 'logout' %}" class="exit">
+                        <svg class="exit-img" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                            x="0px" y="0px" width="533.333px" height="533.333px" viewBox="0 0 533.333 533.333" style="enable-background:new 0 0 533.333 533.333;"
+                            xml:space="preserve">
+                            <g>
+                                <path d="M416.667,333.333v-66.666H250V200h166.667v-66.667l100,100L416.667,333.333z M383.333,300v133.333H216.667v100l-200-100V0
+                           h366.667v166.667H350V33.333H83.333L216.667,100v300H350V300H383.333z" />
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                        </svg>
+                    </a>
+                </div>
+            {% else %}
+                <div class="mobile-menu-wrap__auth">
+                    <a href="#!" class="login" id="login-mb">{% trans 'Log in' %}</a>
+                    <a href="#!" class="signin" id="signin-mb">{% trans 'Sign up' %}</a>
+                </div>
+            {% endif %}
+        </div>
+        <nav class="mobile-menu-wrap__menu">
+            {% for menu_item in menu %}
+                <a href="{% if menu_item.link %}{% url 'landing' %}{{ menu_item.link }}{% else %}#!{% endif %}" class="link">{{ menu_item.name }}</a>
+            {% endfor %}
+        </nav>
+    </div>
+
+    <header class="header header--bounty">
+        <div class="container">
+            <div class="content-relative">
+                <div class="top-line">
+                    <a href="/{{ LANGUAGE_CODE }}/" class="logo">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 324">
+
+                            <path class="cls-1" d="M180,57.35v57.41s2.77-.79,3.66-1.08,5.48-1.6,6.34-1.93a11.43,11.43,0,0,0,7.64-7.67s.68-1.79,3.68-2.29a11.36,11.36,0,0,1,4.33.37c2.58.67,2.88.84,4.69.78a6.2,6.2,0,0,0,1.62-.53c1-.45,3.95-1.75,5.9-2.37a77.36,77.36,0,0,1,10.81-2.65c4.16-.62,7.81-1.1,11.45-1.41s6.21-.36,8.37.26a13.89,13.89,0,0,1,5.18,2.71c1.39,1.15.88,1.21,2.36,2a10.7,10.7,0,0,0,5.34,1.17c1.89,0,3.88-.13,5.47-.26s7.1-.6,9.2-.59,4.36,0,5.57.59,1.29,3.28,1.29,3.28a25.18,25.18,0,0,1-.29,4.81,44.21,44.21,0,0,1-1.13,5.1c-.4,1.26-1.25,4.29-3.07,6.12s-95.82,94.36-95.82,94.36a9.47,9.47,0,0,0-1.86,2.84,9.68,9.68,0,0,0-.66,3.68c0,1.34-.09,47.55-.09,47.55h166.7V223.24s-3.64.37-6,.76-11.5,2.27-12.48,2.47-5.78,1.15-8.2,1.38c-6,.56-6.75-1.55-8.25-3.73,0,0-2.26-3.27-4-5.4s-5-5.88-5.3-6.28-3.06-3.48-4.89-5.44a96.23,96.23,0,0,1-6.47-7.41c-1.55-2.14-2.86-4.16-4.36-5.11s-3.2-1.47-6.89-.11-11.37,4.54-18.49,7.75c0,0-4.54,2.15-8.44.67,0,0,8.32-5.85,9.71-7s8-7.21,10-8.64,6.64-4.8,11.53-5.34a19.24,19.24,0,0,1,3.68-.18s1.22-2,2.26-4a16,16,0,0,1,3.48-3.76l7.34-6.94,8.48-8.37,9.93-10s14.92-14.75,16.76-16.47,6.22-5.57,7.6-6.95c2.35-2.35,3-3.4,3-7.85V57.35Z"
+                            />
+                            <path class="cls-1" d="M375.26,269.65V57.35h40.82s4.17.65,7.82,5.64l80,101.41V57.35h58v212.3l-39.62,0a12.54,12.54,0,0,1-6.68-1.83,8.52,8.52,0,0,1-2.45-2.21L432.89,166V269.65Z"
+                            />
+                            <path class="cls-1" d="M705.19,57.35H652.5L579,269.65h59.26L651,228.06h55.65l12.12,41.59h59.56Zm-45.59,131.4,18.64-62.43h1.18l17.81,62.43Z"
+                            />
+                            <path class="cls-1" d="M971.5,234.31A107.06,107.06,0,0,0,998,163.64c0-59.21-47.8-107.22-106.77-107.22s-106.77,48-106.77,107.22,47.8,107.22,106.77,107.22a106,106,0,0,0,48.69-11.78l4.4,4.76a18.07,18.07,0,0,0,13.27,5.81h46.58Zm-39-42.17-5.26-5.69a21.13,21.13,0,0,0-15.52-6.79H866.51l35.37,38.28a41.94,41.94,0,0,1-10.67,1.39c-26.56,0-48.09-24.93-48.09-55.69S864.65,108,891.21,108s48.09,24.93,48.09,55.69A62.17,62.17,0,0,1,932.53,192.14Z"
+                            />
+                        </svg>
+                    </a>
+                    <nav class="menu">
+                        {% for menu_item in menu %}
+                            <a href="{% if menu_item.link %}{% url 'landing' %}{{ menu_item.link }}{% else %}#!{% endif %}" class="link">{{ menu_item.name }}</a>
+                        {% endfor %}
+                    </nav>
+                    <div class="lang-select-wrap page-lang">
+                        <ul class="lang-list">
+                            <li>
+                                <a href="#!" class="curr-lang">{{ LANGUAGE_CODE }}
+                                    <span class="icon">
+                                        <img src="{% static 'img/lang-arrow.png' %}" alt="arrow-down">
+                                    </span>
+                                </a>
+                                <ul class="lang-dropdown">
+                                    {% if LANGUAGE_CODE != "en" %}
+                                        <li>
+                                            <a href="{% translate_url en %}">
+                                                en
+                                            </a>
+                                        </li>
+                                    {% endif %}
+                                    {% if LANGUAGE_CODE != "ru" %}
+                                        <li>
+                                            <a href="{% translate_url ru %}">
+                                                ru
+                                            </a>
+                                        </li>
+                                    {% endif %}
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    {% if request.user.is_authenticated %}
+                        <div class="auth">
+                          <a href="{% url 'logout' %}" class="logout" id="logout">{% trans 'Выйти' %}</a>
+                          <a href="{% url 'landing' %}" class="home" id="home">{% trans 'На главную' %}
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px"
+                              width="512px" height="512px" viewBox="0 0 220.682 220.682" style="enable-background:new 0 0 220.682 220.682;"
+                              xml:space="preserve">
+                              <g>
+                                <polygon points="92.695,38.924 164.113,110.341 92.695,181.758 120.979,210.043 220.682,110.341 120.979,10.639  " />
+                                <polygon points="28.284,210.043 127.986,110.341 28.284,10.639 0,38.924 71.417,110.341 0,181.758  " />
+                              </g>
+                            </svg>
+                          </a>
+                        </div>
+                    {% else %}
+                        <div class="auth">
+                            <a href="#!" class="login" id="login">{% trans 'Log in' %}</a>
+                            <a href="#!" class="signin" id="signin">{% trans 'Sign up' %}</a>
+                        </div>
+                    {% endif %}
+                    <p class="mobile-icon" id="mob-mnu-open">
+                        <svg height="32px" class="mob-menu-hamburger" id="Layer_1" style="enable-background:new 0 0 32 32;" version="1.1" viewBox="0 0 32 32" width="32px" xml:space="preserve"
+                            xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <path d="M4,10h24c1.104,0,2-0.896,2-2s-0.896-2-2-2H4C2.896,6,2,6.896,2,8S2.896,10,4,10z M28,14H4c-1.104,0-2,0.896-2,2  s0.896,2,2,2h24c1.104,0,2-0.896,2-2S29.104,14,28,14z M28,22H4c-1.104,0-2,0.896-2,2s0.896,2,2,2h24c1.104,0,2-0.896,2-2  S29.104,22,28,22z"
+                            />
+                        </svg>
+                        <svg version="1.1" class="mob-menu-close" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="    0px"
+                                width="40px" height="32px" viewBox="0 0 284.929 284.929" style="enable-background:new 0 0 284.929 284.929;"
+                                xml:space="preserve">
+                                <g>
+                                    <path d="M282.082,76.511l-14.274-14.273c-1.902-1.906-4.093-2.856-6.57-2.856c-2.471,0-4.661,0.95-6.563,2.856L142.466,174.441
+                            L30.262,62.241c-1.903-1.906-4.093-2.856-6.567-2.856c-2.475,0-4.665,0.95-6.567,2.856L2.856,76.515C0.95,78.417,0,80.607,0,83.082
+                            c0,2.473,0.953,4.663,2.856,6.565l133.043,133.046c1.902,1.903,4.093,2.854,6.567,2.854s4.661-0.951,6.562-2.854L282.082,89.647
+                            c1.902-1.903,2.847-4.093,2.847-6.565C284.929,80.607,283.984,78.417,282.082,76.511z" />
+                                </g>
+                        </svg>
+                    </p>
+
+                </div>
+            </div>
+        </div>
+
+    </header>
+
+    {% get_solo 'config.LandingConfiguration2' as conf2 %}
+    {% get_solo 'config.LandingConfiguration3' as conf3 %}
+    <section class="bounty-section-page">
+        <div class="container">
+            <div class="content">
+                <div class="grid masonry-grid clearfix">
+                    <div class="grid-item grid-item--width2 grid__title-block">
+                        <p class="grid__title-block__title">{% trans 'ZNAQ COMPANY' %}</p>
+                        <div class="grid__title-block__title-big">{% trans 'BOUNTY SYSTEM' %}</div>
+                    </div>
+                    <div class="grid-item grid-block grid-item-hide">
+                        <img src="{% static 'img/bounty-twitter.png' %}" alt="twitter.png">
+                        <p>Twitter</p>
+                        <a href="#!" class="bounty-more" data-social="twitter-modal">{% trans 'Читать далее' %}</a>
+                    </div>
+                    <div class="grid-item grid__subtitle-block">
+                        {{ conf3.bounty_top_text|linebreaks }} <a href="#" class="bounty-more" style="color: #0077f3;font-weight:bold" data-social="more-modal">{% trans 'More' %}</a>
+                    </div>
+                    <div class="grid-item grid-block grid-item-show">
+                        <img src="{% static 'img/bounty-twitter.png' %}" alt="twitter.png">
+                        <p>Twitter</p>
+                        <a href="#!" class="bounty-more" data-social="twitter-modal">{% trans 'Читать далее' %}</a>
+                    </div>
+                    <div class="grid-item grid-block">
+                        <img src="{% static 'img/bounty-referral-prog.png' %}" alt="referral-prog.png">
+                        <p>{% trans 'referral programm' %}</p>
+                        <a href="#!" class="bounty-more" data-social="referral-modal">{% trans 'Читать далее' %}</a>
+                    </div>
+                    <div class="grid-item grid-block">
+                        <img src="{% static 'img/bounty-facebook.png' %}" alt="facebook.png">
+                        <p>Facebook</p>
+                        <a href="#!" class="bounty-more" data-social="facebook-modal">{% trans 'Читать далее' %}</a>
+                    </div>
+                    <div class="grid-item grid-block">
+                        <img src="{% static 'img/bounty-media.png' %}" alt="media.png">
+                        <p>{% trans 'Media' %}</p>
+                        <a href="#!" class="bounty-more" data-social="media-modal">{% trans 'Читать далее' %}</a>
+                    </div>
+                    <div class="grid-item grid-block">
+                        <img src="{% static 'img/bounty-bitcoin.png' %}" alt="bitcoin.png">
+                        <p>Bitcoin Talk</p>
+                        <a href="#!" class="bounty-more" data-social="btalk-modal">{% trans 'Читать далее' %}</a>
+                    </div>
+                    <div class="grid-item grid-block">
+                        <img src="{% static 'img/bounty-reddit.png' %}" alt="reddit.png">
+                        <p>reddit</p>
+                        <a href="#!" class="bounty-more" data-social="reddit-modal">{% trans 'Читать далее' %}</a>
+                    </div>
+                    <div class="grid-item grid-block">
+                        <img src="{% static 'img/bounty-share.png' %}" alt="share.png">
+                        <p>{% trans 'Community' %}</p>
+                        <a href="#!" class="bounty-more" data-social="community-modal">{% trans 'Читать далее' %}</a>
+                    </div>
+                    <div class="grid-item grid-block">
+                        <img src="{% static 'img/bounty-telegram.png' %}" alt="telegram.png">
+                        <p>Telegram</p>
+                        <a href="#!" class="bounty-more" data-social="telegram-modal">{% trans 'Читать далее' %}</a>
+                    </div>
+                    <div class="grid-item grid-block">
+                        <img src="{% static 'img/linkedin_bounty.png' %}" alt="linkedin.png">
+                        <p>LinkedIn</p>
+                        <a href="#!" class="bounty-more" data-social="medium-modal">{% trans 'Читать далее' %}</a>
+                    </div>
+                    <div class="grid-item grid-block">
+                        <img src="{% static 'img/bounty-token-market.png' %}" alt="token-market.png">
+                        <p>token market</p>
+                        <a href="#!" class="bounty-more" data-social="tokenmarket-modal">{% trans 'Читать далее' %}</a>
+                    </div>
+                    <div class="grid-item grid-block">
+                        <img src="{% static 'img/bounty-youtube.png' %}" alt="youtube.png">
+                        <p>VLOGGING</p>
+                        <a href="#!" class="bounty-more" data-social="youtube-modal">{% trans 'Читать далее' %}</a>
+                    </div>
+                    <div class="grid-item grid-block">
+                        <img src="{% static 'img/bounty-blogger.png' %}" alt="blogger.png">
+                        <p>Blogging</p>
+                        <a href="#!" class="bounty-more" data-social="blogging-modal">{% trans 'Читать далее' %}</a>
+                    </div>
+                    <div class="grid-item grid-block">
+                        <img src="{% static 'img/bounty-instagram.png' %}" alt="instagram.png">
+                        <p>Instagram</p>
+                        <a href="#!" class="bounty-more" data-social="instagram-modal">{% trans 'Читать далее' %}</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="modal-window bounty-window" id="modal-window">
+        <div class="login-modal" id="login-modal">
+            <a href="#!" class="close">
+                <svg class="img" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 21.9 21.9"
+                    enable-background="new 0 0 21.9 21.9" width="512px" height="512px">
+                    <path d="M14.1,11.3c-0.2-0.2-0.2-0.5,0-0.7l7.5-7.5c0.2-0.2,0.3-0.5,0.3-0.7s-0.1-0.5-0.3-0.7l-1.4-1.4C20,0.1,19.7,0,19.5,0  c-0.3,0-0.5,0.1-0.7,0.3l-7.5,7.5c-0.2,0.2-0.5,0.2-0.7,0L3.1,0.3C2.9,0.1,2.6,0,2.4,0S1.9,0.1,1.7,0.3L0.3,1.7C0.1,1.9,0,2.2,0,2.4  s0.1,0.5,0.3,0.7l7.5,7.5c0.2,0.2,0.2,0.5,0,0.7l-7.5,7.5C0.1,19,0,19.3,0,19.5s0.1,0.5,0.3,0.7l1.4,1.4c0.2,0.2,0.5,0.3,0.7,0.3  s0.5-0.1,0.7-0.3l7.5-7.5c0.2-0.2,0.5-0.2,0.7,0l7.5,7.5c0.2,0.2,0.5,0.3,0.7,0.3s0.5-0.1,0.7-0.3l1.4-1.4c0.2-0.2,0.3-0.5,0.3-0.7  s-0.1-0.5-0.3-0.7L14.1,11.3z"
+                    />
+                </svg>
+            </a>
+            <p class="title">{% trans 'Log In' %}</p>
+            <div class="wrap">
+            <form action="{% url 'login' %}" class="login-form" method="POST">
+                {% csrf_token %}
+                {{ login_form.username }}
+                {{ login_form.password }}
+                <div class="login-bottom">
+                    <div class="remember-wrap">
+                        <input type="checkbox" class="remember" name="remebmer" id="remebmer" value="">
+                        <label for="remebmer">
+                            <span>
+                                <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                    width="284.929px" height="284.929px" viewBox="0 0 284.929 284.929" style="enable-background:new 0 0 284.929 284.929;"
+                                    xml:space="preserve">
+                                    <g>
+                                        <path d="M282.082,76.511l-14.274-14.273c-1.902-1.906-4.093-2.856-6.57-2.856c-2.471,0-4.661,0.95-6.563,2.856L142.466,174.441
+                               L30.262,62.241c-1.903-1.906-4.093-2.856-6.567-2.856c-2.475,0-4.665,0.95-6.567,2.856L2.856,76.515C0.95,78.417,0,80.607,0,83.082
+                               c0,2.473,0.953,4.663,2.856,6.565l133.043,133.046c1.902,1.903,4.093,2.854,6.567,2.854s4.661-0.951,6.562-2.854L282.082,89.647
+                               c1.902-1.903,2.847-4.093,2.847-6.565C284.929,80.607,283.984,78.417,282.082,76.511z" />
+                                    </g>
+                                    <g>
+                                    </g>
+                                    <g>
+                                    </g>
+                                    <g>
+                                    </g>
+                                    <g>
+                                    </g>
+                                    <g>
+                                    </g>
+                                    <g>
+                                    </g>
+                                    <g>
+                                    </g>
+                                    <g>
+                                    </g>
+                                    <g>
+                                    </g>
+                                    <g>
+                                    </g>
+                                    <g>
+                                    </g>
+                                    <g>
+                                    </g>
+                                    <g>
+                                    </g>
+                                    <g>
+                                    </g>
+                                    <g>
+                                    </g>
+                                </svg>
+                            </span> {% trans 'Remember me' %}</label>
+                    </div>
+                    <div class="buttons-wrap">
+                        <button class="submit">{% trans 'Log in' %}</button>
+                        <button class="go-signup">{% trans 'Sign up' %}</button>
+                    </div>
+                </div>
+            </form>
+            </div>
+        </div>
+        <div class="sign-in-modal" id="signin-modal">
+            <a href="#!" class="close">
+                <svg class="img" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 21.9 21.9"
+                        enable-background="new 0 0 21.9 21.9" width="512px" height="512px">
+                        <path d="M14.1,11.3c-0.2-0.2-0.2-0.5,0-0.7l7.5-7.5c0.2-0.2,0.3-0.5,0.3-0.7s-0.1-0.5-0.3-0.7l-1.4-1.4C20,0.1,19.7,0,19.5,0  c-0.3,0-0.5,0.1-0.7,0.3l-7.5,7.5c-0.2,0.2-0.5,0.2-0.7,0L3.1,0.3C2.9,0.1,2.6,0,2.4,0S1.9,0.1,1.7,0.3L0.3,1.7C0.1,1.9,0,2.2,0,2.4  s0.1,0.5,0.3,0.7l7.5,7.5c0.2,0.2,0.2,0.5,0,0.7l-7.5,7.5C0.1,19,0,19.3,0,19.5s0.1,0.5,0.3,0.7l1.4,1.4c0.2,0.2,0.5,0.3,0.7,0.3  s0.5-0.1,0.7-0.3l7.5-7.5c0.2-0.2,0.5-0.2,0.7,0l7.5,7.5c0.2,0.2,0.5,0.3,0.7,0.3s0.5-0.1,0.7-0.3l1.4-1.4c0.2-0.2,0.3-0.5,0.3-0.7  s-0.1-0.5-0.3-0.7L14.1,11.3z"
+                        />
+                    </svg>
+            </a>
+            <p class="title">{% trans 'Sign Up' %}</p>
+            <form action="{% url 'registration' %}" class="signin-form" method="POST">
+                    <div class="steps step-1">
+                        <div class="input-wrap">
+                            <label for="username" class="input-label">{% trans 'Username' %}</label>
+                            <div>
+                                {{ register_form.username }}
+                                <span class="tooltiptext" id="reg-username-error"></span>
+                            </div>
+                        </div>
+                        <div class="input-wrap">
+                            <label for="email" class="input-label">{% trans 'Email' %}</label>
+                            <div>
+                                {{ register_form.email }}
+                                <span class="tooltiptext" id="reg-email-error"></span>
+                            </div>
+                        </div>
+                        <div class="input-wrap">
+                            <label for="password" class="input-label">{% trans 'Password' %}</label>
+                            <div>
+                                {{ register_form.password1 }}
+                                <span class="tooltiptext" id="reg-pass1-error"></span>
+                            </div>
+                        </div>
+                        <div class="input-wrap">
+                            <label for="retry_password" class="input-label">{% trans 'Retry password' %}</label>
+                            <div>
+                                {{ register_form.password2 }}
+                                <span class="tooltiptext" id="reg-pass2-error"></span>
+                            </div>
+                        </div>
+                        <div class="btns-line">
+                            <a href="#!" class="btn" id="next-btn">{% trans 'next step' %}</a>
+                            <span class="tooltiptext" id="step1-tooltip"></span>
+                        </div>
+                        <div class="step-bg">{% trans 'step 1' %}</div>
+                    </div>
+                    <div class="steps step-2">
+                        <div class="input-wrap">
+                            <label for="full_name" class="input-label">{% trans 'Full Name' %}</label>
+                            <div>
+                                {{ register_form.full_name }}
+                                <span class="tooltiptext" id="reg-fullname-error"></span>
+                            </div>
+                        </div>
+                        <div class="input-wrap">
+                            <label for="date_of_birth" class="input-label">{% trans 'Date of Birth' %}</label>
+                            <div>
+                                {{ register_form.date_of_birth }}
+                                <span class="tooltiptext" id="reg-birth-error"></span>
+                            </div>
+                        </div>
+                        <div class="input-wrap">
+                            <label for="country" class="input-label">{% trans 'Country' %}</label>
+                            <div>
+                                {{ register_form.country }}
+                                <span class="tooltiptext" id="reg-country-error"></span>
+                            </div>
+                        </div>
+                        <div class="input-wrap">
+                            <label for="state" class="input-label">{% trans 'State / Province' %}</label>
+                            <div>
+                                {{ register_form.state }}
+                                <span class="tooltiptext" id="reg-state-error"></span>
+                            </div>
+                        </div>
+                        <div class="input-wrap">
+                            <label for="city" class="input-label">{% trans 'City' %}</label>
+                            <div>
+                                {{ register_form.city }}
+                                <span class="tooltiptext" id="reg-city-error"></span>
+                            </div>
+                        </div>
+                        <div class="btns-line">
+                            <a href="#!" class="btn btn--prev" id="prev-btn">{% trans 'previous step' %}</a>
+                            <a href="#!" class="btn" id="next-btn">{% trans 'next step' %}</a>
+                            <span class="tooltiptext" id="step2-tooltip"></span>
+                        </div>
+                        <div class="step-bg">{% trans 'step 2' %}</div>
+                    </div>
+                    <div class="steps step-3">
+
+                        <div class="agreement-wrap">
+                            <div>
+                            {{ conf2.token_sale_terms|linebreaksbr }}
+                            </div>
+                        </div>
+                        <div class="agreement-checbox-wrap">
+                            {{ register_form.confirm_terms }}
+                            <label for="agreement" class="checkbox-label">{% trans 'Я прочитал, и принимаю условия пользовательского соглашения' %}</label>
+                        </div>
+                        <div class="btns-line">
+                            <a href="#!" class="btn btn--prev" id="prev-btn">{% trans 'previous step' %}</a>
+                            <button type="submit" class="btn btn--submit disabled-btn" disabled="True">{% trans 'register' %}</button>
+                            {% csrf_token %}
+                        </div>
+                        <div class="step-bg">{% trans 'step 3' %}</div>
+                    </div>
+            </form>
+        </div>
+        <div class="bounty-modal" id="bounty-modal">
+            <div class="close-wrap">
+                <a href="#!" class="close">
+                    <svg class="img" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 21.9 21.9"
+                        enable-background="new 0 0 21.9 21.9" width="512px" height="512px">
+                        <path d="M14.1,11.3c-0.2-0.2-0.2-0.5,0-0.7l7.5-7.5c0.2-0.2,0.3-0.5,0.3-0.7s-0.1-0.5-0.3-0.7l-1.4-1.4C20,0.1,19.7,0,19.5,0  c-0.3,0-0.5,0.1-0.7,0.3l-7.5,7.5c-0.2,0.2-0.5,0.2-0.7,0L3.1,0.3C2.9,0.1,2.6,0,2.4,0S1.9,0.1,1.7,0.3L0.3,1.7C0.1,1.9,0,2.2,0,2.4  s0.1,0.5,0.3,0.7l7.5,7.5c0.2,0.2,0.2,0.5,0,0.7l-7.5,7.5C0.1,19,0,19.3,0,19.5s0.1,0.5,0.3,0.7l1.4,1.4c0.2,0.2,0.5,0.3,0.7,0.3  s0.5-0.1,0.7-0.3l7.5-7.5c0.2-0.2,0.5-0.2,0.7,0l7.5,7.5c0.2,0.2,0.5,0.3,0.7,0.3s0.5-0.1,0.7-0.3l1.4-1.4c0.2-0.2,0.3-0.5,0.3-0.7  s-0.1-0.5-0.3-0.7L14.1,11.3z"
+                        />
+                    </svg>
+                </a>
+            </div>
+            <div class="wrap facebook-modal" style="display:none;">
+                <div class="social">
+                    <img src="{% static 'img/bounty_modal_facebook.png' %}" alt="" width="75px">
+                </div>
+                <div class="bounty-text">
+                    <p class="title">{{ conf3.facebook_bounty_title }}</p>
+                    <div>{{ conf3.facebook_bounty_text|safe }}</div>
+                </div>
+            </div>
+            <div class="wrap twitter-modal" style="display:none;">
+                <div class="social">
+                    <img src="{% static 'img/bounty_modal_twitter.png' %}" alt="" width="75px">
+                </div>
+                <div class="bounty-text">
+                    <p class="title">{{ conf3.twitter_bounty_title }}</p>
+                    <div>{{ conf3.twitter_bounty_text|safe }}</div>
+                </div>
+            </div>
+            <div class="wrap referral-modal" style="display:none;">
+                <div class="social">
+                    <img src="{% static 'img/bounty_modal_referral.png' %}" alt="" width="75px">
+                </div>
+                <div class="bounty-text">
+                    <p class="title">{{ conf3.referral_bounty_title }}</p>
+                    <div>{{ conf3.referral_bounty_text|safe }}</div>
+                </div>
+            </div>
+            <div class="wrap media-modal" style="display:none;">
+                <div class="social">
+                    <img src="{% static 'img/bounty_modal_media.png' %}" alt="" width="75px">
+                </div>
+                <div class="bounty-text">
+                    <p class="title">{{ conf3.media_bounty_title }}</p>
+                    <div>{{ conf3.media_bounty_text|safe }}</div>
+                </div>
+            </div>
+            <div class="wrap btalk-modal" style="display:none;">
+                <div class="social">
+                    <img src="{% static 'img/bounty_modal_bitcoin.png' %}" alt="" width="75px">
+                </div>
+                <div class="bounty-text">
+                    <p class="title">{{ conf3.btalk_bounty_title }}</p>
+                    <div>{{ conf3.btalk_bounty_text|safe }}</div>
+                </div>
+            </div>
+            <div class="wrap reddit-modal" style="display:none;">
+                <div class="social">
+                    <img src="{% static 'img/bounty_modal_reddit.png' %}" alt="" width="75px">
+                </div>
+                <div class="bounty-text">
+                    <p class="title">{{ conf3.reddit_bounty_title }}</p>
+                    <div>{{ conf3.reddit_bounty_text|safe }}</div>
+                </div>
+            </div>
+            <div class="wrap community-modal" style="display:none;">
+                <div class="social">
+                    <img src="{% static 'img/bounty_modal_share.png' %}" alt="" width="75px">
+                </div>
+                <div class="bounty-text">
+                    <p class="title">{{ conf3.community_bounty_title }}</p>
+                    <div>{{ conf3.community_bounty_text|safe }}</div>
+                </div>
+            </div>
+            <div class="wrap telegram-modal" style="display:none;">
+                <div class="social">
+                    <img src="{% static 'img/bounty_modal_telegram.png' %}" alt="" width="75px">
+                </div>
+                <div class="bounty-text">
+                    <p class="title">{{ conf3.telegram_bounty_title }}</p>
+                    <div>{{ conf3.telegram_bounty_text|safe }}</div>
+                </div>
+            </div>
+            <div class="wrap medium-modal" style="display:none;">
+                <div class="social">
+                    <img src="{% static 'img/linkedin.svg' %}" alt="" width="75px">
+                </div>
+                <div class="bounty-text">
+                    <p class="title">{{ conf3.linkedin_bounty_title }}</p>
+                    <div>{{ conf3.linkedin_bounty_text|safe }}</div>
+                </div>
+            </div>
+            <div class="wrap tokenmarket-modal" style="display:none;">
+                <div class="social">
+                    <img src="{% static 'img/bounty_modal_token-market.png' %}" alt="" width="75px">
+                </div>
+                <div class="bounty-text">
+                    <p class="title">{{ conf3.tokenmarket_bounty_title }}</p>
+                    <div>{{ conf3.tokenmarket_bounty_text|safe }}</div>
+                </div>
+            </div>
+            <div class="wrap youtube-modal" style="display:none;">
+                <div class="social">
+                    <img src="{% static 'img/bounty_modal_youtube.png' %}" alt="" width="75px">
+                </div>
+                <div class="bounty-text">
+                    <p class="title">{{ conf3.youtube_bounty_title }}</p>
+                    <div>{{ conf3.youtube_bounty_text|safe }}</div>
+                </div>
+            </div>
+            <div class="wrap blogging-modal" style="display:none;">
+                <div class="social">
+                    <img src="{% static 'img/bounty_modal_blogger.png' %}" alt="" width="75px">
+                </div>
+                <div class="bounty-text">
+                    <p class="title">{{ conf3.blogging_bounty_title }}</p>
+                    <div>{{ conf3.blogging_bounty_text|safe }}</div>
+                </div>
+            </div>
+            <div class="wrap instagram-modal" style="display:none;">
+                <div class="social">
+                    <img src="{% static 'img/bounty_modal_instagram.png' %}" alt="" width="75px">
+                </div>
+                <div class="bounty-text">
+                    <p class="title">{{ conf3.instagram_bounty_title }}</p>
+                    <div>{{ conf3.instagram_bounty_text|safe }}</div>
+                </div>
+            </div>
+            <div class="wrap more-modal" style="display:none;">
+                <div class="bounty-text">
+                    <p class="title">{{ conf3.more_bounty_title }}</p>
+                    <div>{{ conf3.more_bounty_text|safe }}</div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block footer_class %}class="footer footer--bounty"{% endblock %}
+
+{% block extrajs %}
+        <script src="{% static 'js/moment.min.js' %}"></script>
+        <script src="{% static 'js/combodate.js' %}"></script>
+        <script>
+        $(function(){
+            moment.locale('{{ LANGUAGE_CODE }}');
+            $('#id_date_of_birth').combodate({
+                minYear: 1920,
+                maxYear: 2015,
+                yearDescending: false,
+                firstItem: 'name',
+                customClass: 'input-field'
+            });
+            $('.combodate .year').addClass('year-width');
+            $('.combodate .month').addClass('month-width');
+            $('.combodate .day').addClass('day-width');
+        });
+        </script>
+{% endblock extrajs %}

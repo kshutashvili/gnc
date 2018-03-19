@@ -1,0 +1,1833 @@
+{% load staticfiles %}
+{% load i18n %}
+{% load solo_tags %}
+{% load format_data_filters %}
+{% load translate_urls %}
+{% load embed_video_tags %}
+
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    {% get_solo 'config.LandingConfiguration' as conf %}
+    {% get_solo 'config.LandingConfiguration2' as conf2 %}
+    {% get_solo 'config.LandingConfiguration3' as conf3 %}
+    {% get_solo 'config.SaleStages' as stages %}
+    {% get_solo 'config.CrowdsaleInfo' as crowdsale %}
+    <title>{{ conf3.title_landing }}</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'favicons/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'favicons/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'favicons/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'favicons/manifest.json' %}">
+    <link rel="mask-icon" href="{% static 'favicons/safari-pinned-tab.svg' %}" color="#5bbad5">
+
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        
+    </style>
+</head>
+
+<body>
+    {% get_current_language as LANGUAGE_CODE %}
+
+    <div class="mobile-menu-wrap" id="mob-menu">
+        <div class="mobile-top-line">
+            <div class="lang-select-wrap">
+                <ul class="lang-list">
+                    <li>
+                        <a href="#!" class="curr-lang">{{ LANGUAGE_CODE }}
+                            <span class="icon">
+                                <img src="{% static 'img/lang-arrow.png' %}" alt="arrow-down">
+                            </span>
+                        </a>
+                        <ul class="lang-dropdown">
+                            {% if LANGUAGE_CODE != "en" %}
+                                <li>
+                                    <a href="{% translate_url en %}">
+                                        en
+                                    </a>
+                                </li>
+                            {% endif %}
+                            {% if LANGUAGE_CODE != "ru" %}
+                                <li>
+                                    <a href="{% translate_url ru %}">
+                                        ru
+                                    </a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            {% if request.user.is_authenticated %}
+                <div class="mobile-menu-wrap__auth">
+                    <a href="{% url 'profile' %}" class="profile-link">
+                        <p class="user-name">{% trans 'Profile' %}</p>
+                    </a>
+                    <a href="{% url 'logout' %}" class="exit">
+                        <svg class="exit-img" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                            x="0px" y="0px" width="533.333px" height="533.333px" viewBox="0 0 533.333 533.333" style="enable-background:new 0 0 533.333 533.333;"
+                            xml:space="preserve">
+                            <g>
+                                <path d="M416.667,333.333v-66.666H250V200h166.667v-66.667l100,100L416.667,333.333z M383.333,300v133.333H216.667v100l-200-100V0
+                           h366.667v166.667H350V33.333H83.333L216.667,100v300H350V300H383.333z" />
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                            <g>
+                            </g>
+                        </svg>
+                    </a>
+                </div>
+            {% else %}
+                <div class="mobile-menu-wrap__auth">
+                    <a href="#!" class="login" id="login-mb">{% trans 'Log in' %}</a>
+                    <a href="#!" class="signin" id="signin-mb">{% trans 'Sign up' %}</a>
+                </div>
+            {% endif %}
+        </div>
+        <nav class="mobile-menu-wrap__menu">
+            {% for menu_item in menu %}
+                <a href="{% if menu_item.link %}{{ menu_item.link }}{% else %}#!{% endif %}" class="link">{{ menu_item.name }}</a>
+            {% endfor %}
+            <a href="https://www.znaq.com/" class="link link-exchange" target="_blank">ZNAQ Analytics & Exchange</a>
+        </nav>
+    </div>
+
+    <header class="header">
+        <div class="bg-wrap header-charts"></div>
+        <div class="bg-wrap-bottom header-charts"></div>
+        <div class="bg-wrap-pulse">
+            <div class="pulse-wrap">
+                <div class="pulse-blocks">
+                    <div class="pulse-square"></div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="content-relative">
+                <div class="top-line">
+                    <a href="/{{ LANGUAGE_CODE }}/" class="logo">
+                        <svg id="" data-name="" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 324">
+                            <path class="cls-1" d="M180,57.35v57.41s2.77-.79,3.66-1.08,5.48-1.6,6.34-1.93a11.43,11.43,0,0,0,7.64-7.67s.68-1.79,3.68-2.29a11.36,11.36,0,0,1,4.33.37c2.58.67,2.88.84,4.69.78a6.2,6.2,0,0,0,1.62-.53c1-.45,3.95-1.75,5.9-2.37a77.36,77.36,0,0,1,10.81-2.65c4.16-.62,7.81-1.1,11.45-1.41s6.21-.36,8.37.26a13.89,13.89,0,0,1,5.18,2.71c1.39,1.15.88,1.21,2.36,2a10.7,10.7,0,0,0,5.34,1.17c1.89,0,3.88-.13,5.47-.26s7.1-.6,9.2-.59,4.36,0,5.57.59,1.29,3.28,1.29,3.28a25.18,25.18,0,0,1-.29,4.81,44.21,44.21,0,0,1-1.13,5.1c-.4,1.26-1.25,4.29-3.07,6.12s-95.82,94.36-95.82,94.36a9.47,9.47,0,0,0-1.86,2.84,9.68,9.68,0,0,0-.66,3.68c0,1.34-.09,47.55-.09,47.55h166.7V223.24s-3.64.37-6,.76-11.5,2.27-12.48,2.47-5.78,1.15-8.2,1.38c-6,.56-6.75-1.55-8.25-3.73,0,0-2.26-3.27-4-5.4s-5-5.88-5.3-6.28-3.06-3.48-4.89-5.44a96.23,96.23,0,0,1-6.47-7.41c-1.55-2.14-2.86-4.16-4.36-5.11s-3.2-1.47-6.89-.11-11.37,4.54-18.49,7.75c0,0-4.54,2.15-8.44.67,0,0,8.32-5.85,9.71-7s8-7.21,10-8.64,6.64-4.8,11.53-5.34a19.24,19.24,0,0,1,3.68-.18s1.22-2,2.26-4a16,16,0,0,1,3.48-3.76l7.34-6.94,8.48-8.37,9.93-10s14.92-14.75,16.76-16.47,6.22-5.57,7.6-6.95c2.35-2.35,3-3.4,3-7.85V57.35Z"
+                            />
+                            <path class="cls-1" d="M375.26,269.65V57.35h40.82s4.17.65,7.82,5.64l80,101.41V57.35h58v212.3l-39.62,0a12.54,12.54,0,0,1-6.68-1.83,8.52,8.52,0,0,1-2.45-2.21L432.89,166V269.65Z"
+                            />
+                            <path class="cls-1" d="M705.19,57.35H652.5L579,269.65h59.26L651,228.06h55.65l12.12,41.59h59.56Zm-45.59,131.4,18.64-62.43h1.18l17.81,62.43Z"
+                            />
+                            <path class="cls-1" d="M971.5,234.31A107.06,107.06,0,0,0,998,163.64c0-59.21-47.8-107.22-106.77-107.22s-106.77,48-106.77,107.22,47.8,107.22,106.77,107.22a106,106,0,0,0,48.69-11.78l4.4,4.76a18.07,18.07,0,0,0,13.27,5.81h46.58Zm-39-42.17-5.26-5.69a21.13,21.13,0,0,0-15.52-6.79H866.51l35.37,38.28a41.94,41.94,0,0,1-10.67,1.39c-26.56,0-48.09-24.93-48.09-55.69S864.65,108,891.21,108s48.09,24.93,48.09,55.69A62.17,62.17,0,0,1,932.53,192.14Z"
+                            />
+                        </svg>
+                    </a>
+                    <nav class="menu">
+                        {% for menu_item in menu %}
+                            <a href="{% if menu_item.link %}{{ menu_item.link }}{% else %}#!{% endif %}" class="link">{{ menu_item.name }}</a>
+                            
+                        {% endfor %}
+                        <a href="https://www.znaq.com/" class="link link-exchange" target="_blank">ZNAQ Analytics & Exchange</a>
+                    </nav>
+                    <div class="lang-select-wrap {% if LANGUAGE_CODE == 'ru' %}lang-fix-width{% endif %}">
+                        <ul class="lang-list">
+                            <li>
+                                <a href="#!" class="curr-lang">{{ LANGUAGE_CODE }}
+                                    <span class="icon">
+                                        <img src="{% static 'img/lang-arrow.png' %}" alt="arrow-down">
+                                    </span>
+                                </a>
+                                <ul class="lang-dropdown">
+                                    {% if LANGUAGE_CODE != "en" %}
+                                        <li>
+                                            <a href="{% translate_url en %}">
+                                                en
+                                            </a>
+                                        </li>
+                                    {% endif %}
+                                    {% if LANGUAGE_CODE != "ru" %}
+                                        <li>
+                                            <a href="{% translate_url ru %}">
+                                                ru
+                                            </a>
+                                        </li>
+                                    {% endif %}
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    {% if request.user.is_authenticated %}
+                        <div class="auth">
+                            <a href="{% url 'profile' %}" class="profile-link">
+                                <svg class="user-img" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1"
+                                    x="0px" y="0px" viewBox="0 0 55 55" style="enable-background:new 0 0 55 55;" xml:space="preserve" width="512px"
+                                    height="512px">
+                                    <path d="M55,27.5C55,12.337,42.663,0,27.5,0S0,12.337,0,27.5c0,8.009,3.444,15.228,8.926,20.258l-0.026,0.023l0.892,0.752  c0.058,0.049,0.121,0.089,0.179,0.137c0.474,0.393,0.965,0.766,1.465,1.127c0.162,0.117,0.324,0.234,0.489,0.348  c0.534,0.368,1.082,0.717,1.642,1.048c0.122,0.072,0.245,0.142,0.368,0.212c0.613,0.349,1.239,0.678,1.88,0.98  c0.047,0.022,0.095,0.042,0.142,0.064c2.089,0.971,4.319,1.684,6.651,2.105c0.061,0.011,0.122,0.022,0.184,0.033  c0.724,0.125,1.456,0.225,2.197,0.292c0.09,0.008,0.18,0.013,0.271,0.021C25.998,54.961,26.744,55,27.5,55  c0.749,0,1.488-0.039,2.222-0.098c0.093-0.008,0.186-0.013,0.279-0.021c0.735-0.067,1.461-0.164,2.178-0.287  c0.062-0.011,0.125-0.022,0.187-0.034c2.297-0.412,4.495-1.109,6.557-2.055c0.076-0.035,0.153-0.068,0.229-0.104  c0.617-0.29,1.22-0.603,1.811-0.936c0.147-0.083,0.293-0.167,0.439-0.253c0.538-0.317,1.067-0.648,1.581-1  c0.185-0.126,0.366-0.259,0.549-0.391c0.439-0.316,0.87-0.642,1.289-0.983c0.093-0.075,0.193-0.14,0.284-0.217l0.915-0.764  l-0.027-0.023C51.523,42.802,55,35.55,55,27.5z M2,27.5C2,13.439,13.439,2,27.5,2S53,13.439,53,27.5  c0,7.577-3.325,14.389-8.589,19.063c-0.294-0.203-0.59-0.385-0.893-0.537l-8.467-4.233c-0.76-0.38-1.232-1.144-1.232-1.993v-2.957  c0.196-0.242,0.403-0.516,0.617-0.817c1.096-1.548,1.975-3.27,2.616-5.123c1.267-0.602,2.085-1.864,2.085-3.289v-3.545  c0-0.867-0.318-1.708-0.887-2.369v-4.667c0.052-0.52,0.236-3.448-1.883-5.864C34.524,9.065,31.541,8,27.5,8  s-7.024,1.065-8.867,3.168c-2.119,2.416-1.935,5.346-1.883,5.864v4.667c-0.568,0.661-0.887,1.502-0.887,2.369v3.545  c0,1.101,0.494,2.128,1.34,2.821c0.81,3.173,2.477,5.575,3.093,6.389v2.894c0,0.816-0.445,1.566-1.162,1.958l-7.907,4.313  c-0.252,0.137-0.502,0.297-0.752,0.476C5.276,41.792,2,35.022,2,27.5z"
+                                        fill="#1b84c6" />
+                                    <g>
+                                    </g>
+                                    <g>
+                                    </g>
+                                    <g>
+                                    </g>
+                                    <g>
+                                    </g>
+                                    <g>
+                                    </g>
+                                    <g>
+                                    </g>
+                                    <g>
+                                    </g>
+                                    <g>
+                                    </g>
+                                    <g>
+                                    </g>
+                                    <g>
+                                    </g>
+                                    <g>
+                                    </g>
+                                    <g>
+                                    </g>
+                                    <g>
+                                    </g>
+                                    <g>
+                                    </g>
+                                    <g>
+                                    </g>
+                                </svg>
+                                <p class="user-name">{{ request.user }}</p>
+                            </a>
+                            <a href="{% url 'logout' %}" class="exit">
+                                <svg class="exit-img" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                    x="0px" y="0px" width="533.333px" height="533.333px" viewBox="0 0 533.333 533.333" style="enable-background:new 0 0 533.333 533.333;"
+                                    xml:space="preserve">
+                                    <g>
+                                        <path d="M416.667,333.333v-66.666H250V200h166.667v-66.667l100,100L416.667,333.333z M383.333,300v133.333H216.667v100l-200-100V0
+                                   h366.667v166.667H350V33.333H83.333L216.667,100v300H350V300H383.333z" />
+                                    </g>
+                                    <g>
+                                    </g>
+                                    <g>
+                                    </g>
+                                    <g>
+                                    </g>
+                                    <g>
+                                    </g>
+                                    <g>
+                                    </g>
+                                    <g>
+                                    </g>
+                                    <g>
+                                    </g>
+                                    <g>
+                                    </g>
+                                    <g>
+                                    </g>
+                                    <g>
+                                    </g>
+                                    <g>
+                                    </g>
+                                    <g>
+                                    </g>
+                                    <g>
+                                    </g>
+                                    <g>
+                                    </g>
+                                    <g>
+                                    </g>
+                                </svg>
+                            </a>
+                        </div>
+                    {% else %}
+                        <div class="auth">
+                            <a href="#!" class="login" id="login">{% trans 'Log in' %}</a>
+                            <a href="#!" class="signin" id="signin">{% trans 'Sign up' %}</a>
+                        </div>
+                    {% endif %}
+                    <p class="mobile-icon" id="mob-mnu-open">
+                        <svg height="32px" class="mob-menu-hamburger" id="Layer_1" style="enable-background:new 0 0 32 32;" version="1.1" viewBox="0 0 32 32" width="32px" xml:space="preserve"
+                            xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <path d="M4,10h24c1.104,0,2-0.896,2-2s-0.896-2-2-2H4C2.896,6,2,6.896,2,8S2.896,10,4,10z M28,14H4c-1.104,0-2,0.896-2,2  s0.896,2,2,2h24c1.104,0,2-0.896,2-2S29.104,14,28,14z M28,22H4c-1.104,0-2,0.896-2,2s0.896,2,2,2h24c1.104,0,2-0.896,2-2  S29.104,22,28,22z"
+                            />
+                        </svg>
+                        <svg version="1.1" class="mob-menu-close" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="    0px"
+                                width="40px" height="32px" viewBox="0 0 284.929 284.929" style="enable-background:new 0 0 284.929 284.929;"
+                                xml:space="preserve">
+                                <g>
+                                    <path d="M282.082,76.511l-14.274-14.273c-1.902-1.906-4.093-2.856-6.57-2.856c-2.471,0-4.661,0.95-6.563,2.856L142.466,174.441
+                            L30.262,62.241c-1.903-1.906-4.093-2.856-6.567-2.856c-2.475,0-4.665,0.95-6.567,2.856L2.856,76.515C0.95,78.417,0,80.607,0,83.082
+                            c0,2.473,0.953,4.663,2.856,6.565l133.043,133.046c1.902,1.903,4.093,2.854,6.567,2.854s4.661-0.951,6.562-2.854L282.082,89.647
+                            c1.902-1.903,2.847-4.093,2.847-6.565C284.929,80.607,283.984,78.417,282.082,76.511z" />
+                                </g>
+                        </svg>
+                    </p>
+                    
+                </div>
+                <div class="content clearfix" id="ico">
+                    <div class="company">
+                        <span>{{ conf.subscribe_blue_text }}</span>
+                        {{ conf.subscribe_white_text|linebreaksbr }}
+                    </div>
+                    <div class="timer-block timer-block-start" {% if stages.show_before_stage %} style="display:block"{% endif %}>
+                        <p class="title">{{ stages.before_start_title }}</p>
+                        <div class="timer clearfix" data-time="{{ stages.before_start_timer|format_date }}">
+                            <div class="time">
+                                <div id="days"></div>
+                                <span>{% trans 'дней' %}</span>
+                            </div>
+
+                            <div class="time">
+                                <div id="hours"></div>
+                                <span>{% trans 'часов' %}</span>
+                            </div>
+                            <div class="time">
+                                <div id="minutes"></div>
+                                <span>{% trans 'минут' %}</span>
+                            </div>
+                            <div class="time">
+                                <div id="seconds"></div>
+                                <span>{% trans 'секунд' %}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="timer-block timer-block-ico" {% if stages.show_stage %} style="display:block"{% endif %}>
+                        <p class="title">{{ stages.stage_title }}</p>
+                        <div class="timer clearfix" data-time="{{ stages.stage_timer|format_date }}">
+                            <div class="time">
+                                <div id="days"></div>
+                                <span>{% trans 'дней' %}</span>
+                            </div>
+
+                            <div class="time">
+                                <div id="hours"></div>
+                                <span>{% trans 'часов' %}</span>
+                            </div>
+                            <div class="time">
+                                <div id="minutes"></div>
+                                <span>{% trans 'минут' %}</span>
+                            </div>
+                            <div class="time">
+                                <div id="seconds"></div>
+                                <span>{% trans 'секунд' %}</span>
+                            </div>
+                        </div><!-- data-time="2017/12/31" -->
+                        {% if stages.stage_show_reised %}
+                        <div class="raised">
+                            <p class="raised__title">{{ stages.state_reised_text }}</p>
+                            <div class="raised__sum">{{ stages.stage_reised_value }}</div>
+                        </div>
+                        {% endif %}
+                        {% if stages.stage_show_bottom_btn %}
+                        <div class="stocks-block">
+                            <a href="#!" class="link show-crowdsale">{{ stages.stage_bottom_btn|linebreaksbr }}
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px"
+                                    width="512px" height="512px" viewBox="0 0 220.682 220.682" style="enable-background:new 0 0 220.682 220.682;"
+                                    xml:space="preserve">
+                                    <g>
+                                        <polygon points="92.695,38.924 164.113,110.341 92.695,181.758 120.979,210.043 220.682,110.341 120.979,10.639  " fill="#FFFFFF"
+                                        />
+                                        <polygon points="28.284,210.043 127.986,110.341 28.284,10.639 0,38.924 71.417,110.341 0,181.758  " fill="#FFFFFF" />
+                                    </g>
+                                </svg>
+                            </a>
+                        </div>
+                        {% endif %}
+                    </div>
+                    <div class="timer-block timer-block-ico-end" {% if stages.show_end_stage %} style="display:block"{% endif %}>
+                        <p class="title">{{ stages.end_title }}</p>
+                        <p class="subtitle">{{ stages.end_subtitle }}</p>
+                        {% if stages.end_show_reised %}
+                        <div class="raised">
+                            <p class="raised__title">{{ stages.end_reised_text }}</p>
+                            <div class="raised__sum">{{ stages.end_reised_value }}</div>
+                        </div>
+                        {% endif %}
+                        {% if stages.end_show_bottom_btn %}
+                        <div class="stocks-block">
+                            <a href="#!" class="link show-crowdsale">{{ stages.end_bottom_btn|linebreaksbr }}
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Capa_1" x="0px" y="0px"
+                                    width="512px" height="512px" viewBox="0 0 220.682 220.682" style="enable-background:new 0 0 220.682 220.682;"
+                                    xml:space="preserve">
+                                    <g>
+                                        <polygon points="92.695,38.924 164.113,110.341 92.695,181.758 120.979,210.043 220.682,110.341 120.979,10.639  " fill="#FFFFFF"
+                                        />
+                                        <polygon points="28.284,210.043 127.986,110.341 28.284,10.639 0,38.924 71.417,110.341 0,181.758  " fill="#FFFFFF" />
+                                    </g>
+                                </svg>
+                            </a>
+                        </div>
+                        {% endif %}
+                    </div>
+                    <div class="crowdsale-modal" id="crowdsale-modal">
+                        <div class="crowdsale-modal__box">
+                            <a href="#!" class="close">
+                                <svg class="img" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 21.9 21.9"
+                                    enable-background="new 0 0 21.9 21.9" width="512px" height="512px">
+                                    <path d="M14.1,11.3c-0.2-0.2-0.2-0.5,0-0.7l7.5-7.5c0.2-0.2,0.3-0.5,0.3-0.7s-0.1-0.5-0.3-0.7l-1.4-1.4C20,0.1,19.7,0,19.5,0  c-0.3,0-0.5,0.1-0.7,0.3l-7.5,7.5c-0.2,0.2-0.5,0.2-0.7,0L3.1,0.3C2.9,0.1,2.6,0,2.4,0S1.9,0.1,1.7,0.3L0.3,1.7C0.1,1.9,0,2.2,0,2.4  s0.1,0.5,0.3,0.7l7.5,7.5c0.2,0.2,0.2,0.5,0,0.7l-7.5,7.5C0.1,19,0,19.3,0,19.5s0.1,0.5,0.3,0.7l1.4,1.4c0.2,0.2,0.5,0.3,0.7,0.3  s0.5-0.1,0.7-0.3l7.5-7.5c0.2-0.2,0.5-0.2,0.7,0l7.5,7.5c0.2,0.2,0.5,0.3,0.7,0.3s0.5-0.1,0.7-0.3l1.4-1.4c0.2-0.2,0.3-0.5,0.3-0.7  s-0.1-0.5-0.3-0.7L14.1,11.3z"
+                                    />
+                                </svg>
+                            </a>
+                            <div class="title">{{ crowdsale.title|no_last:1 }} <span>{{ crowdsale.title|split_by:" "|latest:1 }}</span></div>
+                            <table id="main-curr">
+                                <tr>
+                                    <td></td>
+                                    <td class="total">{{ crowdsale.total_text }}</td>
+                                    <td>{{ crowdsale.total_value }} <img src="{% static 'img/up_arrow_green.png' %}" alt="" class="total-up"></td>
+                                </tr>
+                                {% for currency in crowdsale.crowdsale_currencies.show_currency.ordering %}
+                                    <tr>
+                                        <td class="currency-img">{% if currency.image %}<img src="{{ currency.image.url }}">{% endif %}</td>
+                                        <td class="currency-name">{{ currency.name }}</td>
+                                        <td>{{ currency.value }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </table>
+                            <table id="other-curr" style="display:none">
+                                <tr>
+                                    <td></td>
+                                    <td class="total">{{ crowdsale.total_text }}</td>
+                                    <td>{{ crowdsale.total_value }} <img src="{% static 'img/select-arrow-small.svg' %}" alt="" class="total-up"></td>
+                                </tr>
+                                {% for currency in crowdsale.crowdsale_currencies.show_currency %}
+                                    <tr>
+                                        <td class="currency-img">{% if currency.image %}<img src="{{ currency.image.url }}">{% endif %}</td>
+                                        <td class="currency-name">{{ currency.name }}</td>
+                                        <td>{{ currency.value }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </table>
+                        </div>
+                    </div>
+                    <div class="right">
+                        <div class="participate">
+                            <p class="cost"></p>
+                            {% if request.user.is_authenticated %}
+                                <a href="{% url 'profile' %}#make-donation" class="link">{% trans 'участвовать' %}</a>
+                            {% else %}
+                                <a href="#!" class="link" id="make-participate">{% trans 'участвовать' %}</a>
+                            {% endif %}
+                            <div class="discount hidden">
+                                <p class="discount__title">{{ conf.discount_info }}</p>
+                                <p class="discount__percent">{{ conf.discount }}</p>
+                                <p class="discount__subtitle">{{ conf.discount_end }}</p>
+                                <div class="discount__timer-wrap">
+                                    <div class="discount__timer-wrap__arrows" id="timer-bg-line"></div>
+                                    <div class="timer discount__timer-wrap__timer" data-time="{{ conf.discount_timer|format_date }}">
+                                        <!-- please use this format for data yyyy/mm/dd -->
+                                        <div class="time">
+                                            <div id="days">03</div>
+                                        </div>
+
+                                        <div class="time">
+                                            <div id="hours">14</div>
+                                        </div>
+                                        <div class="time">
+                                            <div id="minutes">48</div>
+                                        </div>
+                                        <div class="time">
+                                            <div id="seconds">06</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="video-wrap" id="video-wrap">
+                            <a href="{% if conf.whitepaper_upload %}{{ conf.whitepaper_upload.url }}{% elif conf.whitepaper_link %}{{ conf.whitepaper_link }}{% else %}#{% endif %}" class="btn whitepaper" target="_blank">
+                                {{ conf.whitepaper_btn_text|linebreaksbr }}
+                            </a>
+                            <a href="{% if conf.onepager_upload %}{{ conf.onepager_upload.url }}{% elif conf.onepager_link %}{{ conf.onepager_link }}{% else %}#{% endif %}" class="btn one-pager" target="_blank">
+                                {{ conf.onepager_btn_text|linebreaksbr }}
+                            </a>
+                            <a href="{% if conf3.presentation_link %}{{ conf3.presentation_link }}{% else %}#{% endif %}" class="btn one-pager" target="_blank" style="top: -16px;left: 198px;">
+                                {{ conf3.presentation_text|linebreaksbr }}
+                            </a>
+                            {% if conf.video1_link %}
+                            <a href="{{ conf.video1_link|split_by:'='|latest:1 }}" class="video-link video-link--first">
+                                <span class="video-link__img">
+                                    <img src="{% static 'img/video_bg.png' %}" alt="" width="100px" height="100px">
+                                </span>
+                                <span class="video-link__name">
+                                    {% if conf.video1_descr %}
+                                        {{ conf.video1_descr }}
+                                    {% endif %}
+                                </span>
+                            </a>
+                            {% endif %}
+                            {% if conf.video2_link %}
+                            <a href="{{ conf.video2_link|split_by:'='|latest:1 }}" class="video-link video-link--second">
+                                <span class="video-link__img">
+                                    <img src="{% static 'img/video_bg2.png' %}" alt="" width="70px" height="70px">
+                                </span>
+                                <span class="video-link__name">
+                                    {% if conf.video2_descr %}
+                                        {{ conf.video2_descr }}
+                                    {% endif %}
+                                </span>
+                            </a>
+                            {% endif %}
+                            <div class="video-circle video-circle__first"></div>
+                            <div class="video-circle video-circle__second"></div>
+                            <div class="video-circle video-circle__third"></div>
+                            <div class="video-circle video-circle__fourth"></div>
+                            <div class="video-circle video-circle__fifth"></div>
+                            <button class="video-btn" id="video-btn"></button>
+                        </div>
+                    </div>
+                    <div class="bottom">
+                        <form action="{% url 'subscription' %}" class="subscribe-form" method="POST">
+                            <p class="title">
+                                {{ conf.subscribe_title|no_last:1 }}
+                                <span>{{ conf.subscribe_title|split_by:" "|latest:1 }}</span>
+                            </p>
+                            <div class="input-wrap">
+                                {{ subscribe_form.email }}
+                                <span class="tooltiptext" id="subscribe-tooltip"></span>
+                                {% csrf_token %}
+                                <button class="submit">{% trans 'Подписаться' %}</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="curses-section" id="currency">
+        <div class="container">
+            <div class="content">
+            </div>
+        </div>
+    </section>
+
+    <section class="descriptions-section" id="about">
+        <div class="container">
+            <div class="bg-title">ZNAQ INDEX & TOKEN</div>
+            <div class="content">
+                <div class="left">
+                    <div class="block-text">
+                        <p class="block-text__title">
+                            {% if conf.left_block1_title %}
+                                {{ conf.left_block1_title|no_last:1 }}
+                                <span>{{ conf.left_block1_title|split_by:" "|latest:1 }}</span>
+                            {% endif %}
+                        </p>
+                        <div class="block-text__text">
+                            {% if conf.left_block1_text %}
+                                {{ conf.left_block1_text }}
+                            {% endif %}
+                        </div>
+                    </div>
+                    <a href="{% if conf.ruledbook_link %}{{ conf.ruledbook_link }}{% else %}#!{% endif %}" class="ruledbook" target="_blank">{% trans 'Go to ruledbook document' %}</a>
+                    <div class="block-text block-text--token">
+                        <p class="block-text__title">
+                            {% if conf.left_block2_title %}
+                                {{ conf.left_block2_title|no_last:1 }}
+                                <span>{{ conf.left_block2_title|split_by:" "|latest:1 }}</span>
+                            {% endif %}
+                        </p>
+                        <div class="block-text__text">
+                            {% if conf.left_block2_text %}
+                                {{ conf.left_block2_text }}
+                            {% endif %}
+                        </div>
+                    </div>
+                    <img class="coins-img" src="{% static 'img/coin_design.png' %}" alt="coins">
+                </div>
+                <div class="right">
+                    <div class="row">
+                        <div class="block-text">
+                            <p class="block-text__title">
+                                {% if conf.right_block_title %}
+                                    {{ conf.right_block_title|no_last:2 }}
+                                    <span>{{ conf.right_block_title|split_by:" "|latest:2 }}</span>
+                                {% endif %}
+                            </p>
+                            <div class="block-text__text">
+                                {% if conf.right_block1_text %}
+                                    {{ conf.right_block1_text|linebreaks }}
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="investments">
+                            <div class="investments__block">
+                                <p class="investments__block__title">{% trans 'Initial purchase' %}</p>
+                                <div class="ui-slider" id="ui-slider">
+                                        <div id="custom-handle" class="ui-slider-handle"></div>
+                                </div>
+                            </div>
+                            <div class="investments__block">
+                                <p class="investments__block__title">{% trans 'Purchase date' %}</p>
+                                <div class="ui-slider" id="ui-slider2">
+                                    <div id="custom-handle2" class="ui-slider-handle custom-handle2"></div>
+                                </div>
+                            </div>
+                            <div class="investments__total-wrap">
+                                <p class="investments__total-wrap__title">{% trans 'Total Value:' %}</p>
+                                <div class="investments__total-wrap__sum" id="total">1194 $</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="widget">
+                        <div class="arrows-wrap">
+                        </div>
+
+                        <div class="widget-slider">
+                            <div class="slide">
+                                {% if conf.right_block_img %}
+                                    <img src="{{ conf.right_block_img.url }}" alt="scheme">
+                                {% else %}
+                                    <img src="{% static 'img/scheme.png' %}" alt="scheme">
+                                {% endif %}
+                            </div>
+                            <div class="slide">
+                                {% if conf.right_block_img2 %}
+                                    <img src="{{ conf.right_block_img2.url }}" alt="scheme">
+                                {% else %}
+                                    <img src="{% static 'img/scheme.png' %}" alt="scheme">
+                                {% endif %}
+                            </div>
+                            {% if conf.right_block_img3 %}
+                            <div class="slide">
+                                <img src="{{ conf.right_block_img3.url }}" alt="scheme">
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="infographic-section" id="exchange">
+        <div class="container">
+            <div class="content">
+                <div class="top">
+                    <div class="top__img">
+                        <img src="{% static 'img/logo.png' %}" alt="znaq logo">
+                    </div>
+                    <div class="top__text">
+                        {{ conf2.about_top_text }}
+                    </div>
+                </div>
+                <div class="analytics-wrap">
+                    <div class="analytics">
+                        <div class="left">
+                            <div class="analytics__steps">
+                                <div class="analytics__steps__step">
+                                    <p>{% trans 'Reports' %}</p>
+                                    <img src="{% static 'img/reports.png' %}" alt="">
+                                </div>
+                                <div class="analytics__steps__step">
+                                    <p>{% trans 'News' %}</p>
+                                    <img src="{% static 'img/news.png' %}" alt="">
+                                </div>
+                                <div class="analytics__steps__step">
+                                    <p>{% trans 'Analysis' %}</p>
+                                    <img src="{% static 'img/analysis.png' %}" alt="">
+                                </div>
+                                <div class="analytics__steps__step">
+                                    <p>{% trans 'Indicators' %}</p>
+                                    <img src="{% static 'img/indicators.png' %}" alt="">
+                                </div>
+                            </div>
+                            <div class="analytics__title">
+                                <img src="{% static 'img/znaq_analytics.png' %}" alt="znaq logo">
+                            </div>
+                        </div>
+                        <div class="right">
+                            {{ conf2.about_analytics_text }}
+                        </div>
+                        <img src="{% static 'img/analytics-line.png' %}" alt="" class="analytics__line">
+                        <img src="{% static 'img/analytics-line2.png' %}" alt="" class="analytics__line2">
+                        <img class="analytics__line3" src="{% static 'img/indices-line.png' %}" alt="">
+                    </div>
+                </div>
+                <div class="indices">
+                    <div class="indices__img-wrap">
+                        <img src="{% static 'img/indices-icon.png' %}" alt="indices-icon">
+                        <p>{% trans 'Indices' %}</p>
+                        <img class="indices__line" src="{% static 'img/indices-line.png' %}" alt="">
+                    </div>
+                    <div class="indices__text">
+                        {{ conf2.about_indices_text }}
+                    </div>
+
+                </div>
+                <div class="exchanges">
+                    <div class="exchanges__exchange-wrap">
+                        <div class="exchange exchange--znaq">
+                            <img src="{% static 'img/znaq-exchange.png' %}" alt="">
+                            <p>Znaq
+                                <br>Exchange</p>
+                        </div>
+                        <div class="ai">
+                            API
+                            <img class="ai__img" src="{% static 'img/artificial-intelligence.png' %}" alt="">
+                            <img class="line1" src="{% static 'img/artificial-intelligence-line.png' %}" alt="">
+                            <img class="line2" src="{% static 'img/artificial-intelligence-line.png' %}" alt="">
+                        </div>
+                        <div class="exchange exchange--other">
+                            <img src="{% static 'img/other-exchange.png' %}" alt="">
+                            <p>Other
+                                <br>Exchanges</p>
+                        </div>
+                    </div>
+                    <div class="exchanges__text">
+                        {{ conf2.about_exchange_text }}
+                    </div>
+                    <img class="exchanges__line" src="{% static 'img/exchange-line.png' %}" alt="">
+                    <img class="exchanges__mobile-line" src="{% static 'img/exchange_mobile_line.png' %}" alt="">
+                </div>
+                <div class="bottom">
+                    {% if conf3.mockup %}
+                        <img class="bottom__mockups" src="{{ conf3.mockup.url }}" alt="">
+                    {% else %}
+                        <img class="bottom__mockups" src="{% static 'img/mockups.png' %}" alt="">
+                    {% endif %}
+                    <p class="bottom__title">EXCHANGE ZNAQ</p>
+                    <div class="bottom__info">
+                        <p class="bottom__info__text">
+                            {{ conf2.about_bottom_text }}
+                        </p>
+                        <a href="{{ conf2.trading_link }}" class="bottom__info__platform-btn" target="_blank">{% trans 'GO TO ZNAQ TRADING PLATFORM' %}</a>
+                        <div class="bottom__apps">
+                            <img src="{% static 'img/app-store.png' %}" alt="" width="95px" style="margin-right: 5px;">
+                            <img src="{% static 'img/google-play.png' %}" alt="" width="115px">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="roadmap-section" id="roadmap">
+        <div class="container">
+            <div class="content">
+                <div class="title">ROADMAP</div>
+                <div class="roadmap">
+                    <div class="roadmap__gradient-left"><img src="{% static 'img/roadmap-gradient-left.png' %}" alt=""></div>
+                    <img class="roadmap__main-img" src="{% static 'img/roadmap.png' %}" alt="roadmap">
+
+                    {% if conf2.road_date1 and conf2.road_text1 %}
+                        <div class="roadmap__info roadmap__info--first" style="left: -55px;top: 50px;">
+                            <p>{{ conf2.road_text1 }}</p>
+                            <div>{{ conf2.road_date1 }}</div>
+                        </div>
+                        <div class="roadmap__point roadmap__point--1" style="top: 93px;left: 78px;"><img src="{% static 'img/roadmap-point1.png' %}" alt=""></div>
+                    {% endif %}
+
+                    {% if conf2.road_date2 and conf2.road_text2 %}
+                        <div class="roadmap__info roadmap__info--second" style="left:73px;bottom:-47px;">
+                            <p>{{ conf2.road_text2 }}</p>
+                            <div>{{ conf2.road_date2 }}</div>
+                        </div>
+                        <div class="roadmap__point roadmap__point--1"><img src="{% static 'img/roadmap-point1.png' %}" alt=""></div>
+                    {% endif %}
+
+                    {% if conf2.road_date3 and conf2.road_text3 %}
+                        <div class="roadmap__info roadmap__info--first" style="left:125px;top:35px;">
+                            <p>{{ conf2.road_text3 }}</p>
+                            <div>{{ conf2.road_date3 }}</div>
+                        </div>
+                        <div class="roadmap__point roadmap__point--2" style="left: 254px;top: 81px;"><img src="{% static 'img/roadmap-point2.png' %}" alt=""></div>
+                    {% endif %}
+
+                    {% if conf2.road_date4 and conf2.road_text4 %}
+                        <div class="roadmap__info roadmap__info--second" style="bottom: -39px;left: 265px;">
+                            <p>{{ conf2.road_text4 }}</p>
+                            <div>{{ conf2.road_date4 }}</div>
+                        </div>
+                        <div class="roadmap__point roadmap__point--1" style="top: 92px;left: 340px;"><img src="{% static 'img/roadmap-point1.png' %}" alt=""></div>
+                    {% endif %}
+
+                    {% if conf2.road_date5 and conf2.road_text5 %}
+                        <div class="roadmap__info roadmap__info--first" style="left:287px;top:-9px;">
+                            <p>{{ conf2.road_text5 }}</p>
+                            <div>{{ conf2.road_date5 }}</div>
+                        </div>
+                        <div class="roadmap__point roadmap__point--2" style="top: 32px;left: 427px;"><img src="{% static 'img/roadmap-point2.png' %}" alt=""></div>
+                    {% endif %}
+
+                    {% if conf2.road_date6 and conf2.road_text6 %}
+                        <div class="roadmap__info roadmap__info--first" style="left:442px;top:-55px;">
+                            <p>{{ conf2.road_text6 }}</p>
+                            <div>{{ conf2.road_date6 }}</div>
+                        </div>
+                        <div class="roadmap__point roadmap__point--1" style="top: 1px;left: 513px;"><img src="{% static 'img/roadmap-point1.png' %}" alt=""></div>
+                    {% endif %}
+
+                    {% if conf2.road_date7 and conf2.road_text7 %}
+                        <div class="roadmap__info roadmap__info--second" style="left:491px;bottom:24px;">
+                            <p>{{ conf2.road_text7 }}</p>
+                            <div>{{ conf2.road_date7 }}</div>
+                        </div>
+                        <div class="roadmap__point roadmap__point--1" style="top: 46px;left: 600px;"><img src="{% static 'img/roadmap-point1.png' %}" alt=""></div>
+                    {% endif %}
+
+                    {% if conf2.road_date8 and conf2.road_text8 %}
+                        <div class="roadmap__info roadmap__info--first" style="left:600px;top:-26px;">
+                            <p>{{ conf2.road_text8 }}</p>
+                            <div>{{ conf2.road_date8 }}</div>
+                        </div>
+                        <div class="roadmap__point roadmap__point--2" style="top: 16px;left: 686px;"><img src="{% static 'img/roadmap-point2.png' %}" alt=""></div>
+                    {% endif %}
+
+                    {% if conf2.road_date9 and conf2.road_text9 %}
+                        <div class="roadmap__info roadmap__info--second" style="left:662px;bottom:-5px;">
+                            <p>{{ conf2.road_text9 }}</p>
+                            <div>{{ conf2.road_date9 }}</div>
+                        </div>
+                        <div class="roadmap__point roadmap__point--1" style="top: 69px;left: 772px;"><img src="{% static 'img/roadmap-point1.png' %}" alt=""></div>
+                    {% endif %}
+
+                    {% if conf2.road_date10 and conf2.road_text10 %}
+                        <div class="roadmap__info roadmap__info--first" style="left:781px;top:-5px;">
+                            <p>{{ conf2.road_text10 }}</p>
+                            <div>{{ conf2.road_date10 }}</div>
+                        </div>
+                        <div class="roadmap__point roadmap__point--2" style="top: 48px;left: 859px;"><img src="{% static 'img/roadmap-point2.png' %}" alt=""></div>
+                    {% endif %}
+
+                    {% if conf2.road_date11 and conf2.road_text11 %}
+                        <div class="roadmap__info roadmap__info--second" style="left:839px;bottom:-38px;">
+                            <p>{{ conf2.road_text11 }}</p>
+                            <div>{{ conf2.road_date11 }}</div>
+                        </div>
+                        <div class="roadmap__point roadmap__point--1" style="top: 95px;left: 946px;"><img src="{% static 'img/roadmap-point1.png' %}" alt=""></div>
+                    {% endif %}
+
+                    {% if conf2.road_date12 and conf2.road_text12 %}
+                        <div class="roadmap__info roadmap__info--first" style="left:979px;top:4px;">
+                            <p>{{ conf2.road_text12 }}</p>
+                            <div>{{ conf2.road_date12 }}</div>
+                        </div>
+                        <div class="roadmap__point roadmap__point--1" style="top: 64px;left: 1032px;"><img src="{% static 'img/roadmap-point1.png' %}" alt=""></div>
+                    {% endif %}
+
+                    <div class="roadmap__gradient-right"><img src="{% static 'img/roadmap-gradient-right.png' %}" alt=""></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="team-section" id="team">
+        <div class="bg-title">The Team</div>
+        <div class="container">
+            <div class="content">
+                <h2 class="title">
+                    {{ conf2.team_title|no_last:1}}
+                    <span>{{ conf2.team_title|split_by:" "|latest:1 }}</span>
+                </h2>
+                <div class="team">
+                    {% for teammate_n in teammates|split_by_nth:4 %}
+                    <div class="row">
+                        {% for teammate in teammate_n %}
+                        <div class="team__member">
+                            <div class="team__member__image" style="background-image: url({{ teammate.photo.url }});background-size: cover;">
+                                {% if teammate.linkedin %}
+                                <a href="{{ teammate.linkedin }}" class="linkedin" target="_blank">
+                                    <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                        viewBox="0 0 455.731 455.731" style="enable-background:new 0 0 455.731 455.731;" xml:space="preserve">
+                                        <g>
+                                            <rect x="0" y="0" style="fill:#0084B1;" width="455.731" height="455.731" />
+                                            <g>
+                                                <path style="fill:#FFFFFF;" d="M107.255,69.215c20.873,0.017,38.088,17.257,38.043,38.234c-0.05,21.965-18.278,38.52-38.3,38.043
+                                               c-20.308,0.411-38.155-16.551-38.151-38.188C68.847,86.319,86.129,69.199,107.255,69.215z"
+                                                />
+                                                <path style="fill:#FFFFFF;" d="M129.431,386.471H84.71c-5.804,0-10.509-4.705-10.509-10.509V185.18
+                                               c0-5.804,4.705-10.509,10.509-10.509h44.721c5.804,0,10.509,4.705,10.509,10.509v190.783
+                                               C139.939,381.766,135.235,386.471,129.431,386.471z" />
+                                                <path style="fill:#FFFFFF;" d="M386.884,241.682c0-39.996-32.423-72.42-72.42-72.42h-11.47c-21.882,0-41.214,10.918-52.842,27.606
+                                               c-1.268,1.819-2.442,3.708-3.52,5.658c-0.373-0.056-0.594-0.085-0.599-0.075v-23.418c0-2.409-1.953-4.363-4.363-4.363h-55.795
+                                               c-2.409,0-4.363,1.953-4.363,4.363V382.11c0,2.409,1.952,4.362,4.361,4.363l57.011,0.014c2.41,0.001,4.364-1.953,4.364-4.363
+                                               V264.801c0-20.28,16.175-37.119,36.454-37.348c10.352-0.117,19.737,4.031,26.501,10.799c6.675,6.671,10.802,15.895,10.802,26.079
+                                               v117.808c0,2.409,1.953,4.362,4.361,4.363l57.152,0.014c2.41,0.001,4.364-1.953,4.364-4.363V241.682z"
+                                                />
+                                            </g>
+                                        </g>
+                                    </svg>
+                                </a>
+                                {% endif %}
+                            </div>
+                            <p class="team__member__name">{{ teammate.name }}</p>
+                            <p class="team__member__position">{{ teammate.position }}</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="photos">
+                    <div class="photo-slider" id="photo-slider">
+                        {% for photo in landing_photos %}
+                        <a data-fancybox="gallery" href="{{ photo.image.url }}">
+                        <div class="photo-wrapper" style="background-image: url({{ photo.image.url }});background-size: cover;">
+                        </div>
+                        </a>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="photo-slider-nav">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="advisers-section">
+        <div class="bg-title">Advisers</div>
+        <div class="container">
+            <div class="content">
+                <h2 class="title">
+                    <span>{{ conf2.adviser_title }}</span>
+                </h2>
+                <div class="advisers">
+                    {% for adviser_n in advisers|split_by_nth:4 %}
+                    <div class="row">
+                        {% for adviser in adviser_n %}
+                        <div class="advisers__member">
+                            <div class="advisers__member__image" style="background-image: url({{ adviser.photo.url }});background-size: cover;">
+                                {% if adviser.linkedin %}
+                                <a href="#!" class="linkedin">
+                                    <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                        viewBox="0 0 455.731 455.731" style="enable-background:new 0 0 455.731 455.731;" xml:space="preserve">
+                                        <g>
+                                            <rect x="0" y="0" style="fill:#0084B1;" width="455.731" height="455.731" />
+                                            <g>
+                                                <path style="fill:#FFFFFF;" d="M107.255,69.215c20.873,0.017,38.088,17.257,38.043,38.234c-0.05,21.965-18.278,38.52-38.3,38.043
+                                                   c-20.308,0.411-38.155-16.551-38.151-38.188C68.847,86.319,86.129,69.199,107.255,69.215z"
+                                                />
+                                                <path style="fill:#FFFFFF;" d="M129.431,386.471H84.71c-5.804,0-10.509-4.705-10.509-10.509V185.18
+                                                   c0-5.804,4.705-10.509,10.509-10.509h44.721c5.804,0,10.509,4.705,10.509,10.509v190.783
+                                                   C139.939,381.766,135.235,386.471,129.431,386.471z" />
+                                                <path style="fill:#FFFFFF;" d="M386.884,241.682c0-39.996-32.423-72.42-72.42-72.42h-11.47c-21.882,0-41.214,10.918-52.842,27.606
+                                                   c-1.268,1.819-2.442,3.708-3.52,5.658c-0.373-0.056-0.594-0.085-0.599-0.075v-23.418c0-2.409-1.953-4.363-4.363-4.363h-55.795
+                                                   c-2.409,0-4.363,1.953-4.363,4.363V382.11c0,2.409,1.952,4.362,4.361,4.363l57.011,0.014c2.41,0.001,4.364-1.953,4.364-4.363
+                                                   V264.801c0-20.28,16.175-37.119,36.454-37.348c10.352-0.117,19.737,4.031,26.501,10.799c6.675,6.671,10.802,15.895,10.802,26.079
+                                                   v117.808c0,2.409,1.953,4.362,4.361,4.363l57.152,0.014c2.41,0.001,4.364-1.953,4.364-4.363V241.682z"
+                                                />
+                                            </g>
+                                        </g>
+                                    </svg>
+                                </a>
+                                {% endif %}
+                            </div>
+                            <p class="advisers__member__name">{{ adviser.name }}</p>
+                            <p class="advisers__member__position">{{ adviser.position }}</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="znaq-section" id="emission">
+        <div class="container">
+            <div class="content">
+                <div class="emission">
+                    <p class="emission__title">
+                        <span class="icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                <metadata>
+                                    <?xpacket begin="﻿" id="W5M0MpCehiHzreSzNTczkc9d"?>
+                                        <x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="Adobe XMP Core 5.6-c138 79.159824, 2016/09/14-01:09:01        ">
+                                            <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+                                                <rdf:Description rdf:about="" />
+                                            </rdf:RDF>
+                                        </x:xmpmeta>
+                                        <?xpacket end="w"?>
+                                </metadata>
+                                <defs>
+                                    <style>
+                                        .square-white-1 {
+                                            fill: none;
+                                            stroke: #fff;
+                                            stroke-width: 8px;
+                                        }
+                                    </style>
+                                </defs>
+                                <rect id="" data-name="" class="square-white-1" width="24" height="24" />
+                            </svg>
+                        </span>
+                        {{ conf2.emission_title }}</p>
+                    <div class="emission__desc">
+                        <span class="icon">
+                            <img src="{% static 'img/line.png' %}" />
+                        </span>
+                        <div class="emission__desc__block left">
+                            {{ conf2.emission_text|linebreaksbr }}
+                        </div>
+                        <div class="emission__desc__block right">
+                            {{ conf2.emission_text_right|linebreaksbr }}
+                        </div>
+                    </div>
+                </div>
+                <div class="tokens-phases">
+                    <div class="phase">
+                        <div class="phase__title">
+                            <span class="icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                    <metadata>
+                                        <?xpacket begin="﻿" id="W5M0MpCehiHzreSzNTczkc9d"?>
+                                            <x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="Adobe XMP Core 5.6-c138 79.159824, 2016/09/14-01:09:01        ">
+                                                <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+                                                    <rdf:Description rdf:about="" />
+                                                </rdf:RDF>
+                                            </x:xmpmeta>
+                                            <?xpacket end="w"?>
+                                    </metadata>
+                                    <defs>
+                                        <style>
+                                            .cls-1 {
+                                                fill: none;
+                                                stroke: #040b24;
+                                                stroke-width: 8px;
+                                            }
+                                        </style>
+                                    </defs>
+                                    <rect id="" data-name="" class="cls-1" width="24" height="24" />
+                                </svg>
+                            </span>
+                            {{ conf2.token_presale_title }}
+                        </div>
+                        <div class="wrap">
+                            {{ conf2.token_presale_text|safe }}
+                        </div>
+                    </div>
+                    <div class="phase">
+                        <div class="phase__title">
+                            <span class="icon icon--border-square">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                    <metadata>
+                                        <?xpacket begin="﻿" id="W5M0MpCehiHzreSzNTczkc9d"?>
+                                            <x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="Adobe XMP Core 5.6-c138 79.159824, 2016/09/14-01:09:01        ">
+                                                <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+                                                    <rdf:Description rdf:about="" />
+                                                </rdf:RDF>
+                                            </x:xmpmeta>
+                                            <?xpacket end="w"?>
+                                    </metadata>
+                                    <defs>
+                                        <style>
+                                            .cls-1 {
+                                                fill: none;
+                                                stroke: #040b24;
+                                                stroke-width: 8px;
+                                            }
+                                        </style>
+                                    </defs>
+                                    <rect id="" data-name="" class="cls-1" width="24" height="24" />
+                                </svg>
+                            </span>
+                            {{ conf2.token_sale_title }}
+                        </div>
+                        <div class="wrap">
+                            {{ conf2.token_sale_text|safe }}
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="circle-graphs-section" id="takermaker">
+        <div class="container">
+            <div class="content">
+                <div class="graph-wrap">
+                    <div class="graph-block">
+                        <p class="graph-block__title">{{ conf.funds_title }}</p>
+                        <img class="main" src="{% static 'img/main1.png' %}" alt="">
+                        <img src="{% static 'img/color1.png' %}" alt="" class="img">
+                        <img src="{% static 'img/color2.png' %}" alt="" class="img">
+                        <img src="{% static 'img/color3.png' %}" alt="" class="img">
+                        <img src="{% static 'img/color4.png' %}" alt="" class="img">
+                        <img src="{% static 'img/color5.png' %}" alt="" class="img">
+                        <img src="{% static 'img/color6.png' %}" alt="" class="img">
+                        <img src="{% static 'img/color7.png' %}" alt="" class="img">
+                        <img src="{% static 'img/color8.png' %}" alt="" class="img">
+                    </div>
+                    <div class="graph-legend">
+                        <ul>
+                            <li>
+                                <span class="icon"></span>
+                                <span class="percent">{{ conf.funds_percent1 }}</span>
+                                <p>{{ conf.funds_text1 }}</p>
+                            </li>
+                            <li>
+                                <span class="icon"></span>
+                                <span class="percent">{{ conf.funds_percent2 }}</span>
+                                <p>{{ conf.funds_text2 }}</p>
+                            </li>
+                            <li>
+                                <span class="icon"></span>
+                                <span class="percent">{{ conf.funds_percent3 }}</span>
+                                <p>{{ conf.funds_text3 }}</p>
+                            </li>
+                            <li>
+                                <span class="icon"></span>
+                                <span class="percent">{{ conf.funds_percent4 }}</span>
+                                <p>{{ conf.funds_text4 }}</p>
+                            </li>
+                            <li>
+                                <span class="icon"></span>
+                                <span class="percent">{{ conf.funds_percent5 }}</span>
+                                <p>{{ conf.funds_text5 }}</p>
+                            </li>
+                            <li>
+                                <span class="icon"></span>
+                                <span class="percent">{{ conf.funds_percent6 }}</span>
+                                <p>{{ conf.funds_text6 }}</p>
+                            </li>
+                            <li>
+                                <span class="icon"></span>
+                                <span class="percent">{{ conf.funds_percent7 }}</span>
+                                <p>{{ conf.funds_text7 }}</p>
+                            </li>
+                            <li>
+                                <span class="icon"></span>
+                                <span class="percent">{{ conf.funds_percent8 }}</span>
+                                <p>{{ conf.funds_text8 }}</p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="graph-wrap reverse">
+                    <div class="graph-block">
+                        <p class="graph-block__title">{{ conf.tokens_title }}</p>
+                        <img class="main" src="{% static 'img/main2.png' %}" alt="">
+                        <img src="{% static 'img/reverse1.png' %}" alt="" class="img">
+                        <img src="{% static 'img/reverse2.png' %}" alt="" class="img">
+                        <img src="{% static 'img/reverse3.png' %}" alt="" class="img">
+                        <img src="{% static 'img/reverse4.png' %}" alt="" class="img">
+                        <img src="{% static 'img/reverse5.png' %}" alt="" class="img">
+                    </div>
+                    <div class="graph-legend">
+                        <ul>
+                            <li>
+                                <span class="icon"></span>
+                                <span class="percent">{{ conf.tokens_percent1 }}</span>
+                                <p>{{ conf.tokens_text1 }}</p>
+                            </li>
+                            <li>
+                                <span class="icon"></span>
+                                <span class="percent">{{ conf.tokens_percent2 }}</span>
+                                <p>{{ conf.tokens_text2 }}</p>
+                            </li>
+                            <li>
+                                <span class="icon"></span>
+                                <span class="percent">{{ conf.tokens_percent3 }}</span>
+                                <p>{{ conf.tokens_text3 }}</p>
+                            </li>
+                            <li>
+                                <span class="icon"></span>
+                                <span class="percent">{{ conf.tokens_percent4 }}</span>
+                                <p>{{ conf.tokens_text4 }}</p>
+                            </li>
+                            <li>
+                                <span class="icon"></span>
+                                <span class="percent">{{ conf.tokens_percent5 }}</span>
+                                <p>{{ conf.tokens_text5 }}</p>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="github-section" id="smartcontract">
+        <div class="container">
+            <div class="content">
+                <div class="wrap">
+                    <p class="title">{% trans 'SMART CONTRACT ON' %} <span>GITHUB</span>
+                    </p>
+                    <div class="gist-wrap">
+                        <script src="https://gist.github.com/znaqglobal/a4b6a8f8645d0cd7bdcc8d6c02837649.js"></script>
+                    </div>
+                    <a href="{{ conf2.contract_link }}" class="link" target="_blank">{% trans 'View code on github' %}
+                        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                            width="19px" height="31px" viewBox="0 0 284.929 284.929" style="enable-background:new 0 0 284.929 284.929;"
+                            xml:space="preserve">
+                            <g>
+                                <path d="M282.082,76.511l-14.274-14.273c-1.902-1.906-4.093-2.856-6.57-2.856c-2.471,0-4.661,0.95-6.563,2.856L142.466,174.441
+                                    L30.262,62.241c-1.903-1.906-4.093-2.856-6.567-2.856c-2.475,0-4.665,0.95-6.567,2.856L2.856,76.515C0.95,78.417,0,80.607,0,83.082
+                                    c0,2.473,0.953,4.663,2.856,6.565l133.043,133.046c1.902,1.903,4.093,2.854,6.567,2.854s4.661-0.951,6.562-2.854L282.082,89.647
+                                    c1.902-1.903,2.847-4.093,2.847-6.565C284.929,80.607,283.984,78.417,282.082,76.511z"
+                                />
+                            </g>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="action-sales-section" id="sales">
+        <div class="container">
+            <div class="content">
+                <article class="article">
+                    <div class="description">
+                        <p class="description__title">{{ conf.emission_sale_title }}</p>
+                        <div class="description__text">
+                            {{ conf.emission_sale_text|linebreaksbr }}
+                        </div>
+                    </div>
+                    <div class="table-wrap">
+                        <div class="table">
+                            <div class="steps-row">
+                                <div>
+                                    {% trans 'Presale' %}
+                                </div>
+                                <div>
+                                    {% trans 'Token Sale' %}
+                                </div>
+                            </div>
+                            <div class="table__head">
+                                <div>{% trans 'временные промежутки' %}</div>
+                                <div>{% trans '% скидки' %}</div>
+                                <div>{% trans '% скидки' %}</div>
+                            </div>
+                            <div class="table__body">
+                                <div class="table__body__row">
+                                    <div>{% trans 'I Промежуток' %}</div>
+                                    <div>{{ conf.presale_1 }}</div>
+                                    <div>{{ conf.ico_1 }}</div>
+                                </div>
+                                <div class="table__body__row">
+                                    <div>{% trans 'II Промежуток' %}</div>
+                                    <div>{{ conf.presale_2 }}</div>
+                                    <div>{{ conf.ico_2 }}</div>
+                                </div>
+                                <div class="table__body__row">
+                                    <div>{% trans 'III Промежуток' %}</div>
+                                    <div>{{ conf.presale_3 }}</div>
+                                    <div>{{ conf.ico_3 }}</div>
+                                </div>
+                                <div class="table__body__row">
+                                    <div>{% trans 'IV Промежуток' %}</div>
+                                    <div>{{ conf.presale_4 }}</div>
+                                    <div>{{ conf.ico_4 }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                <article class="article article--second">
+                    <div class="description">
+                        <p class="description__title">{{ conf.sale_bonus_title }}</p>
+                        <div class="description__text">
+                            {{ conf.sale_bonus_text }}
+                        </div>
+                    </div>
+                    <div class="table-wrap">
+                        <div class="table">
+                            <div class="title-column">
+                                <div class="blue">{% trans 'Размер бонуса ZNAQ, %' %}</div>
+                                <div>{% trans 'Сумма платежа, ZNAQ' %}</div>
+                            </div>
+                            <div class="column first">
+                                <div class="blue">{{ conf2.bar1_bonus }}</div>
+                                <div>{{ conf2.bar1_price }}</div>
+                                <img src="{% static 'img/bar1.png' %}" alt="">
+                            </div>
+                            <div class="column">
+                                    <div class="blue">{{ conf2.bar2_bonus }}</div>
+                                    <div>{{ conf2.bar2_price }}</div>
+                                <img src="{% static 'img/bar2.png' %}" alt="">
+                            </div>
+                            <div class="column">
+                                    <div class="blue">{{ conf2.bar3_bonus }}</div>
+                                    <div>{{ conf2.bar3_price }}</div>
+                                <img src="{% static 'img/bar3.png' %}" alt="">
+                            </div>
+                            <div class="column">
+                                    <div class="blue">{{ conf2.bar4_bonus }}</div>
+                                    <div>{{ conf2.bar4_price }}</div>
+                                <img src="{% static 'img/bar4.png' %}" alt="">
+                            </div>
+                            <div class="column">
+                                    <div class="blue">{{ conf2.bar5_bonus }}</div>
+                                    <div>{{ conf2.bar5_price }}</div>
+                                <img src="{% static 'img/bar5.png' %}" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    {% if partners|length > 0 %}
+    <section class="partners-section">
+        <div class="bg-title">Partners</div>
+        <div class="container">
+            <div class="content">
+                <h2 class="title">
+                    {{ conf3.partners_block_title }}
+                </h2>
+                <div class="team">
+                    {% for partner_n in partners|split_by_nth:4 %}
+                    <div class="row">
+                        {% for partner in partner_n %}
+                        <div class="team__member">
+                            {% if partner.link %}
+                                <a href="{{ partner.link }}" target="_blank">
+                                    <div class="team__member__image" style="background-image: url({{ partner.image.url }});">
+
+                                    </div>
+                                </a>
+                            {% else %}
+                                <div class="team__member__image" style="background-image: url({{ partner.image.url }});">
+
+                                </div>
+                            {% endif %}
+                            <p class="team__member__name">{% if partner.name %}{{ partner.name }}{% endif %}</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endfor %}
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+    {% endif %}
+
+    {% if ratedby_objects|length > 0 %}
+    <section class="ratedby-section">
+        <div class="bg-title">Rated by</div>
+        <div class="container">
+            <div class="content">
+                <h2 class="title">
+                    {{ conf3.ratedby_block_title }}
+                </h2>
+                <div class="team">
+                    {% for ratedby_objects_n in ratedby_objects|split_by_nth:4 %}
+                    <div class="row">
+                        {% for ratedby_object in ratedby_objects_n %}
+                        <div class="team__member">
+                            {% if ratedby_object.link %}
+                            <a href="{{ ratedby_object.link }}" target="_blank">
+                                <div class="team__member__image" style="background-image: url({{ ratedby_object.image.url }});">
+
+                                </div>
+                            </a>
+                            {% else %}
+                                <div class="team__member__image" style="background-image: url({{ ratedby_object.image.url }});">
+
+                                </div>
+                            {% endif %}
+                            <p class="team__member__name">{% if ratedby_object.name %}{{ ratedby_object.name }}{% endif %}</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endfor %}
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+    {% endif %}
+
+    <section class="bounty-section" id="bounty">
+        <div class="container">
+            <div class="content">
+                <h2 class="title">{{ conf.bounty_title }}</h2>
+                <a href="{{ conf.bounty_link }}" class="link">{{ conf.bounty_btn_text }}</a>
+                <div class="text">
+                    {{ conf.bounty_text|linebreaksbr }}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="publications-section" id="blog">
+        <div class="bg-title">Publications</div>
+        <div class="container">
+            <div class="content">
+                {% if publications|length > 0 %}
+                <p class="title">{{ conf.publication_block_title }}</p>
+                <div class="slider-wrap">
+                    <div class="publications-slider" id="publications-slider">
+                        {% for publ in publications %}
+                            <div class="slide">
+                                <div class="image-wrap" style="background-image: url({{ publ.image.url }});background-size: cover;"></div>
+                                <div class="info">
+                                    <p class="info__title">
+                                        {{ publ.title|linebreaksbr }}
+                                    </p>
+                                    <div class="info__msg">
+                                        {{ publ.announce|linebreaksbr }}
+                                    </div>
+                                    <a href="{{ publ.link }}" class="more" target="_blank">{% trans 'Читать далее' %}</a>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="slider-nav">
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+            {% if exhibitions|length > 0 %}
+            <div class="exhibitions">
+                <div class="bg-title">meet us at upcoming events</div>
+                {% if conf.exhibition_block_title %}
+                    <p class="title">{{ conf.exhibition_block_title }}</p>
+                {% endif %}
+                <div class="exhibitions__content" id="exhibitions-slider">
+                    {% for exhibition in exhibitions %}
+                        <div class="exhibitions__publication">
+                            <div class="image-wrap" style="background-image: url({{ exhibition.image.url }});background-size: cover;"></div>
+                            <div class="info">
+                                <p class="info__title">
+                                    {{ exhibition.title }}
+                                </p>
+                                <div class="announce">
+                                    {{ exhibition.announce }}
+                                </div>
+                                <a href="{{ exhibition.link }}" class="more" target="_blank">{% trans 'Читать далее' %}</a>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="exhibition-slider-nav">
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </section>
+
+    <section class="faq-section" id="faq">
+        <div class="bg-title">faq</div>
+        <div class="container">
+            <div class="content">
+                <p class="title">{% trans 'FAQ' %}</p>
+                <div class="accordion" id="accordion">
+                    <div>
+                        {% for faq_item in faq_left %}
+                            <div class="accordion__item">
+                                <p class="accordion__item__title">{{ faq_item.question }}</p>
+                                <span class="accordion__item__icon">
+                                    <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                        width="284.929px" height="284.929px" viewBox="0 0 284.929 284.929" style="enable-background:new 0 0 284.929 284.929;"
+                                        xml:space="preserve">
+                                        <g>
+                                            <path d="M282.082,76.511l-14.274-14.273c-1.902-1.906-4.093-2.856-6.57-2.856c-2.471,0-4.661,0.95-6.563,2.856L142.466,174.441
+                                   L30.262,62.241c-1.903-1.906-4.093-2.856-6.567-2.856c-2.475,0-4.665,0.95-6.567,2.856L2.856,76.515C0.95,78.417,0,80.607,0,83.082
+                                   c0,2.473,0.953,4.663,2.856,6.565l133.043,133.046c1.902,1.903,4.093,2.854,6.567,2.854s4.661-0.951,6.562-2.854L282.082,89.647
+                                   c1.902-1.903,2.847-4.093,2.847-6.565C284.929,80.607,283.984,78.417,282.082,76.511z" />
+                                        </g>
+                                    </svg>
+                                </span>
+                                <div class="accordion__item__text">
+                                    {{ faq_item.answer }}
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div>
+                        {% for faq_item in faq_right %}
+                            <div class="accordion__item">
+                                <p class="accordion__item__title">{{ faq_item.question }}</p>
+                                <span class="accordion__item__icon">
+                                    <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                        width="284.929px" height="284.929px" viewBox="0 0 284.929 284.929" style="enable-background:new 0 0 284.929 284.929;"
+                                        xml:space="preserve">
+                                        <g>
+                                            <path d="M282.082,76.511l-14.274-14.273c-1.902-1.906-4.093-2.856-6.57-2.856c-2.471,0-4.661,0.95-6.563,2.856L142.466,174.441
+                                   L30.262,62.241c-1.903-1.906-4.093-2.856-6.567-2.856c-2.475,0-4.665,0.95-6.567,2.856L2.856,76.515C0.95,78.417,0,80.607,0,83.082
+                                   c0,2.473,0.953,4.663,2.856,6.565l133.043,133.046c1.902,1.903,4.093,2.854,6.567,2.854s4.661-0.951,6.562-2.854L282.082,89.647
+                                   c1.902-1.903,2.847-4.093,2.847-6.565C284.929,80.607,283.984,78.417,282.082,76.511z" />
+                                        </g>
+                                    </svg>
+                                </span>
+                                <div class="accordion__item__text">
+                                    {{ faq_item.answer }}
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact-us-section" id="contact-us">
+        <div class="bg-title">contact us</div>
+        <div class="container">
+            <div class="content">
+                <p class="title">{% trans 'Contact Us' %}</p>
+                <form action="{% url 'ask_question' %}" class="contact-form" method="POST">
+                    {{ contact_us.email }}
+                    {{ contact_us.message }}
+                    {% csrf_token %}
+                    <button class="submit">{% trans 'Send Message' %}</button>
+                    <span class="tooltiptext" id="contact_us-info"></span>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <section class="social-networks-section">
+        <div class="container">
+            <div class="content">
+                <div class="bg-title">SOCIAL NETWORKS</div>
+                <div class="socials-panel">
+                    {% if conf.facebook %}
+                    <a href="{{ conf.facebook }}" target="_blank"><img src="{% static 'img/facebook-letter-logo.png' %}" alt=""></a>
+                    {% endif %}
+
+                    {% if conf.medium %}
+                    <a href="{{ conf.medium }}" target="_blank"><img src="{% static 'img/medium.png' %}" alt=""></a>
+                    {% endif %}
+
+                    {% if conf.linkedin %}
+                    <a href="{{ conf.linkedin }}" target="_blank"><img src="{% static 'img/linkedin_for_footer.png' %}" alt=""></a>
+                    {% endif %}
+
+                    {% if conf.reddit %}
+                    <a href="{{ conf.reddit }}" target="_blank"><img src="{% static 'img/reddit.png' %}" alt=""></a>
+                    {% endif %}
+
+                    {% if conf.telegram %}
+                    <a href="{{ conf.telegram }}" target="_blank"><img src="{% static 'img/telegram.png' %}" alt=""></a>
+                    {% endif %}
+
+                    {% if conf.bitcointalk %}
+                    <a href="{{ conf.bitcointalk }}" target="_blank"><img src="{% static 'img/bitcointalk.png' %}" alt="" width="40px"></a>
+                    {% endif %}
+
+                    {% if conf.twitter %}
+                    <a href="{{ conf.twitter }}" target="_blank"><img src="{% static 'img/twitter.png' %}" alt=""></a>
+                    {% endif %}
+
+                    {% if conf.instagram %}
+                    <a href="{{ conf.instagram }}" target="_blank"><img src="{% static 'img/instagram-logo.png' %}" alt=""></a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="footer">
+        <div class="container">
+            <div class="content">
+                <a href="#!" class="logo">
+                    <svg id="" data-name="" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 324">
+                        <path class="cls-1" d="M180,57.35v57.41s2.77-.79,3.66-1.08,5.48-1.6,6.34-1.93a11.43,11.43,0,0,0,7.64-7.67s.68-1.79,3.68-2.29a11.36,11.36,0,0,1,4.33.37c2.58.67,2.88.84,4.69.78a6.2,6.2,0,0,0,1.62-.53c1-.45,3.95-1.75,5.9-2.37a77.36,77.36,0,0,1,10.81-2.65c4.16-.62,7.81-1.1,11.45-1.41s6.21-.36,8.37.26a13.89,13.89,0,0,1,5.18,2.71c1.39,1.15.88,1.21,2.36,2a10.7,10.7,0,0,0,5.34,1.17c1.89,0,3.88-.13,5.47-.26s7.1-.6,9.2-.59,4.36,0,5.57.59,1.29,3.28,1.29,3.28a25.18,25.18,0,0,1-.29,4.81,44.21,44.21,0,0,1-1.13,5.1c-.4,1.26-1.25,4.29-3.07,6.12s-95.82,94.36-95.82,94.36a9.47,9.47,0,0,0-1.86,2.84,9.68,9.68,0,0,0-.66,3.68c0,1.34-.09,47.55-.09,47.55h166.7V223.24s-3.64.37-6,.76-11.5,2.27-12.48,2.47-5.78,1.15-8.2,1.38c-6,.56-6.75-1.55-8.25-3.73,0,0-2.26-3.27-4-5.4s-5-5.88-5.3-6.28-3.06-3.48-4.89-5.44a96.23,96.23,0,0,1-6.47-7.41c-1.55-2.14-2.86-4.16-4.36-5.11s-3.2-1.47-6.89-.11-11.37,4.54-18.49,7.75c0,0-4.54,2.15-8.44.67,0,0,8.32-5.85,9.71-7s8-7.21,10-8.64,6.64-4.8,11.53-5.34a19.24,19.24,0,0,1,3.68-.18s1.22-2,2.26-4a16,16,0,0,1,3.48-3.76l7.34-6.94,8.48-8.37,9.93-10s14.92-14.75,16.76-16.47,6.22-5.57,7.6-6.95c2.35-2.35,3-3.4,3-7.85V57.35Z"
+                        />
+                        <path class="cls-1" d="M375.26,269.65V57.35h40.82s4.17.65,7.82,5.64l80,101.41V57.35h58v212.3l-39.62,0a12.54,12.54,0,0,1-6.68-1.83,8.52,8.52,0,0,1-2.45-2.21L432.89,166V269.65Z"
+                        />
+                        <path class="cls-1" d="M705.19,57.35H652.5L579,269.65h59.26L651,228.06h55.65l12.12,41.59h59.56Zm-45.59,131.4,18.64-62.43h1.18l17.81,62.43Z"
+                        />
+                        <path class="cls-1" d="M971.5,234.31A107.06,107.06,0,0,0,998,163.64c0-59.21-47.8-107.22-106.77-107.22s-106.77,48-106.77,107.22,47.8,107.22,106.77,107.22a106,106,0,0,0,48.69-11.78l4.4,4.76a18.07,18.07,0,0,0,13.27,5.81h46.58Zm-39-42.17-5.26-5.69a21.13,21.13,0,0,0-15.52-6.79H866.51l35.37,38.28a41.94,41.94,0,0,1-10.67,1.39c-26.56,0-48.09-24.93-48.09-55.69S864.65,108,891.21,108s48.09,24.93,48.09,55.69A62.17,62.17,0,0,1,932.53,192.14Z"
+                        />
+                    </svg>
+                </a>
+                <div class="row">
+                    {% for menu in footer_menu %}
+                    <div class="list-block">
+                        <p>{{ menu.name }}</p>
+                        <ul>
+                            {% for menu_item in menu.footer_items.all %}
+                                <li>
+                                    <a href="{{ menu_item.link }}" {% if menu_item.open_new_tab %}target="_blank"{% endif %}>{{ menu_item.name }}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="rights">Copyright &copy; 2018 ZNAQ GLOBAL FOUNDATION. All rights reserved.</div>
+        </div>
+    </section>
+
+    <section class="contribute animate-hidden fadeOut" id="contribute">
+        {% if request.user.is_authenticated %}
+            <a href="{% url 'profile' %}#make-donation" class="btn">{% trans 'Contribute' %}</a>
+        {% else %}
+            <a href="#!" class="btn" id="make-contribute">{% trans 'Contribute' %}</a>
+        {% endif %}
+    </section>
+
+    {% if request.user.is_authenticated %}
+        <section class="modal-window" id="modal-window">
+            <div class="video-modal">
+                <div class="close-wrap">
+                    <a href="#!" class="close">
+                        <svg class="img" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 21.9 21.9"
+                            enable-background="new 0 0 21.9 21.9" width="512px" height="512px">
+                            <path d="M14.1,11.3c-0.2-0.2-0.2-0.5,0-0.7l7.5-7.5c0.2-0.2,0.3-0.5,0.3-0.7s-0.1-0.5-0.3-0.7l-1.4-1.4C20,0.1,19.7,0,19.5,0  c-0.3,0-0.5,0.1-0.7,0.3l-7.5,7.5c-0.2,0.2-0.5,0.2-0.7,0L3.1,0.3C2.9,0.1,2.6,0,2.4,0S1.9,0.1,1.7,0.3L0.3,1.7C0.1,1.9,0,2.2,0,2.4  s0.1,0.5,0.3,0.7l7.5,7.5c0.2,0.2,0.2,0.5,0,0.7l-7.5,7.5C0.1,19,0,19.3,0,19.5s0.1,0.5,0.3,0.7l1.4,1.4c0.2,0.2,0.5,0.3,0.7,0.3  s0.5-0.1,0.7-0.3l7.5-7.5c0.2-0.2,0.5-0.2,0.7,0l7.5,7.5c0.2,0.2,0.5,0.3,0.7,0.3s0.5-0.1,0.7-0.3l1.4-1.4c0.2-0.2,0.3-0.5,0.3-0.7  s-0.1-0.5-0.3-0.7L14.1,11.3z"
+                            />
+                        </svg>
+                    </a>
+                </div>
+                <iframe class="video" id="video-frame" src="" frameborder="0" gesture="media" allow="encrypted-media"
+                    allowfullscreen></iframe>
+            </div>
+        </section>
+    {% else %}
+    <section class="modal-window" id="modal-window">
+        <div class="login-modal" id="login-modal">
+            <a href="#!" class="close">
+                <svg class="img" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 21.9 21.9"
+                    enable-background="new 0 0 21.9 21.9" width="512px" height="512px">
+                    <path d="M14.1,11.3c-0.2-0.2-0.2-0.5,0-0.7l7.5-7.5c0.2-0.2,0.3-0.5,0.3-0.7s-0.1-0.5-0.3-0.7l-1.4-1.4C20,0.1,19.7,0,19.5,0  c-0.3,0-0.5,0.1-0.7,0.3l-7.5,7.5c-0.2,0.2-0.5,0.2-0.7,0L3.1,0.3C2.9,0.1,2.6,0,2.4,0S1.9,0.1,1.7,0.3L0.3,1.7C0.1,1.9,0,2.2,0,2.4  s0.1,0.5,0.3,0.7l7.5,7.5c0.2,0.2,0.2,0.5,0,0.7l-7.5,7.5C0.1,19,0,19.3,0,19.5s0.1,0.5,0.3,0.7l1.4,1.4c0.2,0.2,0.5,0.3,0.7,0.3  s0.5-0.1,0.7-0.3l7.5-7.5c0.2-0.2,0.5-0.2,0.7,0l7.5,7.5c0.2,0.2,0.5,0.3,0.7,0.3s0.5-0.1,0.7-0.3l1.4-1.4c0.2-0.2,0.3-0.5,0.3-0.7  s-0.1-0.5-0.3-0.7L14.1,11.3z"
+                    />
+                </svg>
+            </a>
+            <p class="title">{% trans 'Log In' %}</p>
+            <div class="wrap">
+            <form action="{% url 'login' %}" class="login-form" method="POST">
+                {% csrf_token %}
+                {{ login_form.username }}
+                {{ login_form.password }}
+                <div class="login-bottom">
+                    <div class="remember-wrap">
+                        {{ login_form.remember }}
+                        <label for="remember">
+                            <span>
+                                <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                    width="284.929px" height="284.929px" viewBox="0 0 284.929 284.929" style="enable-background:new 0 0 284.929 284.929;"
+                                    xml:space="preserve">
+                                    <g>
+                                        <path d="M282.082,76.511l-14.274-14.273c-1.902-1.906-4.093-2.856-6.57-2.856c-2.471,0-4.661,0.95-6.563,2.856L142.466,174.441
+                               L30.262,62.241c-1.903-1.906-4.093-2.856-6.567-2.856c-2.475,0-4.665,0.95-6.567,2.856L2.856,76.515C0.95,78.417,0,80.607,0,83.082
+                               c0,2.473,0.953,4.663,2.856,6.565l133.043,133.046c1.902,1.903,4.093,2.854,6.567,2.854s4.661-0.951,6.562-2.854L282.082,89.647
+                               c1.902-1.903,2.847-4.093,2.847-6.565C284.929,80.607,283.984,78.417,282.082,76.511z" />
+                                    </g>
+                                    <g>
+                                    </g>
+                                    <g>
+                                    </g>
+                                    <g>
+                                    </g>
+                                    <g>
+                                    </g>
+                                    <g>
+                                    </g>
+                                    <g>
+                                    </g>
+                                    <g>
+                                    </g>
+                                    <g>
+                                    </g>
+                                    <g>
+                                    </g>
+                                    <g>
+                                    </g>
+                                    <g>
+                                    </g>
+                                    <g>
+                                    </g>
+                                    <g>
+                                    </g>
+                                    <g>
+                                    </g>
+                                    <g>
+                                    </g>
+                                </svg>
+                            </span> {% trans 'Remember me' %}</label>
+                    </div>
+                    <div class="buttons-wrap">
+                        <button class="submit">{% trans 'Log in' %}</button>
+                        <button class="go-signup">{% trans 'Sign up' %}</button>
+                    </div>
+                </div>
+            </form>
+            </div>
+        </div>
+        <div class="sign-in-modal" id="signin-modal">
+            <a href="#!" class="close">
+                <svg class="img" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 21.9 21.9"
+                        enable-background="new 0 0 21.9 21.9" width="512px" height="512px">
+                        <path d="M14.1,11.3c-0.2-0.2-0.2-0.5,0-0.7l7.5-7.5c0.2-0.2,0.3-0.5,0.3-0.7s-0.1-0.5-0.3-0.7l-1.4-1.4C20,0.1,19.7,0,19.5,0  c-0.3,0-0.5,0.1-0.7,0.3l-7.5,7.5c-0.2,0.2-0.5,0.2-0.7,0L3.1,0.3C2.9,0.1,2.6,0,2.4,0S1.9,0.1,1.7,0.3L0.3,1.7C0.1,1.9,0,2.2,0,2.4  s0.1,0.5,0.3,0.7l7.5,7.5c0.2,0.2,0.2,0.5,0,0.7l-7.5,7.5C0.1,19,0,19.3,0,19.5s0.1,0.5,0.3,0.7l1.4,1.4c0.2,0.2,0.5,0.3,0.7,0.3  s0.5-0.1,0.7-0.3l7.5-7.5c0.2-0.2,0.5-0.2,0.7,0l7.5,7.5c0.2,0.2,0.5,0.3,0.7,0.3s0.5-0.1,0.7-0.3l1.4-1.4c0.2-0.2,0.3-0.5,0.3-0.7  s-0.1-0.5-0.3-0.7L14.1,11.3z"
+                        />
+                    </svg>
+            </a>
+            <p class="title">{% trans 'Sign Up' %}</p>
+            <form action="{% url 'registration' %}" class="signin-form" method="POST">
+                    <div class="steps step-1">
+                        <div class="input-wrap">
+                            <label for="username" class="input-label">{% trans 'Username' %}</label>
+                            <div>
+                                {{ register_form.username }}
+                                <span class="tooltiptext" id="reg-username-error"></span>
+                            </div>
+                        </div>
+                        <div class="input-wrap">
+                            <label for="email" class="input-label">{% trans 'Email' %}</label>
+                            <div>
+                                {{ register_form.email }}
+                                <span class="tooltiptext" id="reg-email-error"></span>
+                            </div>
+                        </div>
+                        <div class="input-wrap">
+                            <label for="password" class="input-label">{% trans 'Password' %}</label>
+                            <div>
+                                {{ register_form.password1 }}
+                                <span class="tooltiptext" id="reg-pass1-error"></span>
+                            </div>
+                        </div>
+                        <div class="input-wrap">
+                            <label for="retry_password" class="input-label">{% trans 'Retry password' %}</label>
+                            <div>
+                                {{ register_form.password2 }}
+                                <span class="tooltiptext" id="reg-pass2-error"></span>
+                            </div>
+                        </div>
+                        <div class="btns-line">
+                            <a href="#!" class="btn" id="next-btn">{% trans 'next step' %}</a>
+                            <span class="tooltiptext" id="step1-tooltip"></span>
+                        </div>
+                        <div class="step-bg">{% trans 'step 1' %}</div>
+                    </div>
+                    <div class="steps step-2">
+                        <div class="input-wrap">
+                            <label for="full_name" class="input-label">{% trans 'Full Name' %}</label>
+                            <div>
+                                {{ register_form.full_name }}
+                                <span class="tooltiptext" id="reg-fullname-error"></span>
+                            </div>
+                        </div>
+                        <div class="input-wrap">
+                            <label for="date_of_birth" class="input-label">{% trans 'Date of Birth' %}</label>
+                            <div>
+                                {{ register_form.date_of_birth }}
+                                <span class="tooltiptext" id="reg-birth-error"></span>
+                            </div>
+                        </div>
+                        <div class="input-wrap">
+                            <label for="country" class="input-label">{% trans 'Country' %}</label>
+                            <div>
+                                {{ register_form.country }}
+                                <span class="tooltiptext" id="reg-country-error"></span>
+                            </div>
+                        </div>
+                        <div class="input-wrap">
+                            <label for="state" class="input-label">{% trans 'State / Province' %}</label>
+                            <div>
+                                {{ register_form.state }}
+                                <span class="tooltiptext" id="reg-state-error"></span>
+                            </div>
+                        </div>
+                        <div class="input-wrap">
+                            <label for="city" class="input-label">{% trans 'City' %}</label>
+                            <div>
+                                {{ register_form.city }}
+                                <span class="tooltiptext" id="reg-city-error"></span>
+                            </div>
+                        </div>
+                        <div class="btns-line">
+                            <a href="#!" class="btn btn--prev" id="prev-btn">{% trans 'previous step' %}</a>
+                            <a href="#!" class="btn" id="next-btn">{% trans 'next step' %}</a>
+                            <span class="tooltiptext" id="step2-tooltip"></span>
+                        </div>
+                        <div class="step-bg">{% trans 'step 2' %}</div>
+                    </div>
+                    <div class="steps step-3">
+
+                        <div class="agreement-wrap">
+                            <div>
+                            {{ conf2.token_sale_terms|linebreaksbr }}
+                            </div>
+                        </div>
+                        <div class="agreement-checbox-wrap">
+                            {{ register_form.confirm_terms }}
+                            <label for="agreement" class="checkbox-label">{% trans 'Я прочитал, и принимаю условия пользовательского соглашения' %}</label>
+                            <span class="tooltiptext" id="terms-error">{% trans 'Нужно полностью прочитать условия пользовательского соглашения' %}</span>
+                        </div>
+                        <div class="btns-line">
+                            <a href="#!" class="btn btn--prev" id="prev-btn">{% trans 'previous step' %}</a>
+                            <button type="submit" class="btn btn--submit disabled-btn" disabled="True" title="{% trans 'Нужно полностью прочитать условия пользовательского соглашения' %}">{% trans 'register' %}</button>
+                            {% csrf_token %}
+                        </div>
+                        <div class="step-bg">{% trans 'step 3' %}</div>
+                    </div>
+            </form>
+        </div>
+        <div class="video-modal">
+            <div class="close-wrap">
+                <a href="#!" class="close">
+                    <svg class="img" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 21.9 21.9"
+                        enable-background="new 0 0 21.9 21.9" width="512px" height="512px">
+                        <path d="M14.1,11.3c-0.2-0.2-0.2-0.5,0-0.7l7.5-7.5c0.2-0.2,0.3-0.5,0.3-0.7s-0.1-0.5-0.3-0.7l-1.4-1.4C20,0.1,19.7,0,19.5,0  c-0.3,0-0.5,0.1-0.7,0.3l-7.5,7.5c-0.2,0.2-0.5,0.2-0.7,0L3.1,0.3C2.9,0.1,2.6,0,2.4,0S1.9,0.1,1.7,0.3L0.3,1.7C0.1,1.9,0,2.2,0,2.4  s0.1,0.5,0.3,0.7l7.5,7.5c0.2,0.2,0.2,0.5,0,0.7l-7.5,7.5C0.1,19,0,19.3,0,19.5s0.1,0.5,0.3,0.7l1.4,1.4c0.2,0.2,0.5,0.3,0.7,0.3  s0.5-0.1,0.7-0.3l7.5-7.5c0.2-0.2,0.5-0.2,0.7,0l7.5,7.5c0.2,0.2,0.5,0.3,0.7,0.3s0.5-0.1,0.7-0.3l1.4-1.4c0.2-0.2,0.3-0.5,0.3-0.7  s-0.1-0.5-0.3-0.7L14.1,11.3z"
+                        />
+                    </svg>
+                </a>
+            </div>
+            <iframe class="video" id="video-frame" src="" frameborder="0" gesture="media" allow="encrypted-media"
+                allowfullscreen></iframe>
+        </div>
+    </section>
+    {% endif %}
+
+    <div class="scroll-up-btn animated" id="scroll-up-btn">
+        <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+            width="284.929px" height="284.929px" viewBox="0 0 284.929 284.929" style="enable-background:new 0 0 284.929 284.929;"
+            xml:space="preserve">
+            <g>
+                <path d="M282.082,76.511l-14.274-14.273c-1.902-1.906-4.093-2.856-6.57-2.856c-2.471,0-4.661,0.95-6.563,2.856L142.466,174.441
+        L30.262,62.241c-1.903-1.906-4.093-2.856-6.567-2.856c-2.475,0-4.665,0.95-6.567,2.856L2.856,76.515C0.95,78.417,0,80.607,0,83.082
+        c0,2.473,0.953,4.663,2.856,6.565l133.043,133.046c1.902,1.903,4.093,2.854,6.567,2.854s4.661-0.951,6.562-2.854L282.082,89.647
+        c1.902-1.903,2.847-4.093,2.847-6.565C284.929,80.607,283.984,78.417,282.082,76.511z" />
+            </g>
+        </svg>
+    </div>
+
+    <script src="{% static 'js/app.js' %}"></script>
+    <script src="{% static 'js/moment.min.js' %}"></script>
+    <script src="{% static 'js/combodate.js' %}"></script>
+    <script>
+    $(function(){
+        moment.locale('{{ LANGUAGE_CODE }}');
+        $('#id_date_of_birth').combodate({
+            minYear: 1920,
+            maxYear: 2015,
+            yearDescending: false,
+            firstItem: 'name',
+            customClass: 'input-field'
+        });
+        $('.combodate .year').addClass('year-width');
+        $('.combodate .month').addClass('month-width');
+        $('.combodate .day').addClass('day-width');
+    });
+    </script>
+</body>
+
+</html>

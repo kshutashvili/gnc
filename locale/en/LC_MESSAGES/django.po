@@ -1,0 +1,1821 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-02-25 19:12+0200\n"
+"PO-Revision-Date: 2017-12-15 20:41+0202\n"
+"Last-Translator:   <phonxis@ukr.net>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Translated-Using: django-rosetta 0.7.13\n"
+
+#: config/models.py:13
+msgid "Заголовок для таймера"
+msgstr ""
+
+#: config/models.py:15
+msgid "Таймер"
+msgstr ""
+
+#: config/models.py:23 config/models.py:809 config/models.py:827
+msgid "Название кнопки под таймером"
+msgstr ""
+
+#: config/models.py:28
+msgid "Текст перед скидкой"
+msgstr ""
+
+#: config/models.py:31
+msgid "Размер скидки"
+msgstr ""
+
+#: config/models.py:34
+msgid "Текст после скидки"
+msgstr ""
+
+#: config/models.py:37
+msgid "Таймер скидки"
+msgstr ""
+
+#: config/models.py:41
+msgid "Название кнопки whitepaper"
+msgstr ""
+
+#: config/models.py:43
+msgid "Ссылка на whitepaper"
+msgstr ""
+
+#: config/models.py:45
+msgid "Загрузить whitepaper"
+msgstr ""
+
+#: config/models.py:50
+msgid "Название кнопки onepager"
+msgstr ""
+
+#: config/models.py:52
+msgid "Ссылка на onepager"
+msgstr ""
+
+#: config/models.py:54
+msgid "Загрузить onepager"
+msgstr ""
+
+#: config/models.py:59
+msgid "Синий текст"
+msgstr ""
+
+#: config/models.py:61
+msgid "Белый текст"
+msgstr ""
+
+#: config/models.py:63
+msgid "Заголовок формы"
+msgstr ""
+
+#: config/models.py:67
+msgid "Ссылка на первое видео с внешнего ресурса"
+msgstr ""
+
+#: config/models.py:69
+msgid "Название первого видео"
+msgstr ""
+
+#: config/models.py:71
+msgid "Ссылка на второе видео с внешнего ресурса"
+msgstr ""
+
+#: config/models.py:73
+msgid "Название второго видео"
+msgstr ""
+
+#: config/models.py:77
+msgid "Заголовок первого блока слева"
+msgstr ""
+
+#: config/models.py:80
+msgid "Текст первого блока слева"
+msgstr ""
+
+#: config/models.py:82
+msgid "Заголовок второго блока слева"
+msgstr ""
+
+#: config/models.py:85
+msgid "Текст второго блока слева"
+msgstr ""
+
+#: config/models.py:90
+msgid "Первое изображение для левого блока"
+msgstr ""
+
+#: config/models.py:99
+msgid "Заголовок блока справа"
+msgstr ""
+
+#: config/models.py:102
+msgid "Текст перовго блока справа"
+msgstr ""
+
+#: config/models.py:106
+msgid "Изображение для правого блока"
+msgstr ""
+
+#: config/models.py:109
+msgid "Второе изображение для правого блока"
+msgstr ""
+
+#: config/models.py:112
+msgid "Третье изображение для правого блока"
+msgstr ""
+
+#: config/models.py:115
+msgid "Ссылка ruledbook"
+msgstr ""
+
+#: config/models.py:133
+msgid "Заголовок блока 'Распределение средств'"
+msgstr ""
+
+#: config/models.py:135 config/models.py:179
+msgid "Первое значение (%)"
+msgstr ""
+
+#: config/models.py:138 config/models.py:182
+msgid "Первое значение (текст)"
+msgstr ""
+
+#: config/models.py:140 config/models.py:184
+msgid "Второе значение (%)"
+msgstr ""
+
+#: config/models.py:143 config/models.py:187
+msgid "Второе значение (текст)"
+msgstr ""
+
+#: config/models.py:145 config/models.py:189
+msgid "Третье значение (%)"
+msgstr ""
+
+#: config/models.py:148 config/models.py:192
+msgid "Третье значение (текст)"
+msgstr ""
+
+#: config/models.py:150 config/models.py:194
+msgid "Четвёртое значение (%)"
+msgstr ""
+
+#: config/models.py:153 config/models.py:197
+msgid "Четвёртое значение (текст)"
+msgstr ""
+
+#: config/models.py:155 config/models.py:199
+msgid "Пятое значение (%)"
+msgstr ""
+
+#: config/models.py:158 config/models.py:202
+msgid "Пятое значение (текст)"
+msgstr ""
+
+#: config/models.py:160
+msgid "Шестое значение (%)"
+msgstr ""
+
+#: config/models.py:163
+msgid "Шестое значение (текст)"
+msgstr ""
+
+#: config/models.py:165
+msgid "Седьмое значение (%)"
+msgstr ""
+
+#: config/models.py:168
+msgid "Седьмое значение (текст)"
+msgstr ""
+
+#: config/models.py:170
+msgid "Восьмое значение (%)"
+msgstr ""
+
+#: config/models.py:173
+msgid "Восьмое значение (текст)"
+msgstr ""
+
+#: config/models.py:177
+msgid "Заголовок блока 'Распределение токенов'"
+msgstr ""
+
+#: config/models.py:206 config/models.py:289 config/models.py:665
+#: config/models.py:682 content/models.py:29
+msgid "Заголовок"
+msgstr ""
+
+#: config/models.py:208
+msgid "Bounty link"
+msgstr ""
+
+#: config/models.py:211
+msgid "Название кнопки"
+msgstr ""
+
+#: config/models.py:214
+msgid "Текст блока"
+msgstr ""
+
+#: config/models.py:218
+msgid "Заголовок блока 'Публикации'"
+msgstr ""
+
+#: config/models.py:222
+msgid "Заголовок блока 'Exhibition'"
+msgstr ""
+
+#: config/models.py:226
+msgid "Facebook"
+msgstr ""
+
+#: config/models.py:229
+msgid "Medium"
+msgstr ""
+
+#: config/models.py:232 config/models.py:631 config/models.py:650
+msgid "LinkedIn"
+msgstr ""
+
+#: config/models.py:235
+msgid "Reddit"
+msgstr ""
+
+#: config/models.py:238
+msgid "Telegram"
+msgstr ""
+
+#: config/models.py:241
+msgid "Bitcointalk"
+msgstr ""
+
+#: config/models.py:244
+msgid "Twitter"
+msgstr ""
+
+#: config/models.py:247
+msgid "Instagram"
+msgstr ""
+
+#: config/models.py:252
+msgid "Заголовок 'Скидка во время эмиссии'"
+msgstr ""
+
+#: config/models.py:254 config/models.py:274 config/models.py:291
+msgid "Текст под заголовком"
+msgstr ""
+
+#: config/models.py:256
+msgid "Размер Presale скидки I промежутка"
+msgstr ""
+
+#: config/models.py:258
+msgid "Размер Presale скидки II промежутка"
+msgstr ""
+
+#: config/models.py:260
+msgid "Размер Presale скидки III промежутка"
+msgstr ""
+
+#: config/models.py:262
+msgid "Размер Presale скидки IV промежутка"
+msgstr ""
+
+#: config/models.py:264
+msgid "Размер ICO скидки I промежутка"
+msgstr ""
+
+#: config/models.py:266
+msgid "Размер ICO скидки II промежутка"
+msgstr ""
+
+#: config/models.py:268
+msgid "Размер ICO скидки III промежутка"
+msgstr ""
+
+#: config/models.py:270
+msgid "Размер ICO скидки IV промежутка"
+msgstr ""
+
+#: config/models.py:272
+msgid "Заголовок 'Бонусы за размер платежа'"
+msgstr ""
+
+#: config/models.py:276
+msgid "Диаграма скидок"
+msgstr ""
+
+#: config/models.py:281 config/models.py:284
+msgid "Конфигурация лэндинга"
+msgstr ""
+
+#: config/models.py:290
+msgid "Условия эмиссии"
+msgstr ""
+
+#: config/models.py:292 config/models.py:294
+msgid "В период эмиссии..."
+msgstr ""
+
+#: config/models.py:293
+msgid "Текст под заголовком (справа)"
+msgstr ""
+
+#: config/models.py:296
+msgid "Заголовок TOKEN PRESALE"
+msgstr ""
+
+#: config/models.py:297
+msgid "Предпродажа токенов"
+msgstr ""
+
+#: config/models.py:298
+msgid "Текст TOKEN PRESALE"
+msgstr ""
+
+#: config/models.py:299
+msgid "Start date..."
+msgstr ""
+
+#: config/models.py:301
+msgid "Заголовок TOKEN SALE"
+msgstr ""
+
+#: config/models.py:302
+msgid "TOKEN SALE PHASE"
+msgstr ""
+
+#: config/models.py:303
+msgid "Текст TOKEN SALE"
+msgstr ""
+
+#: config/models.py:307
+msgid "Ссылка на Smart contract"
+msgstr ""
+
+#: config/models.py:311
+msgid "Верхний текст"
+msgstr ""
+
+#: config/models.py:313
+msgid "Текст 'Analytics'"
+msgstr ""
+
+#: config/models.py:315
+msgid "Текст 'Indices'"
+msgstr ""
+
+#: config/models.py:317
+msgid "Текст 'Exchange'"
+msgstr ""
+
+#: config/models.py:319
+msgid "Нижний текст"
+msgstr ""
+
+#: config/models.py:321
+msgid "Ссылка на Trading-платформу"
+msgstr ""
+
+#: config/models.py:325
+msgid "Заголовок блока 'Наша команда'"
+msgstr ""
+
+#: config/models.py:329
+msgid "Заголовок блока 'Advisers'"
+msgstr ""
+
+#: config/models.py:333
+msgid "Итоговая сумма (1)"
+msgstr ""
+
+#: config/models.py:335
+msgid "Размер бонуса ZNAQ (1)"
+msgstr ""
+
+#: config/models.py:337
+msgid "Сума платежа (1)"
+msgstr ""
+
+#: config/models.py:339
+msgid "Итоговая сумма (2)"
+msgstr ""
+
+#: config/models.py:341
+msgid "Размер бонуса ZNAQ (2)"
+msgstr ""
+
+#: config/models.py:343
+msgid "Сума платежа (2)"
+msgstr ""
+
+#: config/models.py:345
+msgid "Итоговая сумма (3)"
+msgstr ""
+
+#: config/models.py:347
+msgid "Размер бонуса ZNAQ (3)"
+msgstr ""
+
+#: config/models.py:349
+msgid "Сума платежа (3)"
+msgstr ""
+
+#: config/models.py:351
+msgid "Итоговая сумма (4)"
+msgstr ""
+
+#: config/models.py:353
+msgid "Размер бонуса ZNAQ (4)"
+msgstr ""
+
+#: config/models.py:355
+msgid "Сума платежа (4)"
+msgstr ""
+
+#: config/models.py:357
+msgid "Итоговая сумма (5)"
+msgstr ""
+
+#: config/models.py:359
+msgid "Размер бонуса ZNAQ (5)"
+msgstr ""
+
+#: config/models.py:361
+msgid "Сума платежа (5)"
+msgstr ""
+
+#: config/models.py:365
+msgid "Roadmap дата (1)"
+msgstr ""
+
+#: config/models.py:367
+msgid "Roadmap текст (1)"
+msgstr ""
+
+#: config/models.py:369
+msgid "Roadmap дата (2)"
+msgstr ""
+
+#: config/models.py:371
+msgid "Roadmap текст (2)"
+msgstr ""
+
+#: config/models.py:373
+msgid "Roadmap дата (3)"
+msgstr ""
+
+#: config/models.py:375
+msgid "Roadmap текст (3)"
+msgstr ""
+
+#: config/models.py:377
+msgid "Roadmap дата (4)"
+msgstr ""
+
+#: config/models.py:379
+msgid "Roadmap текст (4)"
+msgstr ""
+
+#: config/models.py:381
+msgid "Roadmap дата (5)"
+msgstr ""
+
+#: config/models.py:383
+msgid "Roadmap текст (5)"
+msgstr ""
+
+#: config/models.py:385
+msgid "Roadmap дата (6)"
+msgstr ""
+
+#: config/models.py:387
+msgid "Roadmap текст (6)"
+msgstr ""
+
+#: config/models.py:389
+msgid "Roadmap дата (7)"
+msgstr ""
+
+#: config/models.py:391
+msgid "Roadmap текст (7)"
+msgstr ""
+
+#: config/models.py:393
+msgid "Roadmap дата (8)"
+msgstr ""
+
+#: config/models.py:395
+msgid "Roadmap текст (8)"
+msgstr ""
+
+#: config/models.py:397
+msgid "Roadmap дата (9)"
+msgstr ""
+
+#: config/models.py:399
+msgid "Roadmap текст (9)"
+msgstr ""
+
+#: config/models.py:401
+msgid "Roadmap дата (10)"
+msgstr ""
+
+#: config/models.py:403
+msgid "Roadmap текст (10)"
+msgstr ""
+
+#: config/models.py:405
+msgid "Roadmap дата (11)"
+msgstr ""
+
+#: config/models.py:407
+msgid "Roadmap текст (11)"
+msgstr ""
+
+#: config/models.py:409
+msgid "Roadmap дата (12)"
+msgstr ""
+
+#: config/models.py:411
+msgid "Roadmap текст (12)"
+msgstr ""
+
+#: config/models.py:415
+msgid "Подзаголовок bounty page"
+msgstr ""
+
+#: config/models.py:417
+msgid "Bounty facebook"
+msgstr ""
+
+#: config/models.py:419
+msgid "Bounty referral"
+msgstr ""
+
+#: config/models.py:421
+msgid "Bounty twitter"
+msgstr ""
+
+#: config/models.py:423
+msgid "Bounty reddit"
+msgstr ""
+
+#: config/models.py:425
+msgid "Bounty bitcoin talk"
+msgstr ""
+
+#: config/models.py:427
+msgid "Bounty media"
+msgstr ""
+
+#: config/models.py:429
+msgid "Bounty medium"
+msgstr ""
+
+#: config/models.py:431
+msgid "Bounty telegram"
+msgstr ""
+
+#: config/models.py:433
+msgid "Bounty community"
+msgstr ""
+
+#: config/models.py:435
+msgid "Bounty blogging"
+msgstr ""
+
+#: config/models.py:437
+msgid "Bounty youtube"
+msgstr ""
+
+#: config/models.py:439
+msgid "Bounty token market"
+msgstr ""
+
+#: config/models.py:441
+msgid "Bounty instagram"
+msgstr ""
+
+#: config/models.py:445
+msgid "Token sale terms"
+msgstr ""
+
+#: config/models.py:449 config/models.py:452
+msgid "Конфигурация лэндинга ч.2"
+msgstr ""
+
+#: config/models.py:465
+msgid "Загрузить rulebook"
+msgstr ""
+
+#: config/models.py:468
+msgid "Заголовок лэндинга (в браузере)"
+msgstr ""
+
+#: config/models.py:470
+msgid "Заголовок личного кабинета (в браузере)"
+msgstr ""
+
+#: config/models.py:472
+msgid "Заголовок баунти страницы (в браузере)"
+msgstr ""
+
+#: config/models.py:477
+msgid "Facebook bounty modal title"
+msgstr ""
+
+#: config/models.py:481
+msgid "Facebook bounty modal text"
+msgstr ""
+
+#: config/models.py:485
+msgid "Referral bounty modal title"
+msgstr ""
+
+#: config/models.py:489
+msgid "Referral bounty modal text"
+msgstr ""
+
+#: config/models.py:493
+msgid "Twitter bounty modal title"
+msgstr ""
+
+#: config/models.py:497
+msgid "Twitter bounty modal text"
+msgstr ""
+
+#: config/models.py:501
+msgid "Reddit bounty modal title"
+msgstr ""
+
+#: config/models.py:505
+msgid "Reddit bounty modal text"
+msgstr ""
+
+#: config/models.py:509
+msgid "Bitcoin Talk bounty modal title"
+msgstr ""
+
+#: config/models.py:513
+msgid "Bitcoin Talk bounty modal text"
+msgstr ""
+
+#: config/models.py:517
+msgid "Media bounty modal title"
+msgstr ""
+
+#: config/models.py:521
+msgid "Media bounty modal text"
+msgstr ""
+
+#: config/models.py:525
+msgid "LinkedIn bounty modal title"
+msgstr ""
+
+#: config/models.py:529
+msgid "LinkedIn bounty modal text"
+msgstr ""
+
+#: config/models.py:533
+msgid "Telegram bounty modal title"
+msgstr ""
+
+#: config/models.py:537
+msgid "Telegram bounty modal text"
+msgstr ""
+
+#: config/models.py:541
+msgid "Community bounty modal title"
+msgstr ""
+
+#: config/models.py:545
+msgid "Community bounty modal text"
+msgstr ""
+
+#: config/models.py:549
+msgid "Bloging & Vloging bounty modal title"
+msgstr ""
+
+#: config/models.py:553
+msgid "Bloging & Vloging bounty modal text"
+msgstr ""
+
+#: config/models.py:557
+msgid "Youtube bounty modal title"
+msgstr ""
+
+#: config/models.py:561
+msgid "Youtube bounty modal text"
+msgstr ""
+
+#: config/models.py:565
+msgid "Token Market bounty modal title"
+msgstr ""
+
+#: config/models.py:569
+msgid "Token Market bounty modal text"
+msgstr ""
+
+#: config/models.py:573
+msgid "Instagram bounty modal title"
+msgstr ""
+
+#: config/models.py:577
+msgid "Instagram bounty modal text"
+msgstr ""
+
+#: config/models.py:581
+msgid "More bounty modal title"
+msgstr ""
+
+#: config/models.py:585
+msgid "More bounty modal text"
+msgstr ""
+
+#: config/models.py:588
+msgid "Bounty page intro"
+msgstr ""
+
+#: config/models.py:592
+msgid "Mockup image"
+msgstr ""
+
+#: config/models.py:597
+msgid "Заголовок блока Rated By"
+msgstr ""
+
+#: config/models.py:600
+msgid "Заголовок блока Partners"
+msgstr ""
+
+#: config/models.py:604
+msgid "Коэффициент скидки для калькулятора"
+msgstr ""
+
+#: config/models.py:609
+msgid "Ссылка на Инструкцию покупки токенов (ЛК)"
+msgstr ""
+
+#: config/models.py:613
+msgid "Ссылка на Видео-инструкцию (ЛК)"
+msgstr ""
+
+#: config/models.py:618 config/models.py:621
+msgid "Конфигурация лэндинга ч.3"
+msgstr ""
+
+#: config/models.py:625 config/models.py:644
+msgid "Фото"
+msgstr ""
+
+#: config/models.py:627 config/models.py:646
+msgid "Имя"
+msgstr ""
+
+#: config/models.py:629
+msgid "Роль в команде"
+msgstr ""
+
+#: config/models.py:636
+msgid "Сотрудник"
+msgstr ""
+
+#: config/models.py:637
+msgid "Сотрудники"
+msgstr ""
+
+#: config/models.py:648
+msgid "Роль"
+msgstr ""
+
+#: config/models.py:655 config/models.py:656
+msgid "Adviser"
+msgstr ""
+
+#: config/models.py:663 config/models.py:680 config/models.py:905
+#: config/models.py:927
+msgid "Изображение"
+msgstr ""
+
+#: config/models.py:666 config/models.py:683
+msgid "Краткое описание"
+msgstr ""
+
+#: config/models.py:667 config/models.py:685 config/models.py:730
+#: config/models.py:909 config/models.py:931 content/models.py:35
+#: menu/models.py:11
+msgid "Ссылка"
+msgstr ""
+
+#: config/models.py:672
+msgid "Publication"
+msgstr ""
+
+#: config/models.py:673
+msgid "Publications"
+msgstr ""
+
+#: config/models.py:690
+msgid "Exhibition"
+msgstr ""
+
+#: config/models.py:691
+msgid "Exhibitions"
+msgstr ""
+
+#: config/models.py:698 subscriptions/models.py:36
+msgid "Вопрос"
+msgstr ""
+
+#: config/models.py:700
+msgid "Ответ"
+msgstr ""
+
+#: config/models.py:703
+msgid "Вопрос-Ответ"
+msgstr ""
+
+#: config/models.py:704
+msgid "Вопросы-Ответы"
+msgstr ""
+
+#: config/models.py:711
+msgid "Название категории меню футера"
+msgstr ""
+
+#: config/models.py:713 config/models.py:878 menu/models.py:18
+msgid "Порядок"
+msgstr ""
+
+#: config/models.py:717
+msgid "Категория меню футера"
+msgstr ""
+
+#: config/models.py:718
+msgid "Категории меню футера"
+msgstr ""
+
+#: config/models.py:728
+msgid "Название ссылки"
+msgstr ""
+
+#: config/models.py:732
+msgid "Открывать в новой вкладке"
+msgstr ""
+
+#: config/models.py:736 config/models.py:737
+msgid "Пункт меню футера"
+msgstr ""
+
+#: config/models.py:747
+msgid "Адрес ETH"
+msgstr ""
+
+#: config/models.py:748
+msgid "Адрес BTC"
+msgstr ""
+
+#: config/models.py:749
+msgid "Адрес LTC"
+msgstr ""
+
+#: config/models.py:750
+msgid "Адрес ETC"
+msgstr ""
+
+#: config/models.py:753 config/models.py:756
+msgid "Адреса для покупки токенов"
+msgstr ""
+
+#: config/models.py:760
+#, fuzzy
+#| msgid "Выберите валюту"
+msgid "Название Валюты"
+msgstr "Choose a currency"
+
+#: config/models.py:765
+msgid "Сокращенное название валюты"
+msgstr ""
+
+#: config/models.py:770
+#, fuzzy
+#| msgid "Введите адрес вашего кошелька"
+msgid "Адрес кошелька"
+msgstr "Your wallet address"
+
+#: config/models.py:783
+msgid "Отображать блок до начала Presale/Sale стадий?"
+msgstr ""
+
+#: config/models.py:785
+msgid "Отображать блок при Presale/Sale стадиях?"
+msgstr ""
+
+#: config/models.py:787
+msgid "Отображать блок после завершения всех стадий?"
+msgstr ""
+
+#: config/models.py:790
+msgid "Текст-заголовок до начала Presale/Sale стадий"
+msgstr ""
+
+#: config/models.py:792
+msgid "Таймер до начала Presale/Sale стадий"
+msgstr ""
+
+#: config/models.py:795
+msgid "Текст-заголовок при Presale/Sale стадиях"
+msgstr ""
+
+#: config/models.py:797
+msgid "Таймер до конца Presale/Sale стадий"
+msgstr ""
+
+#: config/models.py:799 config/models.py:817
+msgid "Показывать Reised?"
+msgstr ""
+
+#: config/models.py:801 config/models.py:819
+msgid "Текст Reised/Собрано"
+msgstr ""
+
+#: config/models.py:804 config/models.py:822
+#, fuzzy
+#| msgid "Количество токенов"
+msgid "Количество собраных денег"
+msgstr "Amount of ZNAQ tokens"
+
+#: config/models.py:807 config/models.py:825
+msgid "Показывать кнопку показателей?"
+msgstr ""
+
+#: config/models.py:813
+msgid "Текст-заголовок после завершения всех стадий"
+msgstr ""
+
+#: config/models.py:815
+msgid "Подзаголовок после завершения всех стадий"
+msgstr ""
+
+#: config/models.py:835
+msgid "Стадии проекта для header лендинга"
+msgstr ""
+
+#: config/models.py:839
+msgid "Заголовок поп-апа 'Показатели краудсейла'"
+msgstr ""
+
+#: config/models.py:842
+msgid "Текст 'Total'"
+msgstr ""
+
+#: config/models.py:845
+msgid "Значение 'Total'"
+msgstr ""
+
+#: config/models.py:853
+msgid "Поп-ап показателей краудсейла"
+msgstr ""
+
+#: config/models.py:867
+#, fuzzy
+#| msgid "Выберите валюту"
+msgid "Показывать этот пункт?"
+msgstr "Choose a currency"
+
+#: config/models.py:869
+#, fuzzy
+#| msgid "Выберите валюту"
+msgid "Изображение валюты"
+msgstr "Choose a currency"
+
+#: config/models.py:872
+#, fuzzy
+#| msgid "Выберите валюту"
+msgid "Название пункта"
+msgstr "Choose a currency"
+
+#: config/models.py:875
+msgid "Значение"
+msgstr ""
+
+#: config/models.py:902 config/models.py:924
+#, fuzzy
+#| msgid "Выберите валюту"
+msgid "Название/Текст"
+msgstr "Choose a currency"
+
+#: config/models.py:907 config/models.py:929
+msgid "Отображать?"
+msgstr ""
+
+#: content/models.py:13
+msgid "Timestamp"
+msgstr ""
+
+#: content/models.py:14
+msgid "Date"
+msgstr ""
+
+#: content/models.py:15
+msgid "Month number"
+msgstr ""
+
+#: content/models.py:16
+msgid "Znaq index"
+msgstr ""
+
+#: content/models.py:31
+msgid "Текст"
+msgstr ""
+
+#: content/models.py:32
+msgid "Заголовок браузера"
+msgstr ""
+
+#: content/models.py:37
+msgid "Создано"
+msgstr ""
+
+#: content/models.py:39
+msgid "Оновлено"
+msgstr ""
+
+#: content/models.py:52
+msgid "Отображаемая часть ссылки в адресной строке браузера"
+msgstr ""
+
+#: content/models.py:55
+msgid "Ссылка куда будет выполнено перенаправление"
+msgstr ""
+
+#: donations/forms.py:25
+msgid "Введите адрес вашего кошелька"
+msgstr "Your wallet address"
+
+#: donations/forms.py:29 donations/views.py:26
+msgid "Для не ETH транзакций это поле обязательно"
+msgstr "Compulsory for all transactions except ETH"
+
+#: donations/forms.py:32
+msgid "Введите id транзакции"
+msgstr "Transaction id"
+
+#: donations/forms.py:36 donations/forms.py:39
+msgid "Выберите метод оплаты"
+msgstr "Choose payment method"
+
+#: donations/models.py:14 donations/models.py:77
+msgid "Пользователь"
+msgstr ""
+
+#: donations/models.py:17 donations/models.py:60
+msgid "Адрес для получения токенов"
+msgstr ""
+
+#: donations/models.py:20 donations/models.py:80
+msgid "Дата создания"
+msgstr ""
+
+#: donations/models.py:24
+msgid "Адрес пользователя"
+msgstr ""
+
+#: donations/models.py:25
+msgid "Адреса пользователей"
+msgstr ""
+
+#: donations/models.py:53
+msgid "Тип оплаты"
+msgstr ""
+
+#: donations/models.py:57
+msgid "Адрес оплаты"
+msgstr ""
+
+#: donations/models.py:63
+msgid "Номер транзакции"
+msgstr ""
+
+#: donations/models.py:68 templates/lk.html:276 templates/lk.html:354
+msgid "Количество токенов"
+msgstr "Amount of ZNAQ tokens"
+
+#: donations/models.py:71
+msgid "Сумма транзакции"
+msgstr ""
+
+#: donations/models.py:84
+msgid "Транзакция"
+msgstr ""
+
+#: donations/models.py:85
+msgid "Транзакции"
+msgstr ""
+
+#: donations/validators.py:12
+msgid "Введите валидный ethereum адрес"
+msgstr "Enter a valid ETH wallet"
+
+#: donations/views.py:33
+msgid "Transaction saved!"
+msgstr "Transaction completed"
+
+#: indextrade/settings.py:152
+msgid "Английский"
+msgstr ""
+
+#: indextrade/settings.py:153
+msgid "Русский"
+msgstr ""
+
+#: menu/models.py:9
+msgid "Название"
+msgstr ""
+
+#: menu/models.py:22
+msgid "Пункт меню"
+msgstr ""
+
+#: menu/models.py:23
+msgid "Пункты меню"
+msgstr ""
+
+#: subscriptions/forms.py:17
+msgid "Вы уже подписаны"
+msgstr "You have subscribed already"
+
+#: subscriptions/forms.py:20
+msgid "Введите Вашу электронную почту"
+msgstr "Enter e-mail address"
+
+#: subscriptions/forms.py:31 subscriptions/forms.py:36
+msgid "Все поля обязательны"
+msgstr "All fields have to be filled"
+
+#: subscriptions/forms.py:34
+msgid "E-mail"
+msgstr ""
+
+#: subscriptions/forms.py:39
+msgid "Ваше сообщение"
+msgstr "Your message"
+
+#: subscriptions/models.py:11 subscriptions/models.py:30
+msgid "Email подписчика"
+msgstr ""
+
+#: subscriptions/models.py:13
+msgid "Дата подписки"
+msgstr ""
+
+#: subscriptions/models.py:17
+msgid "Подписка на новости"
+msgstr ""
+
+#: subscriptions/models.py:18
+msgid "Подписки на новости"
+msgstr ""
+
+#: subscriptions/models.py:31
+msgid "Сообщение"
+msgstr ""
+
+#: subscriptions/models.py:32
+msgid "Дата вопроса"
+msgstr ""
+
+#: subscriptions/models.py:37
+msgid "Вопросы"
+msgstr ""
+
+#: subscriptions/utils.py:19
+msgid "Subj"
+msgstr "Subject"
+
+#: subscriptions/views.py:37
+msgid "Вы успешно  подписались!"
+msgstr "You have successfully subscribed!"
+
+#: subscriptions/views.py:41 subscriptions/views.py:64
+msgid "Server error!"
+msgstr ""
+
+#: subscriptions/views.py:60
+msgid "Мы с вами связемся в ближайшее время"
+msgstr "We will get back to you soon!"
+
+#: templates/base.html:38
+msgid "SOCIAL NETWORKS"
+msgstr ""
+
+#: templates/bounty.html:50 templates/document.html:48 templates/index.html:81
+#: templates/lk.html:49
+msgid "Profile"
+msgstr ""
+
+#: templates/bounty.html:95 templates/bounty.html:173 templates/bounty.html:354
+#: templates/document.html:93 templates/document.html:169
+#: templates/index.html:126 templates/index.html:284 templates/index.html:1741
+#: templates/index_old.html:47 templates/index_old.html:71 templates/lk.html:94
+msgid "Log in"
+msgstr ""
+
+#: templates/bounty.html:96 templates/bounty.html:174 templates/bounty.html:357
+#: templates/document.html:94 templates/document.html:170
+#: templates/document.html:274 templates/index.html:127
+#: templates/index.html:285 templates/index.html:1743
+#: templates/index_old.html:48 templates/index_old.html:72 templates/lk.html:95
+msgid "Sign up"
+msgstr ""
+
+#: templates/bounty.html:159 templates/document.html:155 templates/lk.html:154
+msgid "Выйти"
+msgstr "Log out"
+
+#: templates/bounty.html:160 templates/document.html:156 templates/lk.html:155
+msgid "На главную"
+msgstr "Main page"
+
+#: templates/bounty.html:210
+msgid "ZNAQ COMPANY"
+msgstr "ZNAQ"
+
+#: templates/bounty.html:211
+msgid "BOUNTY SYSTEM"
+msgstr "BOUNTY PROGRAM"
+
+#: templates/bounty.html:216 templates/bounty.html:224
+#: templates/bounty.html:229 templates/bounty.html:234
+#: templates/bounty.html:239 templates/bounty.html:244
+#: templates/bounty.html:249 templates/bounty.html:254
+#: templates/bounty.html:259 templates/bounty.html:264
+#: templates/bounty.html:269 templates/bounty.html:274
+#: templates/bounty.html:279 templates/bounty.html:284
+#: templates/index.html:1447 templates/index.html:1474
+msgid "Читать далее"
+msgstr "Read more"
+
+#: templates/bounty.html:219
+msgid "More"
+msgstr ""
+
+#: templates/bounty.html:228
+msgid "referral programm"
+msgstr ""
+
+#: templates/bounty.html:238
+msgid "Media"
+msgstr ""
+
+#: templates/bounty.html:253
+msgid "Community"
+msgstr ""
+
+#: templates/bounty.html:300 templates/document.html:217
+#: templates/index.html:1686
+msgid "Log In"
+msgstr ""
+
+#: templates/bounty.html:351 templates/document.html:268
+#: templates/index.html:1738
+msgid "Remember me"
+msgstr ""
+
+#: templates/bounty.html:356 templates/document.html:273
+#: templates/index.html:1744
+msgid "Forgot password?"
+msgstr ""
+
+#: templates/bounty.html:371 templates/document.html:288
+#: templates/index.html:1758
+msgid "Sign Up"
+msgstr ""
+
+#: templates/bounty.html:375 templates/document.html:292
+#: templates/index.html:1762 users/forms.py:84 users/forms.py:179
+msgid "Username"
+msgstr ""
+
+#: templates/bounty.html:382 templates/document.html:300
+#: templates/index.html:1770 users/forms.py:87
+msgid "Email"
+msgstr ""
+
+#: templates/bounty.html:389 templates/document.html:308
+#: templates/index.html:1778
+msgid "Password"
+msgstr ""
+
+#: templates/bounty.html:396 templates/document.html:316
+#: templates/index.html:1786
+msgid "Retry password"
+msgstr ""
+
+#: templates/bounty.html:403 templates/bounty.html:446
+#: templates/document.html:324 templates/document.html:372
+#: templates/index.html:1794 templates/index.html:1842
+msgid "next step"
+msgstr ""
+
+#: templates/bounty.html:406 templates/document.html:327
+#: templates/index.html:1797
+msgid "step 1"
+msgstr ""
+
+#: templates/bounty.html:410 templates/document.html:331
+#: templates/index.html:1801
+msgid "Full Name"
+msgstr ""
+
+#: templates/bounty.html:417 templates/document.html:339
+#: templates/index.html:1809
+msgid "Date of Birth"
+msgstr ""
+
+#: templates/bounty.html:424 templates/document.html:347
+#: templates/index.html:1817
+msgid "Country"
+msgstr ""
+
+#: templates/bounty.html:431 templates/document.html:355
+#: templates/index.html:1825
+msgid "State / Province"
+msgstr ""
+
+#: templates/bounty.html:438 templates/document.html:363
+#: templates/index.html:1833
+msgid "City"
+msgstr ""
+
+#: templates/bounty.html:445 templates/bounty.html:463
+#: templates/document.html:371 templates/document.html:390
+#: templates/index.html:1841 templates/index.html:1861
+msgid "previous step"
+msgstr ""
+
+#: templates/bounty.html:449 templates/document.html:375
+#: templates/index.html:1845
+msgid "step 2"
+msgstr ""
+
+#: templates/bounty.html:460 templates/document.html:387
+#: templates/index.html:1857
+msgid "Я прочитал, и принимаю условия пользовательского соглашения"
+msgstr "I have read and accept the terms and conditions"
+
+#: templates/bounty.html:464 templates/document.html:391
+#: templates/index.html:1862
+msgid "register"
+msgstr ""
+
+#: templates/bounty.html:467 templates/document.html:394
+#: templates/index.html:1865
+msgid "step 3"
+msgstr ""
+
+#: templates/document.html:271
+msgid "Enter"
+msgstr "Log in"
+
+#: templates/index.html:318 templates/index.html:340
+#: templates/index_old.html:84
+msgid "дней"
+msgstr "days"
+
+#: templates/index.html:323 templates/index.html:345
+#: templates/index_old.html:89
+msgid "часов"
+msgstr "hours"
+
+#: templates/index.html:327 templates/index.html:349
+#: templates/index_old.html:93
+msgid "минут"
+msgstr "minutes"
+
+#: templates/index.html:331 templates/index.html:353
+#: templates/index_old.html:97
+msgid "секунд"
+msgstr "seconds"
+
+#: templates/index.html:447 templates/index.html:449
+#: templates/index_old.html:121
+msgid "участвовать"
+msgstr "Participate"
+
+#: templates/index.html:525 templates/index_old.html:180
+msgid "Подписаться"
+msgstr "Subscribe"
+
+#: templates/index.html:563
+msgid "Go to ruledbook document"
+msgstr "Index Rulebook"
+
+#: templates/index.html:596
+msgid "Initial purchase"
+msgstr ""
+
+#: templates/index.html:602
+msgid "Purchase date"
+msgstr ""
+
+#: templates/index.html:608
+msgid "Total Value:"
+msgstr "Current Value:"
+
+#: templates/index.html:663
+msgid "Reports"
+msgstr ""
+
+#: templates/index.html:667
+msgid "News"
+msgstr ""
+
+#: templates/index.html:671
+msgid "Analysis"
+msgstr ""
+
+#: templates/index.html:675
+msgid "Indicators"
+msgstr ""
+
+#: templates/index.html:694
+msgid "Indices"
+msgstr ""
+
+#: templates/index.html:738
+msgid "GO TO ZNAQ TRADING PLATFORM"
+msgstr ""
+
+#: templates/index.html:1210 templates/index_old.html:638
+msgid "SMART CONTRACT ON"
+msgstr ""
+
+#: templates/index.html:1215 templates/index_old.html:641
+msgid "View code on github"
+msgstr ""
+
+#: templates/index.html:1251
+msgid "Presale"
+msgstr ""
+
+#: templates/index.html:1254
+msgid "Token Sale"
+msgstr ""
+
+#: templates/index.html:1258 templates/index_old.html:684
+msgid "временные промежутки"
+msgstr "periods"
+
+#: templates/index.html:1259 templates/index.html:1260
+#: templates/index_old.html:685 templates/index_old.html:686
+#, python-format
+msgid "%% скидки"
+msgstr "%% discount"
+
+#: templates/index.html:1264 templates/index_old.html:690
+msgid "I Промежуток"
+msgstr "I period"
+
+#: templates/index.html:1269 templates/index_old.html:695
+msgid "II Промежуток"
+msgstr "II period"
+
+#: templates/index.html:1274 templates/index_old.html:700
+msgid "III Промежуток"
+msgstr "III period"
+
+#: templates/index.html:1279 templates/index_old.html:705
+msgid "IV Промежуток"
+msgstr "IV period"
+
+#: templates/index.html:1297
+#, python-format
+msgid "Размер бонуса ZNAQ, %%"
+msgstr "Bonus ZNAQ, %%"
+
+#: templates/index.html:1298
+msgid "Сумма платежа, ZNAQ"
+msgstr "Purchase amount, ZNAQ"
+
+#: templates/index.html:1494
+msgid "FAQ"
+msgstr ""
+
+#: templates/index.html:1553
+msgid "Contact Us"
+msgstr ""
+
+#: templates/index.html:1558
+msgid "Send Message"
+msgstr ""
+
+#: templates/index.html:1652 templates/index.html:1654
+msgid "Contribute"
+msgstr ""
+
+#: templates/index.html:1858 templates/index.html:1862
+msgid "Нужно полностью прочитать условия пользовательского соглашения"
+msgstr "You need to read terms and conditions fully"
+
+#: templates/index_old.html:677
+msgid "I Этап"
+msgstr ""
+
+#: templates/index_old.html:680
+msgid "II Этап"
+msgstr ""
+
+#: templates/lk.html:192
+msgid "Ваш аккаунт"
+msgstr "My account"
+
+#: templates/lk.html:211
+msgid "ТОКЕНОВ"
+msgstr "TOKENS"
+
+#: templates/lk.html:217
+msgid "Адрес:"
+msgstr "Address:"
+
+#: templates/lk.html:224
+msgid "Номер телефона:"
+msgstr "Phone number:"
+
+#: templates/lk.html:231
+msgid "Email:"
+msgstr ""
+
+#: templates/lk.html:239
+msgid "Текущий пароль:"
+msgstr "Current password:"
+
+#: templates/lk.html:247
+msgid "Новый пароль:"
+msgstr "New password:"
+
+#: templates/lk.html:255
+msgid "Подтверждение пароля:"
+msgstr "Confirm new password"
+
+#: templates/lk.html:264
+msgid "Сохранить"
+msgstr "Save"
+
+#: templates/lk.html:270
+msgid "История ваших транзакций"
+msgstr "Transactions history"
+
+#: templates/lk.html:274
+msgid "Дата"
+msgstr "Date"
+
+#: templates/lk.html:275
+msgid "Метод"
+msgstr "Method"
+
+#: templates/lk.html:277 templates/lk.html:353
+msgid "Сумма"
+msgstr "Amount"
+
+#: templates/lk.html:291
+msgid "Еще не было произведено ни одной транзакции"
+msgstr "No transactions yet"
+
+#: templates/lk.html:301
+msgid "MAKE A DONATION AND GET TOKENS"
+msgstr "Get ZNAQ Tokens"
+
+#: templates/lk.html:306
+msgid "Tokens purchase guide"
+msgstr ""
+
+#: templates/lk.html:310
+msgid "Watch video guide"
+msgstr ""
+
+#: templates/lk.html:315
+msgid "Choose your payment method"
+msgstr ""
+
+#: templates/lk.html:318
+msgid "BUY WITH"
+msgstr ""
+
+#: templates/lk.html:323
+msgid "Transfer your money to THIS address"
+msgstr "Transfer to this address"
+
+#: templates/lk.html:324
+msgid "Choose payment method"
+msgstr ""
+
+#: templates/lk.html:325
+msgid "Copy address"
+msgstr ""
+
+#: templates/lk.html:326
+msgid "Your E20 wallet address:"
+msgstr ""
+
+#: templates/lk.html:331
+msgid "Enter the transaction number you send the ETH"
+msgstr "Enter the transaction number"
+
+#: templates/lk.html:332
+msgid "The transaction number:"
+msgstr ""
+
+#: templates/lk.html:336
+msgid "Send"
+msgstr ""
+
+#: templates/lk.html:345
+msgid "Калькулятор"
+msgstr "Purchase calculator"
+
+#: templates/lk.html:348
+msgid "Выберите валюту"
+msgstr "Choose a currency"
+
+#: templates/lk.html:358
+msgid "Tokens with discount and bonus"
+msgstr ""
+
+#: templates/two_factor/_base.html:21
+msgid "View site"
+msgstr ""
+
+#: templates/two_factor/_base.html:24
+msgid "Return to Admin"
+msgstr ""
+
+#: templates/two_factor/_base.html:25
+msgid "Log out"
+msgstr ""
+
+#: users/forms.py:25
+msgid "Текущий пароль"
+msgstr "Current password"
+
+#: users/forms.py:31
+msgid "Новый пароль"
+msgstr "New password"
+
+#: users/forms.py:40
+msgid "Повторите новый пароль"
+msgstr "Confirm new password"
+
+#: users/forms.py:51
+msgid "Ваш адрес"
+msgstr "Your address"
+
+#: users/forms.py:53
+msgid "Номер вашего телефона"
+msgstr "Your phone number"
+
+#: users/forms.py:55
+msgid "Ваш e-mail адрес"
+msgstr "Your email"
+
+#: users/forms.py:60
+msgid "Пароли не совпадают"
+msgstr "Passwords do not match"
+
+#: users/forms.py:61
+msgid "Confirm terms required."
+msgstr ""
+
+#: users/forms.py:62
+msgid "Резидентам выбранной вами страны регистрация не разрешена"
+msgstr "Registration is currently not available for users from your country"
+
+#: users/forms.py:63 users/forms.py:65 users/forms.py:66 users/forms.py:67
+msgid "Обязательное поле."
+msgstr "Required"
+
+#: users/forms.py:64
+msgid "Дата должна быть заполнена полностью"
+msgstr "Date must be fully filled"
+
+#: users/forms.py:72 users/forms.py:187
+msgid "Пароль"
+msgstr "Password"
+
+#: users/forms.py:76
+msgid "Подтверждение пароля"
+msgstr "Password confirmation"
+
+#: users/forms.py:90
+msgid "Полное имя"
+msgstr "Full name"
+
+#: users/forms.py:93
+msgid "1990-05-31"
+msgstr ""
+
+#: users/forms.py:98 users/models.py:31 users/models.py:33
+msgid "Страна"
+msgstr "Country"
+
+#: users/forms.py:101
+msgid "Штат/область"
+msgstr "State/Province"
+
+#: users/forms.py:104 users/models.py:37
+msgid "Город"
+msgstr "City"
+
+#: users/models.py:17
+msgid "Full name"
+msgstr ""
+
+#: users/models.py:20
+msgid "Address"
+msgstr ""
+
+#: users/models.py:23
+msgid "Phone number"
+msgstr ""
+
+#: users/models.py:26
+msgid "email address"
+msgstr ""
+
+#: users/models.py:28
+msgid "Дата рождения"
+msgstr "Date of Birth"
+
+#: users/models.py:34
+msgid "Штат/Область"
+msgstr ""
+
+#: users/models.py:46 users/models.py:49
+msgid "Страны, которым разрешена регистрация"
+msgstr ""
+
+#: users/views.py:62 users/views.py:72
+msgid "Сохранено"
+msgstr "Saved"
+
+#: users/views.py:99
+msgid "Вы успешно зарегистрировались"
+msgstr "You have successfully registered!"
+
+#: users/views.py:158
+msgid "Администратор должен входить через admin URL"
+msgstr ""
+
+#: users/views.py:168
+msgid "Вы вошли"
+msgstr "You have logged in!"
+
+#: users/views.py:172
+msgid "Не правильный username или пароль"
+msgstr "Incorrect username or password"
+
+#, fuzzy
+#~| msgid "Выберите валюту"
+#~ msgid "Название валюты"
+#~ msgstr "Choose a currency"
+
+#, fuzzy
+#~| msgid "Выберите валюту"
+#~ msgid "Тип валюты"
+#~ msgstr "Choose a currency"
+
+#~ msgid ""
+#~ "Буквально несколько слов о баунти-программе компании и что она глобально "
+#~ "даёт тем, кто потенциально может ею пользоваться."
+#~ msgstr ""
+#~ "Referral program ZNAQ: invite friends to participate, share information "
+#~ "in social networks or help to spread information about the project with "
+#~ "any other way and get FREE ZNAQ tokens! More detailed information can be "
+#~ "found here."
+
+#~ msgid "Итоговая сумма, ETH"
+#~ msgstr "Total amount, ETH"
+
+#~ msgid "Это поле обязательно"
+#~ msgstr "This field is required"
+
+#~ msgid "I agree with all rules"
+#~ msgstr "I have read and accept the terms and conditions"
+
+#~ msgid "Наша команда"
+#~ msgstr "The Team"
