@@ -13,8 +13,6 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from two_factor.urls import urlpatterns as two_factor_urls
-
 from django.conf.urls import url, include
 from django.contrib import admin
 from django.conf import settings
@@ -23,6 +21,7 @@ from django.conf.urls.static import static
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth import views as auth
 from django.core.urlresolvers import RegexURLPattern
+from django.views.generic import TemplateView
 
 from content.views import (IndexView,
                            IndexOldView,
@@ -31,6 +30,7 @@ from content.views import (IndexView,
                            DocumentView,
                            cap_history,
                            bonuses_lk,
+                           open_pdf,
                            redirect_to_link,
                            PresskitView)
 from subscriptions.views import (subscribe, ask_question,
@@ -62,19 +62,18 @@ def decorate_pattern(urlpattern):
         urlpattern.name
     )
 
-two_factor_urls = [two_factor_urls[0]] + [decorate_pattern(pattern) for pattern in two_factor_urls[1:]]
-
 urlpatterns = i18n_patterns(
     url(r'^admin/', admin.site.urls),
     # url(r'', include('two_factor.urls', 'two_factor')),
-    url(r'', include(two_factor_urls, 'two_factor')),
-
+    #url(r'', include(two_factor_urls, 'two_factor')),
+    url(r'^$', IndexView.as_view(), name='index'),
     # landing
     url(r'^$', IndexView.as_view(), name='landing'),
     url(r'^old/$', IndexOldView.as_view(), name='old'),
     url(r'^subscription/$', subscribe, name='subscription'),
     url(r'^unsubscribe/(?P<pk>[0-9]+)/$', unsubscribe, name='unsubscribe'),
     url(r'^ask_question/$', ask_question, name='ask_question'),
+    url(r'^open_pdf/(?P<name>\w+)/(?P<lang>[A-Za-z]+)/$', open_pdf, name='open_pdf'),
 
     # profile
     url(r'^profile/$', ProfileView.as_view(), name='profile'),

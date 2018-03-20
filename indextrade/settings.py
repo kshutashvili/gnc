@@ -62,7 +62,6 @@ INSTALLED_APPS = [
     'django_otp',
     'django_otp.plugins.otp_static',
     'django_otp.plugins.otp_totp',
-    'two_factor',
     'embed_video',
     'django_countries',
     'pinax.referrals',
@@ -127,7 +126,7 @@ DATABASES = {
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
 
 AUTH_USER_MODEL = 'users.User'
-LOGIN_URL = 'two_factor:login'
+#LOGIN_URL = 'two_factor:login'
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 

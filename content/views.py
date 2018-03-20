@@ -3,11 +3,14 @@ from __future__ import unicode_literals
 
 import requests
 import json
+import datetime
+import pytz
 
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic.base import TemplateView
 from django.views.generic.detail import DetailView
-from django.http import HttpResponse
+from django.http import HttpResponse, Http404
+from django.utils import translation
 
 from subscriptions.forms import SubscriptionForm, ContactUsForm
 from config.models import (FooterMenuCategory,
@@ -19,6 +22,7 @@ from config.models import (FooterMenuCategory,
                            RatedBy,
                            Partner,
                            LandingPhoto,
+                           LandingConfiguration,
                            LandingConfiguration2)
 from users.forms import LoginForm, RegistrationForm
 from .models import Document, ShortLink
@@ -29,28 +33,38 @@ class IndexView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(IndexView, self).get_context_data()
-        context['subscribe_form'] = SubscriptionForm()
-        context['footer_menu'] = FooterMenuCategory.objects.all()
+        # date_now = datetime.datetime.now().replace(tzinfo=None)
+        # date_end = LandingConfiguration.get_solo().discount_timer.replace(tzinfo=None)
+        # timer = date_end - date_now
+        # hours = (timer.total_seconds() / 86400 - timer.days) * 60
+        # minutes = (hours - int(hours)) * 60
+        # seconds = (minutes - int(minutes)) * 60
+        # context['discount_timer'] = date_end - date_now
+        # context['discount_timer_hours'] = int(hours)
+        # context['discount_timer_minutes'] = int(minutes)
+        # context['discount_timer_seconds'] = int(seconds)
+        #context['subscribe_form'] = SubscriptionForm()
+        #context['footer_menu'] = FooterMenuCategory.objects.all()
 
-        faq_count = AnswerQuestion.objects.count() // 2
-        context['faq_left'] = AnswerQuestion.objects.all()[faq_count:]
-        context['faq_right'] = AnswerQuestion.objects.all()[:faq_count]
+        #faq_count = AnswerQuestion.objects.count() // 2
+        #context['faq_left'] = AnswerQuestion.objects.all()[faq_count:]
+        #context['faq_right'] = AnswerQuestion.objects.all()[:faq_count]
 
-        context['publications'] = Publication.objects.all()
-        context['exhibitions'] = Exhibition.objects.all()
+        #context['publications'] = Publication.objects.all()
+        #context['exhibitions'] = Exhibition.objects.all()
 
-        context['teammates'] = Teammate.objects.all()
-        context['advisers'] = Adviser.objects.all()
+        #context['teammates'] = Teammate.objects.all()
+        #context['advisers'] = Adviser.objects.all()
 
-        context['contact_us'] = ContactUsForm()
+        #context['contact_us'] = ContactUsForm()
 
-        context['register_form'] = RegistrationForm()
-        context['login_form'] = LoginForm()
+        #context['register_form'] = RegistrationForm()
+        #context['login_form'] = LoginForm()
 
-        context['partners'] = Partner.objects.displayed()
-        context['ratedby_objects'] = RatedBy.objects.displayed()
+        #context['partners'] = Partner.objects.displayed()
+        #context['ratedby_objects'] = RatedBy.objects.displayed()
 
-        context['landing_photos'] = LandingPhoto.objects.showed_photos()
+        #context['landing_photos'] = LandingPhoto.objects.showed_photos()
 
         return context
 
@@ -149,3 +163,20 @@ def redirect_to_link(request, slug):
 
 class PresskitView(TemplateView):
     template_name = "press_kit_page.html"
+
+
+def open_pdf(request, name, lang):
+    file = None
+    if name == 'onepager':
+        if lang == 'ru':
+            file = LandingConfiguration.get_solo().onepager_upload_ru
+        elif lang == 'en':
+            file = LandingConfiguration.get_solo().onepager_upload_en
+    elif name == 'whitepaper':
+        file = LandingConfiguration.get_solo().whitepaper_upload
+    if file:
+        file_data = open(file.path, 'rb').read()
+        return HttpResponse(file_data, content_type='application/pdf')
+    else:
+        raise Http404
+
