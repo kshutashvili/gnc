@@ -23,6 +23,9 @@ from config.models import (FooterMenuCategory,
 from users.forms import LoginForm, RegistrationForm
 from .models import Document, ShortLink
 
+def index(request):
+    return render(request, 'index.html', {})
+
 
 class IndexView(TemplateView):
     template_name = "index.html"
