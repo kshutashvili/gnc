@@ -1,51 +1,16 @@
+{% extends 'base.html' %}
+
 {% load static %}
 
 {% load solo_tags %}
 
-{% get_solo 'config.LandingConfiguration' as landing %}
-
 {% load format_data_filters %}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Galaxy Network Inc</title>
-	<link rel="stylesheet" href="{% static 'dist/css/styles.css' %}">
-</head>
-<body>
-	<menu class="mobile-menu">
-		<a href="#" class="mobile-menu__link">Project</a>
-		<a href="#" class="mobile-menu__link">Payments</a>
-		<a href="#" class="mobile-menu__link">Team</a>
-		<a href="#" class="mobile-menu__link">Contact</a>
-	</menu>
-	<section class="main-section">
-		<header class="header">
-			<a href="#" class="logo">
-				<img src="{% static 'dist/img/logo.png' %}" alt="logo">
-			</a>
-			
-			<nav class="header__nav">
-				<a href="#" class="header__nav-link">Project</a>
-				<a href="#" class="header__nav-link">Payments</a>
-				<a href="#" class="header__nav-link">Team</a>
-				<a href="#" class="header__nav-link">Contact</a>
-			</nav>
-			<div class="btn-box">
-				<button class="btn header__btn">Log in</button>
-				<button class="btn header__btn">Registration</button>
-			</div>
-			<button class="mobile-btn">
-				<div class="mobile-btn__sandwich">
-					<span class="mobile-btn__topper"></span>
-					<span class="mobile-btn__middle"></span>
-					<span class="mobile-btn__footer"></span>
-				</div>
-				<span>Menu</span>
-			</button>
-		</header>
+{% block title %}Galaxy Network Inc{% endblock %}
+
+{% block content %}
+{% get_solo 'config.LandingConfiguration' as landing %}
+{% get_solo 'config.LandingConfiguration2' as landing2 %}
 		<section class="main">
 			<div class="container">
 				<div class="main__content main__content--left">
@@ -193,6 +158,518 @@
 		</section>
 	</section>
 
+
+	<section class="section profit-section">
+		<div class="container container--flex">
+			<div class="profit-column">
+				<div class="profit">
+					<h3 class="profit__title">
+						 <span class="special">{{ landing.left_block1_title }}</span>
+					</h3>
+					<p class="profit__text">{{ landing.left_block1_text }}</p>
+				</div>
+				<div class="profit">
+					<h3 class="profit__title">
+						<span class="special">{{ landing.left_block2_title }}</span>
+					</h3>
+					<p class="profit__text">{{ landing.left_block2_text }}</p>
+<!--
+					<div class="slider">
+						<h4 class="slider-caption special">Wahy is it profitable?</h4>
+						<div class="slider-heart" id="credit-slider-1">
+							<div class="ui-slider-helper">
+								<a class='ui-slider-handle'>
+									<span class="ui-slider-val">$0</span>
+								</a>
+							</div>
+						</div>
+					</div>
+
+					<div class="slider">
+						<h4 class="slider-caption special">Wahy is it profitable?</h4>
+						<div class="slider-heart" id="credit-slider-2">
+							<div class="ui-slider-helper">
+								<a class='ui-slider-handle'>
+									<span class="ui-slider-val">$0</span>
+								</a>
+							</div>
+						</div>
+					</div>-->
+				</div>
+			</div>
+
+			<div class="profit-column">
+				<div class="profit">
+					<h3 class="profit__title">
+						<span class="special">{{ landing.right_block_title }}</span>
+					</h3>
+					<p class="profit__text">{{ landing.right_block1_text }}</p>
+				</div>
+			{% if landing.right_block_img or landing.right_block_img2 or landing.right_block_img3 %}
+				<div class="diagram">
+					{% if landing.right_block_img %}
+						<img data-example="ex-1" src="{{ landing.right_block_img.url }}" alt="diagram" class="diagram__image is-active">
+					{% endif %}
+					{% if landing.right_block_img2 %}
+						<img data-example="ex-2" src="{{ landing.right_block_img2.url }}" alt="diagram-alt" class="diagram__image">
+					{% endif %}
+					{% if landing.right_block_img3 %}
+						<img data-example="ex-3" src="{{ landing.right_block_img3.url }}" alt="diagram-alt" class="diagram__image">
+					{% endif %}
+					<ul class="diagram__list">
+					{% if landing.right_block_img %}
+						<li class="diagram__list-item"><button data-example="ex-1" class="btn-transparent btn-example is-active">example 1</button></li>
+					{% endif %}
+					{% if landing.right_block_img2 %}
+						<li class="diagram__list-item"><button data-example="ex-2" class="btn-transparent btn-example">example 2</button></li>
+					{% endif %}
+					{% if landing.right_block_img3 %}
+						<li class="diagram__list-item"><button data-example="ex-3" class="btn-transparent btn-example">example 3</button></li>
+					{% endif %}
+					</ul>
+				{% endif %}					
+				</div>
+			</div>
+			
+		</div>
+	</section>
+
+	<section class="section section--mono">
+		<div class="container container--flex-center">
+			<div class="player">
+				<div class="player__img">
+					<img src="{% static 'dist/img/monitor-diag.png' %}" alt="monitor">
+				</div>
+			</div>
+
+			<h2 class="section-title section-title--mt0 section-title--center">Galaxy Network Inc</h2>
+			<p class="section-text section-text--centered">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis eaque libero, incidunt mollitia veniam temporibus eos quod ipsam sit nesciunt praesentium pariatur voluptas amet saepe, at assumenda. At, nihil, inventore.</p>
+			<button class="btn btn--main">Registration</button>
+		</div>
+	</section>
+
+	<section class="advantage-section">
+		<div class="advantage__bg-text">advanteges</div>
+		<div class="container">
+			<div class="advantage">
+				<img src="{% static 'dist/img/website.png' %}" alt="website" class="advantage__img">
+				<p class="advantage__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium, sequi.</p>
+				<p class="advantage__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure culpa omnis non animi provident quaerat illum incidunt, quasi consequuntur voluptates?</p>
+			</div>
+
+			<div class="advantage">
+				<img src="{% static 'dist/img/website.png' %}" alt="website" class="advantage__img">
+				<p class="advantage__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium, sequi.</p>
+				<p class="advantage__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure culpa omnis non animi provident quaerat illum incidunt, quasi consequuntur voluptates?</p>
+			</div>
+
+			<div class="advantage">
+				<img src="{% static 'dist/img/website.png' %}" alt="website" class="advantage__img">
+				<p class="advantage__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium, sequi.</p>
+				<p class="advantage__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure culpa omnis non animi provident quaerat illum incidunt, quasi consequuntur voluptates?</p>
+			</div>
+
+			<div class="advantage">
+				<img src="{% static 'dist/img/website.png' %}" alt="website" class="advantage__img">
+				<p class="advantage__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium, sequi.</p>
+				<p class="advantage__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure culpa omnis non animi provident quaerat illum incidunt, quasi consequuntur voluptates?</p>
+			</div>
+		</div>
+	</section>
+	
+	<section class="section">
+		<div class="container emision-container">
+			<h2 class="emision-title">Condition of emision</h2>
+			<p class="emision-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero in hic fugiat, repellat ratione id quod vitae sequi maiores explicabo ad labore, mollitia minus ab. Sequi repellendus similique, quibusdam enim. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed culpa, hic ea sint dignissimos? Ut neque facilis excepturi quas dolores, sapiente tenetur vel temporibus aut voluptatum, exercitationem minima incidunt quod!</p>
+			<div class="emision-box">
+				<div class="emision">
+					<h3 class="emision__title">Token PRESale Phase</h3>
+					<div class="emision__info">
+						<p class="emision__text"><span class="special">Start date:</span>3rd of November 2017 (12:00 PM NYC Time, UTC - 4)</p>
+						<p class="emision__text"><span class="special">End date:</span>17th of November 2017 (12:00 PM NYC Time, UTC - 4)</p>
+					</div>
+					<div class="emision__info">
+						<p class="emision__text"><span class="special">DMarket Token Sale cap (Phase #2):</span> hard cap</p>
+						<p class="emision__text"><span class="special">Currency accepted:</span> ETH, BTC, ETC, LTC</p>
+						<p class="emision__text"><span class="special">Token exchange rate:</span> 1 ETH = 750 DMarket tokens</p>
+					</div>
+					<div class="emision__info">
+						<p class="emision__text"><span class="special">Amount of tokens per one person:</span> 25K DMarket Tokens (33.334 ETH)</p>
+						<p class="emision__text"><span class="special">Minimum transaction amount:</span> 0.1 ETH</p>
+						<p class="emision__text"><span class="special">Maximum transaction amount:</span> 25K DMarket Tokens (33.334 ETH)</p>
+					</div>
+				</div>
+				<div class="emision">
+					<h3 class="emision__title">Token PRESale Phase</h3>
+					<div class="emision__info">
+						<p class="emision__text"><span class="special">Start date:</span>3rd of November 2017 (12:00 PM NYC Time, UTC - 4)</p>
+						<p class="emision__text"><span class="special">End date:</span>17th of November 2017 (12:00 PM NYC Time, UTC - 4)</p>
+					</div>
+					<div class="emision__info">
+						<p class="emision__text"><span class="special">DMarket Token Sale cap (Phase #2):</span> hard cap</p>
+						<p class="emision__text"><span class="special">Currency accepted:</span> ETH, BTC, ETC, LTC</p>
+						<p class="emision__text"><span class="special">Token exchange rate:</span> 1 ETH = 750 DMarket tokens</p>
+					</div>
+					<div class="emision__info">
+						<p class="emision__text"><span class="special">Amount of tokens per one person:</span> 25K DMarket Tokens (33.334 ETH)</p>
+						<p class="emision__text"><span class="special">Minimum transaction amount:</span> 0.1 ETH</p>
+						<p class="emision__text"><span class="special">Maximum transaction amount:</span> 25K DMarket Tokens (33.334 ETH)</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="section section--dark graph-section">
+		<div class="container">
+			<div class="graph-wrapper" id="graph-1">
+				<div class="graph">
+					<div class="graph__img img-main">
+						<img src="{% static 'dist/img/circle/main1.png' %}" alt="circle">
+					</div>
+					<div data-percent="6%" class="img-1 graph__img"><img src="{% static 'dist/img/circle/color1.png' %}" alt="circle"></div>
+					<div data-percent="16%" class="img-2 graph__img"><img src="{% static 'dist/img/circle/color2.png' %}" alt="circle"></div>
+					<div data-percent="8%" class="img-3 graph__img"><img src="{% static 'dist/img/circle/color3.png' %}" alt="circle"></div>
+					<div data-percent="19%" class="img-4 graph__img"><img src="{% static 'dist/img/circle/color4.png' %}" alt="circle"></div>
+					<div data-percent="20%" class="img-5 graph__img"><img src="{% static 'dist/img/circle/color5.png' %}" alt="circle"></div>
+					<div data-percent="14%" class="img-6 graph__img"><img src="{% static 'dist/img/circle/color6.png' %}" alt="circle"></div>
+					<div data-percent="11%" class="img-7 graph__img"><img src="{% static 'dist/img/circle/color7.png' %}" alt="circle"></div>
+					<div data-percent="6%" class="img-8 graph__img"><img src="{% static 'dist/img/circle/color8.png' %}" alt="circle"></div>
+				</div>
+				<div class="graph-info">
+					<h3 class="graph-info__title">{{ landing.funds_title }}</h3>
+					<div class="graph-info__item" data-img="img-1"><span>{{ landing.funds_percent1 }}</span>{{ landing.funds_text1 }}</div>
+					<div class="graph-info__item" data-img="img-2"><span>{{ landing.funds_percent2 }}</span>{{ landing.funds_text2 }}</div>
+					<div class="graph-info__item" data-img="img-3"><span>{{ landing.funds_percent3 }}</span>{{ landing.funds_text3 }}</div>
+					<div class="graph-info__item" data-img="img-4"><span>{{ landing.funds_percent4 }}</span>{{ landing.funds_text4 }}</div>
+					<div class="graph-info__item" data-img="img-5"><span>{{ landing.funds_percent5 }}</span>{{ landing.funds_text5 }}</div>
+					<div class="graph-info__item" data-img="img-6"><span>{{ landing.funds_percent6 }}</span>{{ landing.funds_text6 }}</div>
+					<div class="graph-info__item" data-img="img-7"><span>{{ landing.funds_percent7 }}</span>{{ landing.funds_text7 }}</div>
+					<div class="graph-info__item" data-img="img-8"><span>{{ landing.funds_percent8 }}</span>{{ landing.funds_text8 }}</div>
+				</div>
+			</div>
+			<div class="graph-wrapper" id="graph-2">
+				<div class="graph-info">
+					<h3 class="graph-info__title">{{ landing.funds_title }}</h3>
+					<div class="graph-info__item" data-img="reverse-1"><span>{{ landing.funds_percent1 }}</span>{{ landing.funds_text1 }}</div>
+					<div class="graph-info__item" data-img="reverse-2"><span>{{ landing.funds_percent2 }}</span>{{ landing.funds_text2 }}</div>
+					<div class="graph-info__item" data-img="reverse-3"><span>{{ landing.funds_percent3 }}</span>{{ landing.funds_text3 }}</div>
+					<div class="graph-info__item" data-img="reverse-4"><span>{{ landing.funds_percent4 }}</span>{{ landing.funds_text4 }}</div>
+					<div class="graph-info__item" data-img="reverse-5"><span>{{ landing.funds_percent5 }}</span>{{ landing.funds_text5 }}</div>
+					<div class="graph-info__item" data-img="reverse-6"><span>{{ landing.funds_percent6 }}</span>{{ landing.funds_text6 }}</div>
+				</div>
+
+				<div class="graph">
+					<div class="graph__img img-main"><img src="{% static 'dist/img/circle-reverse/main2.png' %}" alt="circle"></div>
+					<div data-percent="6%" class="reverse-1 graph__img"><img src="{% static 'dist/img/circle-reverse/reverse5.png' %}" alt="circle"></div>
+					<div data-percent="16%" class="reverse-2 graph__img"><img src="{% static 'dist/img/circle-reverse/reverse2.png' %}" alt="circle"></div>
+					<div data-percent="8%" class="reverse-3 graph__img"><img src="{% static 'dist/img/circle-reverse/reverse2.png' %}" alt="circle"></div>
+					<div data-percent="56%" class="reverse-4 graph__img"><img src="{% static 'dist/img/circle-reverse/reverse1.png' %}" alt="circle"></div>
+					<div data-percent="20%" class="reverse-5 graph__img"><img src="{% static 'dist/img/circle-reverse/reverse4.png' %}" alt="circle"></div>
+					<div data-percent="11%" class="reverse-6 graph__img"><img src="{% static 'dist/img/circle-reverse/reverse3.png' %}" alt="circle"></div>	
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="contract-section">
+		<div class="container">
+			<div class="contract">
+				<div class="contract__info">
+					<h3 class="contract__info-title">SMART CONTRACT ON <span class="special">GITHUB</span></h3>
+					<p class="contract__info-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio esse, illo pariatur voluptas sequi ab dolor iusto hic alias omnis in, quibusdam amet. Quas nostrum ea necessitatibus iste voluptas, amet.</p>
+					<button onclick="window.open('{{ landing2.contract_link }}')" class="btn btn--main">View code on GitHub</button>
+				</div>
+				<div class="contract__code">
+					<!--<script src="https://gist.github.com/sinyakinilya/56b53a930bb3cd8889665116132f5db6.js"></script>-->
+						<script src="{{ landing2.contract_link }}.js"></script>
+				</div>
+			</div>
+		</div>
+	</section>
+
+<!--
+	<section class="section section--main" id="payment">
+		<div class="container container--flex-center">
+			<h2 class="section-title section-title--center">Bonuses for the amount of payment</h2>
+			<p class="section-text section-text--centered">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae aliquam deserunt nostrum mollitia dolorum magni, iusto reprehenderit aut et quidem at fugit! Nulla vitae eum, cum sint, harum ex adipisci!</p>
+
+			<div class="gistogram">
+				<div class="gistogram-column gistogram__title">
+					<div class="gistogram__item">payment amount</div>
+					<div class="gistogram__item">bonus amount</div>
+					<div class="gistogram__item">bonus amount</div>
+				</div>
+				<div class="gistogram-column">
+					<div style="height: 25px" class="gistogram__progress"></div>
+					<div class="gistogram__item">52.25%</div>
+					<div class="gistogram__item">+4.5%</div>
+					<div class="gistogram__item">50</div>
+				</div>
+				<div class="gistogram-column">
+					<div style="height: 50px" class="gistogram__progress"></div>
+					<div class="gistogram__item">52.25%</div>
+					<div class="gistogram__item">+4.5%</div>
+					<div class="gistogram__item">50</div>
+				</div>
+				<div class="gistogram-column">
+					<div style="height: 75px" class="gistogram__progress"></div>
+					<div class="gistogram__item">52.25%</div>
+					<div class="gistogram__item">+4.5%</div>
+					<div class="gistogram__item">50</div>
+				</div>
+				<div class="gistogram-column">
+					<div style="height: 100px" class="gistogram__progress"></div>
+					<div class="gistogram__item">52.25%</div>
+					<div class="gistogram__item">+4.5%</div>
+					<div class="gistogram__item">50</div>
+				</div>
+				<div class="gistogram-column">
+					<div style="height: 125px" class="gistogram__progress"></div>
+					<div class="gistogram__item">52.25%</div>
+					<div class="gistogram__item">+4.5%</div>
+					<div class="gistogram__item">50</div>
+				</div>
+				<div class="gistogram-column">
+					<div style="height: 150px" class="gistogram__progress"></div>
+					<div class="gistogram__item">52.25%</div>
+					<div class="gistogram__item">+4.5%</div>
+					<div class="gistogram__item">50</div>
+				</div>
+				<div class="gistogram-column">
+					<div style="height: 175px" class="gistogram__progress"></div>
+					<div class="gistogram__item">52.25%</div>
+					<div class="gistogram__item">+4.5%</div>
+					<div class="gistogram__item">50</div>
+				</div>
+			</div>
+		</div>
+
+	</section>
+	-->
+	<section class="section section--dark discont-section">
+		<div class="container discont">
+			<div class="discont-info">
+				<h3 class="discont-info__title">Discounts during the issue</h3>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto itaque, magnam. Provident tempore qui odio vel deleniti neque, dolorem magni placeat magnam, laboriosam esse repellat maxime atque, molestiae cum unde!</p>
+			</div>
+			<div class="discont-table">
+				<div class="discont-table__item">
+					<div class="discont-table__title"></div>
+					<div class="discont-table__column discont__label">I stage</div>
+					<div class="discont-table__column discont__label">II stage</div>
+				</div>
+				<div class="discont-table__head discont-table__item">
+					<div class="discont-table__title">time gaps</div>
+					<div class="discont-table__column">%</div>
+					<div class="discont-table__column">%</div>
+				</div>
+				<ul>
+					<li class="discont-table__item">
+						<div class="discont-table__title">interval</div>
+						<div class="discont-table__column">50</div>
+						<div class="discont-table__column">80</div>
+					</li>
+					<li class="discont-table__item">
+						<div class="discont-table__title">interval</div>
+						<div class="discont-table__column">45</div>
+						<div class="discont-table__column">25</div>
+					</li>
+					<li class="discont-table__item">
+						<div class="discont-table__title">interval</div>
+						<div class="discont-table__column">40</div>
+						<div class="discont-table__column">20</div>
+					</li>
+					<li class="discont-table__item">
+						<div class="discont-table__title">interval</div>
+						<div class="discont-table__column">35</div>
+						<div class="discont-table__column">15</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</section>
+
+	<section class="section section--dark discont-section">
+		<div class="container discont">
+			<div class="discont-info">
+				<h3 class="discont-info__title">Discounts during the issue</h3>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto itaque, magnam. Provident tempore qui odio vel deleniti neque, dolorem magni placeat magnam, laboriosam esse repellat maxime atque, molestiae cum unde!</p>
+			</div>
+			<div class="discont-table">
+				<div class="discont-table__item">
+					<div class="discont-table__title"></div>
+					<div class="discont-table__column discont__label">I stage</div>
+					<div class="discont-table__column discont__label">II stage</div>
+				</div>
+				<div class="discont-table__head discont-table__item">
+					<div class="discont-table__title">time gaps</div>
+					<div class="discont-table__column">%</div>
+					<div class="discont-table__column">%</div>
+				</div>
+
+				<div class="discont-table__item">
+					<div class="discont-table__title">I interval</div>
+					<div class="discont-table__column">50</div>
+					<div class="discont-table__column">80</div>
+				</div>
+				<div class="discont-table__item">
+					<div class="discont-table__title">II interval</div>
+					<div class="discont-table__column">45</div>
+					<div class="discont-table__column">25</div>
+				</div>
+				<div class="discont-table__item">
+					<div class="discont-table__title">III interval</div>
+					<div class="discont-table__column">40</div>
+					<div class="discont-table__column">20</div>
+				</div>
+				<div class="discont-table__item">
+					<div class="discont-table__title">IV interval</div>
+					<div class="discont-table__column">35</div>
+					<div class="discont-table__column">15</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="section section--main">
+		<div class="container container--flex-center">
+			<h2 class="section-title section-title--center">Bounty and referral program</h2>
+			<p class="section--text section-text--centered">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellendus maxime debitis ratione sequi deserunt soluta beatae libero consequuntur autem, deleniti modi numquam fugiat tempore fugit voluptas quia perspiciatis enim quisquam!</p>
+			<div class="referal">
+				<a href="#" class="referal__item">referal item</a>
+				<a href="#" class="referal__item">referal item</a>
+				<a href="#" class="referal__item">referal item</a>
+				<a href="#" class="referal__item">referal item</a>
+				<a href="#" class="referal__item">referal item</a>
+				<a href="#" class="referal__item">referal item</a>
+			</div>
+
+			<a href="#" class="link">More</a>
+		</div>
+	</section>
+
+	<section class="section team" id="team">
+		<div class="container">
+			<h2 class="section-title section-title--prime">{{ landing2.team_title }}</h2>
+			<div class="team">
+			{% for obj in teammates %}
+				<div class="team-member">
+					<img src="{{ obj.photo.url }}" class="team-member__photo" alt="team-member"></img>
+					<div class="team-member__name special">
+					{% for word in obj.name|split_by:' ' %} 
+						{{ word }}
+					{% endfor %}
+					</div>
+					<div class="team-member__position">{{ obj.position }}</div>
+					<div class="team__social">
+						<a href="{{ obj.linkedin }}" class="team__social-link"><i class="fab fa-linkedin"></i></a>
+						<a href="#" class="team__social-link"><i class="fab fa-facebook"></i></a>
+					</div>
+				</div>
+			{% endfor %}
+			</div>
+		</div>
+	</section>
+
+	<section class="section section--main">
+		<div class="container">
+			<div class="media">
+				<div class="media__info media__info--md">
+					<h4 class="media__title">{{ landing2.adviser_title }}</h4>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit minus et, numquam placeat id deleniti iusto atque officiis, consectetur quam fuga vitae ratione. Autem itaque veritatis maiores aliquam sunt eveniet?</p>
+				</div>
+				<img src="{% static 'dist/img/woman.jpg' %}" alt="women" class="media__img-inline">
+			</div>
+		</div>
+		<div class="container container--flex">
+			<div class="container--md">
+				<div class="media media--stretch">
+					<div class="media__info">
+						<h4 class="media__title">{{ landing2.adviser_title }}</h4>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit minus et, numquam placeat id deleniti iusto atque officiis, consectetur quam fuga vitae ratione. Autem itaque veritatis maiores aliquam sunt eveniet?</p>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit minus et, numquam placeat id deleniti iusto atque officiis, consectetur quam fuga vitae ratione. Autem itaque veritatis maiores aliquam sunt eveniet?</p>
+					</div>
+					<img src="{% static 'dist/img/hands.jpg' %}" alt="hands" class="media__img-col hands">
+				</div>
+			</div>
+			<div class="container--md">
+				<div class="media">
+					<div class="media__info">
+						<h4 class="media__title">{{ landing2.adviser_title }}</h4>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit minus et, numquam placeat id deleniti iusto atque officiis, consectetur quam fuga vitae ratione. Autem itaque veritatis maiores aliquam sunt eveniet?</p>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit minus et, numquam placeat id deleniti iusto atque officiis, consectetur quam fuga vitae ratione. Autem itaque veritatis maiores aliquam sunt eveniet?</p>
+					</div>
+				</div>
+				<div class="media">
+					<div class="media__info">
+						<h4 class="media__title">{{ landing2.adviser_title }}</h4>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit minus et, numquam placeat id deleniti iusto atque officiis, consectetur quam fuga vitae ratione. Autem itaque veritatis maiores aliquam sunt eveniet?</p>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit minus et, numquam placeat id deleniti iusto atque officiis, consectetur quam fuga vitae ratione. Autem itaque veritatis maiores aliquam sunt eveniet?</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="section section--main">
+		<div class="container">
+			<h2 class="section-title section-title--center">FAQ</h2>
+			{% for obj in faq %}
+			<div class="faq b-spoiler">
+				<h3 class="faq__title">{{ obj.question }}<i class="fas fa-caret-down"></i></h3>
+				<p class="faq__answer">{{ obj.answer }}</p>
+			</div>
+			{% endfor %}
+		</div>
+	</section>
+
+	<section class="section contact-section" id="contact">
+		<div class="container contact-container">
+			<form action="#" class="form">
+				<h4 class="form__title">Have questions? Contact Us</h4>
+				
+				<div class="form__item-multiple">
+					<div class="form__item">
+						<label for="name">Name</label>
+						<input id="name" type="text">
+					</div>
+					<div class="form__item">
+						<label for="email">Email</label>
+						<input id="email" type="text">
+					</div>
+				</div>
+				
+				<div class="form__item">
+					<label for="textarea">Question</label>
+					<textarea name="textarea" id="textarea"></textarea>
+				</div>
+				
+				<button type="submit" class="form__btn">Send</button>
+			</form>
+			<div class="contact">
+				<h4 class="contact__title">Contacts</h4>
+				<div class="contact__block">
+					<a href="tel:+(380) 65 09 09 678" class="contact-link">+(380) 65 09 09 678</a>
+					<a href="tel:+(380) 65 09 09 678" class="contact-link">+(380) 65 09 09 678</a>
+					<a href="tel:+(380) 65 09 09 678" class="contact-link">+(380) 65 09 09 678</a>
+					<i class="fas fa-phone"></i>
+				</div>
+				<div class="contact__block">
+					<a href="mailto:mail.com" class="contact-link">mail.com</a>
+					<i class="fas fa-envelope-open"></i>
+				</div>
+				<div class="contact__block">
+					<a href="#" class="contact-link">Kyiv</a>
+					<i class="fas fa-map-marker-alt"></i>
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock %}
+
+	
+{% block extra %}
 	<div class="popup">
 		<div id="site-video" class="popup-content">
 
@@ -200,11 +677,48 @@
 
 			<span id="videoClose" class="popup__close"></span>
 		</div>
+
+		<form id="form-login" method="post" action="{% url 'login' %}" class="form-main popup-content">
+			<h4 class="form-main__title">Log in</h4>
+			{% csrf_token %}
+			<label for="user-name" class="form-main__label">Login</label>
+			<input id="user-name" name='username' type="text" class="form-main__input" required>
+			<label for="user-password" class="form-main__label">Password</label>
+			<input id="user-password" name='password' type="password" class="form-main__input" required>
+			<p class="form-main__text">Enter through</p>
+			<div class="form-main__social">
+				<button class="form-main__social-btn"><i class="fab fa-facebook-square"></i>Facebook</button>
+				<button class="form-main__social-btn"><i class="fab fa-facebook-square"></i>Facebook</button>
+				<button class="form-main__social-btn"><i class="fab fa-facebook-square"></i>Facebook</button>
+			</div>
+			<button class="btn btn--main form-main__btn" type="submit">Entrance</button>
+
+			<span class="popup__close"></span>
+		</form>
+
+		<form id="form-registration" method="post" action="{% url 'registration' %}" class="form-main popup-content">
+			<h4 class="form-main__title">Registration</h4>
+			{% csrf_token %}
+			<label for="reg-name" class="form-main__label">Userame</label>
+			<input name="username" id="reg-name" type="text" class="form-main__input" required>
+
+			<label for="reg-mail" class="form-main__label">E-mail</label>
+			<input name="email" id="reg-mail" type="email" class="form-main__input" required>
+
+			<label for="reg-password" class="form-main__label">Password</label>
+			<input name="password1" type="password" requred class="form-main__input" id="reg-password">
+
+			<label for="reg-confirm" class="form-main__label">Confirm password</label>
+			<input name="password2" type="password" requred class="form-main__input" id="reg-confirm">
+			<p class="form-main__text">Enter through</p>
+			<div class="form-main__social">
+				<button class="form-main__social-btn"><i class="fab fa-facebook-square"></i>Facebook</button>
+				<button class="form-main__social-btn"><i class="fab fa-facebook-square"></i>Facebook</button>
+				<button class="form-main__social-btn"><i class="fab fa-facebook-square"></i>Facebook</button>
+			</div>
+			<button class="btn btn--main form-main__btn" type="submit">Entrance</button>
+
+			<span class="popup__close"></span>
+		</form>
 	</div>
-	<script src="https://www.youtube.com/iframe_api"></script>
-	<script src="https://code.jquery.com/jquery-3.3.1.min.js"
-	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-	<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
-	<script src="{% static 'dist/libs/common.js' %}"></script>
-</body>
-</html>
+{% endblock %}

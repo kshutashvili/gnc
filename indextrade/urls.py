@@ -82,7 +82,7 @@ urlpatterns = i18n_patterns(
     url(r'^set_wallet/$', save_wallet_for_bonus, name='set_wallet'),
 
     # auth
-    url(r'^accounts/registration/$', registration, name="registration"),
+    url(r'^accounts/personal/$', registration, name="registration"),
     url(r'^accounts/login/$', log_in_user, name="login"),
     url(r'^accounts/logout/$', auth.logout, {'next_page': '/'}, name="logout"),
     # url(r'^steps_check/$', steps_check, name="steps_check"),

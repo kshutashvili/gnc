@@ -51,12 +51,12 @@ class IndexView(TemplateView):
 
         #faq_count = AnswerQuestion.objects.count() // 2
         #context['faq_left'] = AnswerQuestion.objects.all()[faq_count:]
-        #context['faq_right'] = AnswerQuestion.objects.all()[:faq_count]
+        context['faq'] = AnswerQuestion.objects.all()
 
         #context['publications'] = Publication.objects.all()
         #context['exhibitions'] = Exhibition.objects.all()
 
-        #context['teammates'] = Teammate.objects.all()
+        context['teammates'] = Teammate.objects.all()
         #context['advisers'] = Adviser.objects.all()
 
         #context['contact_us'] = ContactUsForm()

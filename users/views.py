@@ -27,7 +27,7 @@ User = get_user_model()
 
 
 class ProfileView(TemplateView):
-    template_name = "lk.html"
+    template_name = "private.html"
 
     def get_context_data(self, **kwargs):
         context = super(ProfileView, self).get_context_data()
@@ -109,7 +109,7 @@ def registration(request):
             response_data['success'] = True
             response_data['message'] = _("Вы успешно зарегистрировались")
             # return HttpResponse(json.dumps(response_data), content_type="application/json")
-            return HttpResponseRedirect("/")
+            return HttpResponseRedirect(reverse('index'))
         else:
             # print register_form.errors
             response_data['success'] = False
@@ -165,23 +165,24 @@ def log_in_user(request):
         if login_form.is_valid():
             user = login_form.get_user()
 
-            if user.is_superuser:
-                response_data['message'] = _("Администратор должен входить через admin URL")
-                return HttpResponse(json.dumps(response_data), content_type="application/json")
+            # if user.is_superuser:
+                # response_data['message'] = _("Администратор должен входить через admin URL")
+                # return HttpResponse(json.dumps(response_data), content_type="application/json")
 
             remember_me = request.POST.get('remember', None)
             if not remember_me:
                 request.session.set_expiry(0)
 
             login(request, user)
+            return HttpResponseRedirect(reverse('index'))
 
-            response_data['success'] = True
-            response_data['message'] = _("Вы вошли")
-            return HttpResponse(json.dumps(response_data), content_type="application/json")
+            # response_data['success'] = True
+            # response_data['message'] = _("Вы вошли")
+            # return HttpResponse(json.dumps(response_data), content_type="application/json")
         else:
             response_data['success'] = False
-            response_data['message'] = _("Не правильный username или пароль")
-            return HttpResponse(json.dumps(response_data), content_type="application/json")
+            response_data['message'] = _("Неправильный username или пароль")
+            return HttpResponse(json.dumps(response_data, ensure_ascii=False).encode('utf8'), content_type="application/json")
     return HttpResponseBadRequest()
 
 

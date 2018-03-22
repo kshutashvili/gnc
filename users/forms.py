@@ -110,65 +110,65 @@ class RegistrationForm(UserCreationForm):
         labels = {'username': '', 'email': '', 'full_name': '', 'country': ''}
         help_texts = {'username': ''}
 
-    def clean_confirm_terms(self):
-        confirm_terms = self.cleaned_data.get("confirm_terms")
-        if not confirm_terms:
-            raise forms.ValidationError(
-                self.error_messages['terms_not_confirmed'],
-                code='terms_not_confirmed',
-            )
-        return confirm_terms
-
-    def clean_full_name(self):
-        full_name = self.cleaned_data.get("full_name")
-        if not full_name:
-            raise forms.ValidationError(
-                self.error_messages['full_name_required'],
-                code='full_name_required',
-            )
-        return full_name
-
-    def clean_date_of_birth(self):
-        date_of_birth = self.cleaned_data.get("date_of_birth")
-        if not date_of_birth:
-            raise forms.ValidationError(
-                self.error_messages['date_of_birth_required'],
-                code='date_of_birth_required',
-            )
-        return date_of_birth
-
-    def clean_city(self):
-        city = self.cleaned_data.get("city")
-        if not city:
-            raise forms.ValidationError(
-                self.error_messages['city_required'],
-                code='city_required',
-            )
-        return city
-
-    def clean_state(self):
-        state = self.cleaned_data.get("state")
-        if not state:
-            raise forms.ValidationError(
-                self.error_messages['state_required'],
-                code='state_required',
-            )
-        return state
-
-    def clean_country(self):
-        country_list = [country.code for country in AvailableCountries.objects.get().countries]
-        country = self.cleaned_data.get("country")
-        if not country:
-            raise forms.ValidationError(
-                self.error_messages['country_required'],
-                code='country_required',
-            )
-        if country not in country_list:
-            raise forms.ValidationError(
-                self.error_messages['country_not_valid'],
-                code='country_not_valid',
-            )
-        return country
+  #  def clean_confirm_terms(self):
+  #      confirm_terms = self.cleaned_data.get("confirm_terms")
+  #      if not confirm_terms:
+  #          raise forms.ValidationError(
+  #              self.error_messages['terms_not_confirmed'],
+  #              code='terms_not_confirmed',
+  #          )
+  #      return confirm_terms
+#
+  #  def clean_full_name(self):
+  #      full_name = self.cleaned_data.get("full_name")
+  #      if not full_name:
+  #          raise forms.ValidationError(
+  #              self.error_messages['full_name_required'],
+  #              code='full_name_required',
+  #          )
+  #      return full_name
+#
+  #  def clean_date_of_birth(self):
+  #      date_of_birth = self.cleaned_data.get("date_of_birth")
+  #      if not date_of_birth:
+  #          raise forms.ValidationError(
+  #              self.error_messages['date_of_birth_required'],
+  #              code='date_of_birth_required',
+  #          )
+  #      return date_of_birth
+#
+  #  def clean_city(self):
+  #      city = self.cleaned_data.get("city")
+  #      if not city:
+  #          raise forms.ValidationError(
+  #              self.error_messages['city_required'],
+  #              code='city_required',
+  #          )
+  #      return city
+#
+  #  def clean_state(self):
+  #      state = self.cleaned_data.get("state")
+  #      if not state:
+  #          raise forms.ValidationError(
+  #              self.error_messages['state_required'],
+  #              code='state_required',
+  #          )
+  #      return state
+#
+  #  def clean_country(self):
+  #      country_list = [country.code for country in AvailableCountries.objects.get().countries]
+  #      country = self.cleaned_data.get("country")
+  #      if not country:
+  #          raise forms.ValidationError(
+  #              self.error_messages['country_required'],
+  #              code='country_required',
+  #          )
+  #      if country not in country_list:
+  #          raise forms.ValidationError(
+  #              self.error_messages['country_not_valid'],
+  #              code='country_not_valid',
+  #          )
+  #      return country
 
 
 class LoginForm(AuthenticationForm):

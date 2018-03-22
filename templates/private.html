@@ -1,0 +1,206 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Private{% endblock %}
+
+{% block content %}
+
+	<section class="private">
+		<div class="container container--flex">
+			<div class="user  private__block">
+				<h3 class="private-title">My account</h3>
+				<div class="user__name-wrap">
+					<div class="user__img"><i class="fas fa-user"></i></div>
+					<span class="user__name">{{ request.user.full_name }}</span>
+				</div>
+				<form action="#" class="user__info">
+					<div class="user__info-item">
+						<label class="user__label" for="user-inp">Adress</label><br/>
+						<input type="text" value="{{ request.user.address}}" disbled="" class="user-data user__input" placeholder="Enter the data">
+					</div>
+					<div class="user__info-item">
+						<label class="user__label" for="user-inp">Phone number</label>
+						<input type="tel" value="{{ request.user.phone_number }}" disbled="" class="user-data user__input" placeholder="Enter the data">
+					</div>
+					<div class="user__info-item">
+						<label class="user__label" for="user-inp">Your phone number</label>
+						<input type="tel" value="{{ request.user.phone_number }}" disbled="" class="user-data user__input" placeholder="Enter the data">
+					</div>
+					<div class="user__info-item">
+						<label class="user__label" for="user-inp">Email adress</label>
+						<input type="mail" value="{{ request.user.email }}" disbled="" class="user-data user__input" placeholder="Enter the data">
+					</div>
+					<div class="user__info-item">
+						<label class="user__label" for="user-inp">Current password</label>
+						<input type="password" value="" disbled="" class="user-data user__input" placeholder="Enter the data">
+					</div>
+					<div class="user__info-item">
+						<label class="user__label" for="user-inp">New password</label>
+						<input type="password" value="" disbled="" class="user-data user__input" placeholder="Enter the data">
+					</div>
+					<div class="user__info-item">
+						<label class="user__label" for="user-inp">Password confirmation</label>
+						<input type="text" value="" disbled="" class="user-data user__input" placeholder="Enter the data">
+					</div>
+				</form>
+			</div>
+
+			<div class="user-history private__block">
+				<h3 class="private-title">Transactions history</h3>
+				<div class="user-history__column">
+					<h4 class="user-history__column-title">date</h4>
+					<time class="user-history__item">02.03.18</time>
+					<time class="user-history__item">02.03.18</time>
+					<time class="user-history__item">02.03.18</time>
+					<time class="user-history__item">02.03.18</time>
+					<time class="user-history__item">02.03.18</time>
+					<time class="user-history__item">02.03.18</time>
+					<time class="user-history__item">02.03.18</time>
+					<time class="user-history__item">02.03.18</time>
+				</div>
+				<div class="user-history__column">
+					<h4 class="user-history__column-title">method</h4>
+					<span class="user-history__item">data</span>
+					<span class="user-history__item">data</span>
+					<span class="user-history__item">data</span>
+					<span class="user-history__item">data</span>
+					<span class="user-history__item">data</span>
+					<span class="user-history__item">data</span>
+					<span class="user-history__item">data</span>
+					<span class="user-history__item">data</span>
+				</div>
+				<div class="user-history__column user-history__column--prime">
+					<h4 class="user-history__column-title">number of tokens</h4>
+					<span class="user-history__item">2142412</span>
+					<span class="user-history__item">2142412</span>
+					<span class="user-history__item">2142412</span>
+					<span class="user-history__item">2142412</span>
+					<span class="user-history__item">2142412</span>
+					<span class="user-history__item">2142412</span>
+					<span class="user-history__item">2142412</span>
+					<span class="user-history__item">2142412</span>
+				</div>
+				<div class="user-history__column">
+					<h4 class="user-history__column-title">amount</h4>
+					<span class="user-history__item">675</span>
+					<span class="user-history__item">675</span>
+					<span class="user-history__item">675</span>
+					<span class="user-history__item">675</span>
+					<span class="user-history__item">675</span>
+					<span class="user-history__item">675</span>
+					<span class="user-history__item">675</span>
+					<span class="user-history__item">675</span>
+				</div>
+			</div>
+
+			<form action="#" class="step-box">
+				<h3 class="step-box__title">Receive the tokens</h3>
+
+				<fieldset class="step is-active">
+					<div class="step__header">
+						<h4 class="step__title">Step 1</h4>
+						<p class="step__caption">Choose your payment method</p>
+					</div>
+					<main class="step__body">
+						<div class="step__radio">
+							<input type="radio" name="step-rd" id="step-rd-1">
+							<label for="step-rd-1">Buy for BTC</label>
+						</div>
+						<div class="step__radio">
+							<input type="radio" name="step-rd" id="step-rd-2">
+							<label for="step-rd-2">Buy for BTC</label>
+						</div>
+						<div class="step__radio">
+							<input type="radio" name="step-rd" id="step-rd-3">
+							<label for="step-rd-3">Buy for BTC</label>
+						</div>
+						<div class="step__radio">
+							<input type="radio" name="step-rd" id="step-rd-4">
+							<label for="step-rd-4">Buy for BTC</label>
+						</div>
+						<div class="step__radio">
+							<input type="radio" name="step-rd" id="step-rd-5">
+							<label for="step-rd-5">Buy for BTC</label>
+						</div>
+						<div class="step__radio">
+							<input type="radio" name="step-rd" id="step-rd-6">
+							<label for="step-rd-6">Buy for BTC</label>
+						</div>
+						<div class="step__radio">
+							<input type="radio" name="step-rd" id="step-rd-7">
+							<label for="step-rd-7">Buy for BTC</label>
+						</div>
+						<div class="step__radio">
+							<input type="radio" name="step-rd" id="step-rd-8">
+							<label for="step-rd-8">Buy for BTC</label>
+						</div>
+						<div class="step__radio">
+							<input type="radio" name="step-rd" id="step-rd-9">
+							<label for="step-rd-9">Buy for BTC</label>
+						</div>
+						<div class="step__radio">
+							<input type="radio" name="step-rd" id="step-rd-10">
+							<label for="step-rd-10">Buy for BTC</label>
+						</div>
+						<div class="step__radio">
+							<input type="radio" name="step-rd" id="step-rd-11">
+							<label for="step-rd-11">Buy for BTC</label>
+						</div>
+						<div class="step__radio">
+							<input type="radio" name="step-rd" id="step-rd-12">
+							<label for="step-rd-12">Buy for BTC</label>
+						</div>
+						<div class="step__radio">
+							<input type="radio" name="step-rd" id="step-rd-13">
+							<label for="step-rd-13">Buy for BTC</label>
+						</div>
+						<div class="step__radio">
+							<input type="radio" name="step-rd" id="step-rd-14">
+							<label for="step-rd-14">Buy for BTC</label>
+						</div>
+						<div class="step__radio">
+							<input type="radio" name="step-rd" id="step-rd-15">
+							<label for="step-rd-15">Buy for BTC</label>
+						</div>
+						<div class="step__radio">
+							<input type="radio" name="step-rd" id="step-rd-16">
+							<label for="step-rd-16">Buy for BTC</label>
+						</div>
+						<div class="step__radio">
+							<input type="radio" name="step-rd" id="step-rd-17">
+							<label for="step-rd-17">Buy for BTC</label>
+						</div>
+						<div class="step__radio">
+							<input type="radio" name="step-rd" id="step-rd-18">
+							<label for="step-rd-18">Buy for BTC</label>
+						</div>
+					</main>
+				</fieldset>
+
+				<fieldset class="step">
+					<div class="step__header">
+						<h4 class="step__title">Step 2</h4>
+					</div>
+					<main class="step__body step__body--col">
+						<p class="step__text">BCH address will be added soon</p>
+						<button class="btn-transparent step__copy">Copy</button>
+						<label for="step-adr" class="step__label">Your E20 purse address</label>
+						<input type="text" class="step__input" id="step-adr">
+					</main>
+				</fieldset>
+				
+				<fieldset class="step">
+					<div class="step__header">
+						<h4 class="step__title">Step 3</h4>
+					</div>
+					<main class="step__body step__body--col">
+						<label class="step__label" for="step-num">Transaction number:</label>
+						<input type="text" class="step__input" id="step-num">
+						<button class="btn btn--main step__apply" type="submit">Send</button>
+					</main>
+				</fieldset>
+			</form>
+		</div>
+	</section>
+{% endblock %}

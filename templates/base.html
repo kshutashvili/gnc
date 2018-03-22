@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>{% block title %}Galaxy Network Inc{% endblock %}</title>
+	<link rel="shortcut icon" href="{% static 'dist/img/favicon.ico' %}" type="image/x-icon">
+	<link rel="stylesheet" href="{% static 'dist/css/styles.css' %}">
+	{% block extrastyles %}{% endblock %}
+</head>
+<body>
+	<menu class="mobile-menu">
+		<a href="#" class="mobile-menu__link">Project</a>
+		<a href="#" class="mobile-menu__link">Payments</a>
+		<a href="#" class="mobile-menu__link">Team</a>
+		<a href="#" class="mobile-menu__link">Contact</a>
+	</menu>
+	<section class="main-section">
+		<header class="header">
+			<a href="{% url 'index' %}" class="logo">
+				<img src="{% static 'dist/img/logo.png' %}" alt="logo">
+			</a>
+			
+			<nav class="header__nav">
+				<a href="#" class="header__nav-link">Project</a>
+				<a href="#" class="header__nav-link">Payments</a>
+				<a href="#" class="header__nav-link">Team</a>
+				<a href="#" class="header__nav-link">Contact</a>
+			</nav>
+			{% if request.user.is_authenticated %}
+				<div class="btn-box btn-box--light">
+					<a href="{% url 'logout' %}" class="btn-transparent private__logout" id="btn-logout">Log out</a>
+					<span class="private__top-user"><i class="fas fa-user"></i> {{ request.user.full_name }}	</span>
+				</div>
+			{% else %}
+				<div class="btn-box">
+					<button class="btn header__btn" id="btn-login">Log in</button>
+					<button class="btn header__btn" id="btn-registration">Registration</button>
+				</div>
+			{% endif %}
+			<button class="mobile-btn">
+				<div class="mobile-btn__sandwich">
+					<span class="mobile-btn__topper"></span>
+					<span class="mobile-btn__middle"></span>
+					<span class="mobile-btn__footer"></span>
+				</div>
+				<span>Menu</span>
+			</button>
+		</header>
+		{% block content %}{% endblock %}
+
+	<footer class="footer section--main">
+		<div class="container">
+			<a href="#" class="logo">
+				<img src="{% static 'dist/img/logo.png' %}" alt="logo">
+			</a>
+			<a href="#" class="footer__link">Contribute</a>
+			<nav class="footer__nav">
+				<a href="#project" class="footer__nav-link">Project</a>
+				<a href="#payment" class="footer__nav-link">Payments</a>
+				<a href="#team" class="footer__nav-link">Team</a>
+				<a href="#contact" class="footer__nav-link">Contact</a>
+			</nav>
+
+			<div class="footer__copy">
+				Copyright © 2018. All rights reserved.
+			</div>
+		</div>
+	</footer>
+{% block extra %}{% endblock %}
+	<script src="https://www.youtube.com/iframe_api"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+	integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui-touch-punch/0.2.3/jquery.ui.touch-punch.min.js"></script>
+	<script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+	<script src="{% static 'dist//libs/progressbar.min.js' %}"></script>
+	<script src="{% static 'dist/libs/PageScroll2id.min.js' %}"></script>
+	<script src="{% static 'dist/libs/common.js' %}"></script>
+	{% block extrascrypts %}{% endblock %}
+</body>
+</html>

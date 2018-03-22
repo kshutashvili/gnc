@@ -15,25 +15,25 @@ from .models import (User, ReferralBonus, ReferralBonusStep,
 from config.models import EmailConfig
 
 
-@receiver(post_save, sender=User)
-def registration_notification(sender, instance, **kwargs):
-    if kwargs['created']:
-        email_config = EmailConfig.get_solo()
-        html_body = render_to_string(
-            "email/registration.html",
-            {
-                "message": email_config.register_text
-            }
-        )
-        subject = email_config.register_subject
-        mail = EmailMultiAlternatives(
-            subject,
-            '',
-            "ZNAQ {}".format(email_config.default_from_email),
-            [instance.email, ]
-        )
-        mail.attach_alternative(html_body, "text/html")
-        mail.send()
+# @receiver(post_save, sender=User)
+# def registration_notification(sender, instance, **kwargs):
+#    if kwargs['created']:
+#        email_config = EmailConfig.get_solo()
+#        html_body = render_to_string(
+#            "email/registration.html",
+#            {
+#                "message": email_config.register_text
+#            }
+#        )
+#        subject = email_config.register_subject
+#        mail = EmailMultiAlternatives(
+#            subject,
+#            '',
+#            "ZNAQ {}".format(email_config.default_from_email),
+#            [instance.email, ]
+#        )
+#        mail.attach_alternative(html_body, "text/html")
+#        mail.send()
 
 
 @receiver(post_save, sender=User)
