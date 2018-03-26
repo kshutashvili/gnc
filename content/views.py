@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 import requests
+import urllib
 import json
 import datetime
 import pytz
@@ -66,9 +67,7 @@ class IndexView(TemplateView):
 
         #context['partners'] = Partner.objects.displayed()
         #context['ratedby_objects'] = RatedBy.objects.displayed()
-
         #context['landing_photos'] = LandingPhoto.objects.showed_photos()
-
         return context
 
 
