@@ -38,7 +38,7 @@ class ProfileView(TemplateView):
         context['password_form'] = PasswordChangeForm(user=self.request.user)
         context['donation_form'] = DonationForm(self.request)
         context['donations'] = Donation.objects.filter(user=self.request.user).order_by('-created_dt')
-        context['tokens_sum'] = Donation.objects.filter(user=self.request.user).aggregate(Sum('tokens'))['tokens__sum']
+        context['tokens_sum'] = [Donation.objects.filter(user=self.request.user).order_by('-created_dt').aggregate(Sum('tokens'))['tokens__sum']]
         context['addresses'] = DonationAddress.objects.all()
 
         return context
@@ -109,7 +109,7 @@ def registration(request):
             response_data['success'] = True
             response_data['message'] = _("Вы успешно зарегистрировались")
             # return HttpResponse(json.dumps(response_data), content_type="application/json")
-            return HttpResponseRedirect(reverse('index'))
+            return HttpResponseRedirect(reverse('profile'))
         else:
             # print register_form.errors
             response_data['success'] = False
@@ -174,7 +174,7 @@ def log_in_user(request):
                 request.session.set_expiry(0)
 
             login(request, user)
-            return HttpResponseRedirect(reverse('index'))
+            return HttpResponseRedirect(reverse('profile'))
 
             # response_data['success'] = True
             # response_data['message'] = _("Вы вошли")

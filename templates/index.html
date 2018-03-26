@@ -279,41 +279,19 @@
 	
 	<section class="section">
 		<div class="container emision-container">
-			<h2 class="emision-title">Condition of emision</h2>
-			<p class="emision-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero in hic fugiat, repellat ratione id quod vitae sequi maiores explicabo ad labore, mollitia minus ab. Sequi repellendus similique, quibusdam enim. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sed culpa, hic ea sint dignissimos? Ut neque facilis excepturi quas dolores, sapiente tenetur vel temporibus aut voluptatum, exercitationem minima incidunt quod!</p>
+			<h2 class="emision-title">{{ landing2.emission_title }}</h2>
+			<p class="emision-text">{{ landing2.emission_text }}</p>
 			<div class="emision-box">
 				<div class="emision">
-					<h3 class="emision__title">Token PRESale Phase</h3>
+					<h3 class="emision__title">{{ landing2.token_presale_title }}</h3>
 					<div class="emision__info">
-						<p class="emision__text"><span class="special">Start date:</span>3rd of November 2017 (12:00 PM NYC Time, UTC - 4)</p>
-						<p class="emision__text"><span class="special">End date:</span>17th of November 2017 (12:00 PM NYC Time, UTC - 4)</p>
-					</div>
-					<div class="emision__info">
-						<p class="emision__text"><span class="special">DMarket Token Sale cap (Phase #2):</span> hard cap</p>
-						<p class="emision__text"><span class="special">Currency accepted:</span> ETH, BTC, ETC, LTC</p>
-						<p class="emision__text"><span class="special">Token exchange rate:</span> 1 ETH = 750 DMarket tokens</p>
-					</div>
-					<div class="emision__info">
-						<p class="emision__text"><span class="special">Amount of tokens per one person:</span> 25K DMarket Tokens (33.334 ETH)</p>
-						<p class="emision__text"><span class="special">Minimum transaction amount:</span> 0.1 ETH</p>
-						<p class="emision__text"><span class="special">Maximum transaction amount:</span> 25K DMarket Tokens (33.334 ETH)</p>
+					{{ landing2.token_presale_text|safe }}
 					</div>
 				</div>
 				<div class="emision">
-					<h3 class="emision__title">Token PRESale Phase</h3>
+					<h3 class="emision__title">{{ landing2.token_sale_title }}</h3>
 					<div class="emision__info">
-						<p class="emision__text"><span class="special">Start date:</span>3rd of November 2017 (12:00 PM NYC Time, UTC - 4)</p>
-						<p class="emision__text"><span class="special">End date:</span>17th of November 2017 (12:00 PM NYC Time, UTC - 4)</p>
-					</div>
-					<div class="emision__info">
-						<p class="emision__text"><span class="special">DMarket Token Sale cap (Phase #2):</span> hard cap</p>
-						<p class="emision__text"><span class="special">Currency accepted:</span> ETH, BTC, ETC, LTC</p>
-						<p class="emision__text"><span class="special">Token exchange rate:</span> 1 ETH = 750 DMarket tokens</p>
-					</div>
-					<div class="emision__info">
-						<p class="emision__text"><span class="special">Amount of tokens per one person:</span> 25K DMarket Tokens (33.334 ETH)</p>
-						<p class="emision__text"><span class="special">Minimum transaction amount:</span> 0.1 ETH</p>
-						<p class="emision__text"><span class="special">Maximum transaction amount:</span> 25K DMarket Tokens (33.334 ETH)</p>
+					{{ landing2.token_sale_text|safe }}
 					</div>
 				</div>
 			</div>

@@ -11,10 +11,9 @@
 </head>
 <body>
 	<menu class="mobile-menu">
-		<a href="#" class="mobile-menu__link">Project</a>
-		<a href="#" class="mobile-menu__link">Payments</a>
-		<a href="#" class="mobile-menu__link">Team</a>
-		<a href="#" class="mobile-menu__link">Contact</a>
+	{% for obj in menu %}
+		<a href="{{ obj.link }}" class="mobile-menu__link">{{ obj.name }}</a>
+	{% endfor %}
 	</menu>
 	<section class="main-section">
 		<header class="header">
@@ -23,15 +22,14 @@
 			</a>
 			
 			<nav class="header__nav">
-				<a href="#" class="header__nav-link">Project</a>
-				<a href="#" class="header__nav-link">Payments</a>
-				<a href="#" class="header__nav-link">Team</a>
-				<a href="#" class="header__nav-link">Contact</a>
+			{% for obj in menu %}
+				<a href="{{ obj.link }}" class="header__nav-link">{{ obj.name }}</a>
+			{% endfor %}
 			</nav>
 			{% if request.user.is_authenticated %}
 				<div class="btn-box btn-box--light">
 					<a href="{% url 'logout' %}" class="btn-transparent private__logout" id="btn-logout">Log out</a>
-					<span class="private__top-user"><i class="fas fa-user"></i> {{ request.user.full_name }}	</span>
+					<span class="private__top-user"><a href="{% url 'profile' %}"><i class="fas fa-user"></i></a> {{ request.user.full_name }}	</span>
 				</div>
 			{% else %}
 				<div class="btn-box">
@@ -52,15 +50,14 @@
 
 	<footer class="footer section--main">
 		<div class="container">
-			<a href="#" class="logo">
+			<a href="{% url 'index' %}" class="logo">
 				<img src="{% static 'dist/img/logo.png' %}" alt="logo">
 			</a>
 			<a href="#" class="footer__link">Contribute</a>
 			<nav class="footer__nav">
-				<a href="#project" class="footer__nav-link">Project</a>
-				<a href="#payment" class="footer__nav-link">Payments</a>
-				<a href="#team" class="footer__nav-link">Team</a>
-				<a href="#contact" class="footer__nav-link">Contact</a>
+			{% for obj in menu %}
+				<a href="{{ obj.link }}" class="footer__nav-link">{{ obj.name }}</a>
+			{% endfor %}
 			</nav>
 
 			<div class="footer__copy">

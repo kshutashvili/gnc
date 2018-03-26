@@ -50,47 +50,27 @@
 				<h3 class="private-title">Transactions history</h3>
 				<div class="user-history__column">
 					<h4 class="user-history__column-title">date</h4>
-					<time class="user-history__item">02.03.18</time>
-					<time class="user-history__item">02.03.18</time>
-					<time class="user-history__item">02.03.18</time>
-					<time class="user-history__item">02.03.18</time>
-					<time class="user-history__item">02.03.18</time>
-					<time class="user-history__item">02.03.18</time>
-					<time class="user-history__item">02.03.18</time>
-					<time class="user-history__item">02.03.18</time>
+				{% for obj in donations %}
+					<time class="user-history__item">{{ obj.created_dt|date:'Y-m-d' }}</time>
+				{% endfor %}					
 				</div>
 				<div class="user-history__column">
 					<h4 class="user-history__column-title">method</h4>
-					<span class="user-history__item">data</span>
-					<span class="user-history__item">data</span>
-					<span class="user-history__item">data</span>
-					<span class="user-history__item">data</span>
-					<span class="user-history__item">data</span>
-					<span class="user-history__item">data</span>
-					<span class="user-history__item">data</span>
-					<span class="user-history__item">data</span>
+					{% for obj in donations %}
+						<span class="user-history__item">{{ obj.payment_method }}</span>
+					{% endfor %}
 				</div>
 				<div class="user-history__column user-history__column--prime">
 					<h4 class="user-history__column-title">number of tokens</h4>
-					<span class="user-history__item">2142412</span>
-					<span class="user-history__item">2142412</span>
-					<span class="user-history__item">2142412</span>
-					<span class="user-history__item">2142412</span>
-					<span class="user-history__item">2142412</span>
-					<span class="user-history__item">2142412</span>
-					<span class="user-history__item">2142412</span>
-					<span class="user-history__item">2142412</span>
+					{% for obj in donations %}
+						<span class="user-history__item">{{ obj.tokens }}</span>
+					{% endfor %}
 				</div>
 				<div class="user-history__column">
 					<h4 class="user-history__column-title">amount</h4>
-					<span class="user-history__item">675</span>
-					<span class="user-history__item">675</span>
-					<span class="user-history__item">675</span>
-					<span class="user-history__item">675</span>
-					<span class="user-history__item">675</span>
-					<span class="user-history__item">675</span>
-					<span class="user-history__item">675</span>
-					<span class="user-history__item">675</span>
+					{% for obj in tokens_sum %}
+						<span class="user-history__item">{{ obj }}</span>
+					{% endfor %}
 				</div>
 			</div>
 
