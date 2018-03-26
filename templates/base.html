@@ -34,7 +34,7 @@
 			{% else %}
 				<div class="btn-box">
 					<button class="btn header__btn" id="btn-login">Log in</button>
-					<button class="btn header__btn" id="btn-registration">Registration</button>
+					<button class="btn header__btn btn-registration" id="btn-registration">Registration</button>
 				</div>
 			{% endif %}
 			<button class="mobile-btn">
@@ -53,7 +53,7 @@
 			<a href="{% url 'index' %}" class="logo">
 				<img src="{% static 'dist/img/logo.png' %}" alt="logo">
 			</a>
-			<a href="#" class="footer__link">Contribute</a>
+			<a href="{% url 'profile' %}" class="footer__link">Contribute</a>
 			<nav class="footer__nav">
 			{% for obj in menu %}
 				<a href="{{ obj.link }}" class="footer__nav-link">{{ obj.name }}</a>

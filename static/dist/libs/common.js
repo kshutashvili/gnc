@@ -31,7 +31,7 @@ window.onload = function() {
 		popup.open($('#form-login'));
 	});
 
-	$('#btn-registration').on('click', function() {
+	$('.btn-registration').on('click', function() {
 		popup.open($('#form-registration'));
 	});
 

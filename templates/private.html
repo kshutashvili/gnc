@@ -69,7 +69,7 @@
 				<div class="user-history__column">
 					<h4 class="user-history__column-title">amount</h4>
 					{% for obj in tokens_sum %}
-						<span class="user-history__item">{{ obj }}</span>
+						{% if obj %}<span class="user-history__item">{{ obj }}</span>{% endif %}
 					{% endfor %}
 				</div>
 			</div>
