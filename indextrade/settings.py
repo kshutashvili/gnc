@@ -173,6 +173,15 @@ USE_L10N = True
 USE_TZ = True
 
 
+# Email settings
+ADMIN_EMAIL = 'galaxynetwork@gmail.com'
+EMAIL_HOST_USER = 'galaxynetwork@gmail.com'
+EMAIL_HOST_PASSWORD = 'gnc123456!!!'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
